@@ -6,12 +6,10 @@ export default function Hero() {
           <h1 className="text-4xl font-semibold leading-tight tracking-tight text-gray-900 md:text-5xl">
             DET — Dialectical Existential Therapy.
             <br />
-            Метод нового поколения в психотерапии.
+            Диалектически-экзистенциальная терапия как культура понимания человека.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-700 md:text-xl">
-            DETai — технологическая экосистема, которая расширяет метод DET через два слоя
-            интеллекта: Augmented Intelligence (обогащённый интеллект человека) и Artificial
-            Intelligence (искусственный интеллект).
+            DETai — технологическая экосистема, включающая продукты, интерфейсы и AI-инструменты, которые воплощают культуру DET в прикладных и ежедневных формах — доступных как клиентам, так и психотерапевтам.
           </p>
         </div>
       </div>
