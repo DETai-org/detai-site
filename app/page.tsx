@@ -1,9 +1,9 @@
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import AudienceSection from "../components/sections/AudienceSection";
-import Core from "../components/sections/Core";
 import DetToDetaiBridge from "../components/sections/DetToDetaiBridge";
 import DetDetaiSplit from "../components/sections/DetDetaiSplit";
+import FundamentDetSection from "../components/sections/FundamentDetSection";
 import Hero from "../components/sections/Hero";
 import Mission from "../components/sections/Mission";
 
@@ -16,7 +16,7 @@ export default function Page() {
         <DetToDetaiBridge />
         <DetDetaiSplit />
         <AudienceSection />
-        <Core />
+        <FundamentDetSection />
         <Mission />
       </main>
       <Footer />
