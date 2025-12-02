@@ -20,6 +20,10 @@ type ButtonAsLink = ButtonBaseProps & ComponentPropsWithoutRef<"a"> & {
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
+// ===============================================================
+// 🚀 BUTTON VARIANTS — ВАРИАНТЫ КНОПОК
+// Здесь определяются ВСЕ стили кнопок (PRIMARY, SECONDARY и др.)
+// ===============================================================
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
     "bg-gold-primary text-basic-dark shadow-[0_0_20px_rgba(212,175,106,0.25)] hover:bg-gold-dark hover:shadow-[0_0_30px_rgba(212,175,106,0.35)] transition-all duration-300",
