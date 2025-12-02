@@ -1,15 +1,19 @@
+import Heading from "../ui/Heading";
+import Section from "../ui/Section";
+
 export default function Mission() {
   return (
-    <section id="mission" className="w-full bg-white">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-24">
-        <h2 className="text-2xl font-semibold leading-tight tracking-tight md:text-3xl">Наша миссия</h2>
-        <p className="mt-6 max-w-4xl text-base leading-relaxed text-gray-700 md:text-lg">
-          Создать новую терапевтическую логику, которая объединяет глубину экзистенциальной
-          психологии и возможности современного интеллекта — человеческого и искусственного. DET и
-          DETai — это путь к осмысленным инструментам, которые помогают людям понимать себя и
-          развиваться.
+    <Section id="mission" variant="dark">
+      <div className="flex flex-col gap-6">
+        <Heading level={2} color="soft">
+          Наша миссия
+        </Heading>
+        <p className="max-w-4xl text-base leading-relaxed text-basic-gold-soft md:text-lg">
+          Создать новую терапевтическую логику, которая объединяет глубину экзистенциальной психологии и возможности современного
+          интеллекта — человеческого и искусственного. DET и DETai — это путь к осмысленным инструментам, которые помогают людям
+          понимать себя и развиваться.
         </p>
       </div>
-    </section>
+    </Section>
   );
 }
