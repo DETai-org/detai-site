@@ -1,3 +1,6 @@
+import Heading from "../ui/Heading";
+import Section from "../ui/Section";
+
 const audienceCards = [
   {
     title: "Психологам и терапевтам",
@@ -23,29 +26,27 @@ const audienceCards = [
 
 export default function AudienceSection() {
   return (
-    <section className="w-full bg-gray-50">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-20">
-        <div className="flex flex-col gap-4">
-          <h2 className="text-2xl font-semibold leading-tight tracking-tight md:text-3xl">Для кого DET и DETai</h2>
-          <p className="max-w-4xl text-base leading-relaxed text-gray-800 md:text-lg">
-            DET — это культурная рамка понимания человека и тип внутренней позиции. DETai — её технологическое продолжение.
-            Вместе они создают смыслы и инструменты для тех, кто развивается сам и помогает развиваться другим: психологам,
-            исследователям, создателям сервисов и людям, которые чувствуют себя частью семьи с общим внутренним принципом.
-          </p>
-        </div>
-
-        <div className="mt-10 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-2 md:gap-8">
-          {audienceCards.map((card) => (
-            <div
-              key={card.title}
-              className="flex h-full flex-col gap-3 rounded-xl bg-white p-6 text-gray-900 shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
-            >
-              <h3 className="text-xl font-semibold leading-snug md:text-2xl">{card.title}</h3>
-              <p className="text-sm leading-relaxed text-gray-700 md:text-base">{card.description}</p>
-            </div>
-          ))}
-        </div>
+    <Section>
+      <div className="flex flex-col gap-4">
+        <Heading level={2}>Для кого DET и DETai</Heading>
+        <p className="max-w-4xl text-base leading-relaxed text-basic-dark md:text-lg">
+          DET — это культурная рамка понимания человека и тип внутренней позиции. DETai — её технологическое продолжение. Вместе
+          они создают смыслы и инструменты для тех, кто развивается сам и помогает развиваться другим: психологам,
+          исследователям, создателям сервисов и людям, которые чувствуют себя частью семьи с общим внутренним принципом.
+        </p>
       </div>
-    </section>
+
+      <div className="mt-10 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-2 md:gap-8">
+        {audienceCards.map((card) => (
+          <div
+            key={card.title}
+            className="flex h-full flex-col gap-3 p-6 text-basic-dark rounded-xl border border-gold-primary/30 bg-gold-soft shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:border-gold-primary hover:shadow-lg"
+          >
+            <h3 className="text-xl font-serif font-semibold leading-snug text-basic-dark md:text-2xl">{card.title}</h3>
+            <p className="text-sm leading-relaxed text-basic-dark md:text-base">{card.description}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
   );
 }
