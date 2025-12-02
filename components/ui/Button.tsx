@@ -36,7 +36,8 @@ const variantClasses: Record<ButtonVariant, string> = {
   hover:brightness-105 active:brightness-90
 
   before:absolute before:inset-0 before:rounded-lg
-  before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.45),transparent)]
+  before:bg-[linear-gradient(120deg,red,white,red)]
+
   before:w-[200%] before:h-full
   before:opacity-0
   before:translate-x-[-150%]
