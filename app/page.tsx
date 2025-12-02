@@ -6,7 +6,6 @@ import DetDetaiSplit from "../components/sections/DetDetaiSplit";
 import FundamentDetSection from "../components/sections/FundamentDetSection";
 import Hero from "../components/sections/Hero";
 import Mission from "../components/sections/Mission";
-import Projects from "../components/sections/Projects";
 
 export default function Page() {
   return (
@@ -17,7 +16,6 @@ export default function Page() {
         <DetToDetaiBridge />
         <DetDetaiSplit />
         <AudienceSection />
-        <Projects />
         <FundamentDetSection />
         <Mission />
       </main>
