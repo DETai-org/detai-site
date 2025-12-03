@@ -37,32 +37,34 @@ const projects = [
 export default function Projects() {
   return (
     <Section id="projects">
-      <div className="mb-10 flex flex-col gap-3 md:mb-12">
+      <div className="mb-mobile-6 flex flex-col gap-mobile-3 md:mb-12 md:gap-4">
         <Heading level={2}>Проекты DETai</Heading>
-        <p className="max-w-3xl text-base leading-relaxed text-basic-dark md:text-lg">
+        <p className="max-w-mobile text-mobile-lg leading-mobile-normal text-basic-dark md:max-w-2xl md:text-base md:leading-relaxed">
           Практические инструменты, создаваемые на основе метода DET и работающие в технологической экосистеме DETai.
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-mobile-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
         {projects.map((project) => (
           <a
             key={project.name}
-            className="group flex h-full flex-col gap-2 p-5 text-basic-dark rounded-lg border border-accent-primary/30 bg-accent-soft shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:border-accent-primary hover:shadow-lg"
+            className="group flex h-full flex-col gap-mobile-3 rounded-lg border border-accent-primary/30 bg-accent-soft p-mobile-4 text-basic-dark shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:border-accent-primary hover:shadow-lg md:gap-4 md:p-5"
             href={project.href}
           >
-            <div className="flex items-center gap-3 text-lg font-serif font-semibold leading-tight text-basic-dark">
+            <div className="flex items-center gap-mobile-3 text-mobile-xl font-serif font-semibold leading-mobile-tight text-basic-dark md:gap-3 md:text-lg md:leading-tight">
               <span aria-hidden>{project.icon}</span>
               <span>{project.name}</span>
             </div>
-            <p className="mt-1 text-sm leading-relaxed text-basic-dark md:text-base">{project.description}</p>
-            <span className="mt-3 inline-flex w-fit items-center gap-2 text-sm font-medium text-basic-dark underline-offset-4 group-hover:underline">
+            <p className="mt-mobile-2 text-mobile-lg leading-mobile-normal text-basic-dark md:mt-1 md:text-base md:leading-relaxed">
+              {project.description}
+            </p>
+            <span className="mt-mobile-3 inline-flex w-fit items-center gap-mobile-2 text-sm font-medium text-basic-dark underline-offset-4 group-hover:underline md:gap-2 md:text-base">
               Подробнее →
             </span>
           </a>
         ))}
       </div>
-      <div className="mt-10">
-        <a className="text-sm font-semibold text-basic-dark underline-offset-4 hover:underline md:text-base" href="/detai/projects">
+      <div className="mt-mobile-6 md:mt-10">
+        <a className="text-mobile-lg font-semibold text-basic-dark underline-offset-4 hover:underline md:text-base" href="/detai/projects">
           Все проекты →
         </a>
       </div>
