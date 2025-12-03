@@ -8,22 +8,31 @@ export default function Hero() {
       id="hero"
       variant="dark"
       className="relative overflow-hidden"
-      containerClassName="relative flex min-h-screen flex-col items-center justify-center gap-mobile-6 md:min-h-[500px] md:flex-row md:items-center md:justify-between md:gap-10"
+      containerClassName="relative flex min-h-screen flex-col items-start justify-center gap-mobile-6 md:min-h-[500px] md:flex-row md:items-center md:justify-between md:gap-10"
     >
-      <div className="absolute inset-0 bg-basic-dark md:hidden" />
-      <div className="absolute inset-0 bg-basic-dark/60 md:hidden" />
+      <div className="absolute inset-0 h-[100vh] bg-basic-dark md:hidden" />
+      <div className="absolute inset-0 h-[100vh] bg-basic-dark/50 md:hidden" />
 
-      <div className="relative flex w-full max-w-mobile flex-col items-center gap-mobile-4 text-center md:max-w-none md:w-1/2 md:items-start md:gap-6 md:text-left">
-        <Heading level={1} color="soft" className="text-mobile-4xl md:text-5xl">
+      <div className="relative flex w-full max-w-mobile flex-col items-start gap-mobile-3 text-left md:max-w-none md:w-1/2 md:gap-6">
+        <Heading
+          level={1}
+          color="soft"
+          className="text-mobile-4xl leading-mobile-tight md:text-5xl"
+        >
           DET — Dialectical Existential Therapy.
-          <br />
+        </Heading>
+        <Heading
+          level={1}
+          color="soft"
+          className="text-mobile-3xl leading-mobile-tight md:text-4xl md:leading-tight"
+        >
           Новый формат психотерапии
         </Heading>
         <p className="hidden max-w-2xl text-lg leading-relaxed text-accent-soft md:block">
           Диалектически-экзистенциальная терапия — это культура понимания человека. DETai — это технологическая экосистема, включая продукты,
           интерфейсы и AI-инструменты, которые воплощают культуру DET в прикладных и ежедневных формах — доступных как клиентам, так и психотерапевтам.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-mobile-4 md:justify-start md:gap-6">
+        <div className="flex flex-wrap items-center justify-start gap-mobile-4 md:gap-6">
           <Button as="a" href="#fundament-det" variant="primary">
             Фундамент DET
           </Button>
