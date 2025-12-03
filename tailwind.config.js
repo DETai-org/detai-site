@@ -38,6 +38,26 @@ module.exports = {
       spacing: {
         18: "4.5rem",
         22: "5.5rem",
+        "mobile-1": "0.75rem",
+        "mobile-2": "1rem",
+        "mobile-3": "1.25rem",
+        "mobile-4": "1.5rem",
+        "mobile-6": "2rem",
+        "mobile-8": "2.5rem",
+      },
+      fontSize: {
+        "mobile-2xl": ["1.75rem", { lineHeight: "2.1rem" }],
+        "mobile-xl": ["1.5rem", { lineHeight: "1.9rem" }],
+        "mobile-lg": ["1.125rem", { lineHeight: "1.6rem" }],
+      },
+      lineHeight: {
+        "mobile-tight": "1.2",
+        "mobile-normal": "1.6",
+        "mobile-loose": "1.8",
+      },
+      maxWidth: {
+        mobile: "90vw",
+        "mobile-tight": "85vw",
       },
     },
   },
