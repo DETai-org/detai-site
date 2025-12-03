@@ -16,7 +16,7 @@ export default function Hero() {
           <Heading
             level={1}
             color="soft"
-            className="text-[1.4rem] leading-[1.9rem] md:text-4xl md:leading-tight"
+            className="text-mobile-xl md:text-4xl md:leading-tight"
           >
             Новый формат психотерапии
           </Heading>
