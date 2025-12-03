@@ -9,6 +9,7 @@ module.exports = {
     { pattern: /animate-/ },
     { pattern: /bg-\[/ },
     { pattern: /translate-x/ },
+    { pattern: /auto-shimmer/ },
   ],
   darkMode: "class",
   theme: {
