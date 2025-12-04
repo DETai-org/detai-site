@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="absolute inset-0 h-full bg-basic-dark/50" />
 
         <div className="relative flex w-full flex-col items-start gap-mobile-3 text-left">
-          <AnimatedLogo className="h-28 w-28" />
+          <AnimatedLogo className="h-28 w-28 self-end" />
           <Heading level={1} color="soft" className="text-mobile-4xl leading-mobile-tight md:text-5xl">
             DET — Dialectical Existential Therapy.
           </Heading>
@@ -44,8 +44,7 @@ export default function Hero() {
       </div>
 
       <div className="hidden flex-col gap-6 py-16 md:flex md:gap-10 md:py-24">
-        <div className="flex items-start gap-6">
-          <AnimatedLogo className="flex-shrink-0 h-32 w-32" />
+        <div className="flex items-start justify-between gap-6">
           <div className="flex-1 space-y-6">
             <Heading level={1} color="soft">
               DET — Dialectical Existential Therapy.
@@ -66,6 +65,7 @@ export default function Hero() {
               </Button>
             </div>
           </div>
+          <AnimatedLogo className="h-32 w-32" />
         </div>
       </div>
     </Section>
