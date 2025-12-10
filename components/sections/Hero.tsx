@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="absolute inset-0 h-full bg-basic-dark/50" />
 
         <div className="relative flex w-full flex-col items-start gap-mobile-3 text-left">
-          <AnimatedLogo className="h-28 w-28 self-end" />
+          <AnimatedLogo className="self-end w-28 h-28" />
           <Heading level={1} color="soft" className="text-mobile-4xl leading-mobile-tight md:text-5xl">
             DET — Dialectical Existential Therapy.
           </Heading>
@@ -65,7 +65,7 @@ export default function Hero() {
               </Button>
             </div>
           </div>
-          <AnimatedLogo className="h-32 w-32" />
+          <AnimatedLogo className="flex-shrink-0 w-[18rem] h-[18rem] md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem]" />
         </div>
       </div>
     </Section>

@@ -10,5 +10,5 @@ type AnimatedLogoProps = {
 };
 
 export default function AnimatedLogo({ className }: AnimatedLogoProps) {
-  return <Lottie animationData={animationData} loop={false} autoplay className={clsx("h-48 w-48", className)} />;
+  return <Lottie animationData={animationData} loop={false} autoplay className={clsx("w-48 h-48", className)} />;
 }
