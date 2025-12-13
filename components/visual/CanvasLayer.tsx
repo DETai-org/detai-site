@@ -123,7 +123,8 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
   ) => {
     const centerX = width / 2;
     const centerY = height / 2;
-    const margin = Math.max(Math.min(width, height) * 0.025, 10);
+    const margin = Math.min(width, height) * 0.12;
+
     const radius = Math.min(width, height) * 0.16;
 
     const targets: Array<{
@@ -202,7 +203,7 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     }
 
     if (distance < Math.min(width, height) * 0.025) {
-      return null; // РАСТВОРЕНИЕ В ЛОГО ❗❗❗
+      particle.opacity *= 0.9; // РАСТВОРЕНИЕ В ЛОГО ❗❗❗
     }
 
     return {
