@@ -55,7 +55,21 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
   const particlesRef = useRef<Particle[]>([]);
   const spawnAccumulatorRef = useRef<number>(0);
   const lastTimestampRef = useRef<number>(performance.now());
-  const sizeRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
+  const metricsRef = useRef<{
+    width: number;
+    height: number;
+    centerX: number;
+    centerY: number;
+    influence: number;
+    anchorSize: number;
+  }>({
+    width: 0,
+    height: 0,
+    centerX: 0,
+    centerY: 0,
+    influence: 0,
+    anchorSize: 0,
+  });
 
   const switchPhase = (phase: Phase) => {
     phaseRef.current = phase;
@@ -121,11 +135,10 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     life: [number, number],
     opacityRange: [number, number],
   ) => {
-    const centerX = width / 2;
-    const centerY = height / 2;
-    const margin = Math.min(width, height) * 0.03;
+    const { centerX, centerY, influence, anchorSize } = metricsRef.current;
+    const margin = Math.max(width, height) * 0.12;
 
-    const radius = Math.min(width, height) * 0.16;
+    const radius = influence || Math.min(anchorSize || Math.min(width, height), Math.min(width, height)) * 0.16;
 
     const targets: Array<{
       spawn: () => [number, number];
@@ -187,12 +200,11 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     const dx = particle.tx - particle.x;
     const dy = particle.ty - particle.y;
     const distance = Math.hypot(dx, dy);
+
+    const reference = Math.max(metricsRef.current.anchorSize * 0.6 || 0, Math.min(width, height) * 0.35);
     
     // нормализация дистанции относительно сцены
-    const distNorm = Math.min(
-      distance / (Math.min(width, height) * 0.5),
-      1,
-    );
+    const distNorm = Math.min(distance / Math.max(reference, 1), 1);
     
     // чем дальше — тем слабее, но НЕ в ноль
     const pullFactor = 0.4 + (1 - distNorm) * 0.6;
@@ -265,8 +277,8 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
       const parent = canvasElement.parentElement;
       const rect = parent?.getBoundingClientRect();
       const dpr = Math.max(window.devicePixelRatio || 1, 1);
-      const width = rect?.width ?? 0;
-      const height = rect?.height ?? 0;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
       canvasElement.style.width = `${width}px`;
       canvasElement.style.height = `${height}px`;
@@ -274,11 +286,23 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
       canvasElement.height = Math.round(height * dpr);
 
       contextRef.current?.setTransform(dpr, 0, 0, dpr, 0, 0);
-      sizeRef.current = { width, height };
+      const centerX = (rect?.left ?? 0) + (rect?.width ?? width) / 2;
+      const centerY = (rect?.top ?? 0) + (rect?.height ?? height) / 2;
+      const anchorSize = Math.min(rect?.width ?? width, rect?.height ?? height);
+
+      metricsRef.current = {
+        width,
+        height,
+        centerX,
+        centerY,
+        influence: Math.min(anchorSize, Math.min(width, height)) * 0.16,
+        anchorSize,
+      };
     };
 
     resize();
     window.addEventListener("resize", resize);
+    window.addEventListener("scroll", resize, { passive: true });
 
     schedulePhases();
     lastTimestampRef.current = performance.now();
@@ -289,7 +313,7 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
       lastTimestampRef.current = timestamp;
       const ctx = contextRef.current;
       if (ctx) {
-        renderFrame(ctx, delta, sizeRef.current.width, sizeRef.current.height);
+        renderFrame(ctx, delta, metricsRef.current.width, metricsRef.current.height);
       }
       frameRef.current = requestAnimationFrame(loop);
     }
@@ -298,9 +322,10 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
       timeoutsRef.current.forEach((id) => clearTimeout(id));
       cancelAnimationFrame(frameRef.current ?? 0);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("scroll", resize);
       contextRef.current = null;
     };
   }, []);
 
-  return <canvas ref={canvasRef} className={cn("absolute inset-0 pointer-events-none", className)} aria-hidden />;
+  return <canvas ref={canvasRef} className={cn("fixed inset-0 pointer-events-none z-20", className)} aria-hidden />;
 }
