@@ -2,8 +2,10 @@
 
 import Lottie from "lottie-react";
 import clsx from "clsx";
+import { useState } from "react";
 
-import animationData from "@/public/assets/animations/logo.json";
+import introAnimationData from "@/public/assets/animations/logo.json";
+import pulseAnimationData from "@/public/assets/animations/logo_pulse.json";
 
 type AnimatedLogoProps = {
   className?: string;
@@ -11,13 +13,30 @@ type AnimatedLogoProps = {
 };
 
 export default function AnimatedLogo({ className, size }: AnimatedLogoProps) {
+  const [isPulseVisible, setIsPulseVisible] = useState(false);
+
+  const sharedStyle = size ? { height: size, width: size } : undefined;
+
   return (
-    <Lottie
-      animationData={animationData}
-      loop={false}
-      autoplay
-      className={clsx("h-48 w-48", className)}
-      style={size ? { height: size, width: size } : undefined}
-    />
+    <div className={clsx("relative h-48 w-48", className)} style={sharedStyle}>
+      {!isPulseVisible && (
+        <Lottie
+          animationData={introAnimationData}
+          loop={false}
+          autoplay
+          className="h-full w-full"
+          onComplete={() => setIsPulseVisible(true)}
+        />
+      )}
+
+      {isPulseVisible && (
+        <Lottie
+          animationData={pulseAnimationData}
+          loop
+          autoplay
+          className="absolute inset-0 h-full w-full"
+        />
+      )}
+    </div>
   );
 }
