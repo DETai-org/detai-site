@@ -30,21 +30,23 @@ const TIMINGS = {
 
 const PHASE_SETTINGS: Record<Phase, { spawnRate: number; speed: [number, number] }> = {
   idle: { spawnRate: 0, speed: [0, 0] },
-  inhale_start: { spawnRate: 18, speed: [45, 65] },
-  inhale_peak: { spawnRate: 30, speed: [60, 90] },
-  inhale_fade: { spawnRate: 10, speed: [35, 55] },
+  inhale_start: { spawnRate: 22, speed: [45, 70] },
+  inhale_peak: { spawnRate: 36, speed: [70, 98] },
+  inhale_fade: { spawnRate: 12, speed: [35, 60] },
 };
 
 const BASE_COLOR = "242, 229, 194"; // оттенок accent.soft из дизайн-токенов
 
 export default function CanvasLayer({ className }: CanvasLayerProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const frameRef = useRef<number>();
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   const phaseRef = useRef<Phase>("idle");
   const particlesRef = useRef<Particle[]>([]);
   const spawnAccumulatorRef = useRef<number>(0);
   const lastTimestampRef = useRef<number>(performance.now());
+  const sizeRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
 
   const switchPhase = (phase: Phase) => {
     phaseRef.current = phase;
@@ -121,8 +123,8 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
       const jitter = (Math.random() - 0.5) * 0.08; // лёгкое дыхание траектории
       const angle = baseAngle + jitter;
       const velocity = randomBetween(speed[0], speed[1]);
-      const size = randomBetween(0.8, 1.8);
-      const opacity = randomBetween(0.05, 0.15);
+      const size = randomBetween(1.1, 2.1);
+      const opacity = randomBetween(0.08, 0.18);
 
       particlesRef.current.push({
         x,
@@ -191,14 +193,23 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     const context = canvas.getContext("2d");
     if (!context) return undefined;
 
-    const ctx = context;
+    contextRef.current = context;
 
-    // Подгоняем размер под контейнер сцены
+    // Подгоняем размер под контейнер сцены с учётом DPR, чтобы частицы не терялись
     const resize = () => {
       const parent = canvasElement.parentElement;
       const rect = parent?.getBoundingClientRect();
-      canvasElement.width = rect?.width ?? 0;
-      canvasElement.height = rect?.height ?? 0;
+      const dpr = Math.max(window.devicePixelRatio || 1, 1);
+      const width = rect?.width ?? 0;
+      const height = rect?.height ?? 0;
+
+      canvasElement.style.width = `${width}px`;
+      canvasElement.style.height = `${height}px`;
+      canvasElement.width = Math.round(width * dpr);
+      canvasElement.height = Math.round(height * dpr);
+
+      contextRef.current?.setTransform(dpr, 0, 0, dpr, 0, 0);
+      sizeRef.current = { width, height };
     };
 
     resize();
@@ -211,7 +222,10 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     function loop(timestamp: number) {
       const delta = Math.min((timestamp - lastTimestampRef.current) / 1000, 0.05);
       lastTimestampRef.current = timestamp;
-      renderFrame(ctx, delta, canvasElement.width, canvasElement.height);
+      const ctx = contextRef.current;
+      if (ctx) {
+        renderFrame(ctx, delta, sizeRef.current.width, sizeRef.current.height);
+      }
       frameRef.current = requestAnimationFrame(loop);
     }
 
@@ -219,6 +233,7 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
       timeoutsRef.current.forEach((id) => clearTimeout(id));
       cancelAnimationFrame(frameRef.current ?? 0);
       window.removeEventListener("resize", resize);
+      contextRef.current = null;
     };
   }, []);
 
