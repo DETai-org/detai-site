@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 
 type Phase = "idle" | "inhale_start" | "inhale_peak" | "inhale_fade";
 
+type ParticleLayer = "ambient" | "stream";
+
 type Particle = {
   x: number;
   y: number;
@@ -18,6 +20,7 @@ type Particle = {
   length: number;
   thickness: number;
   color: string;
+  layer: ParticleLayer;
 };
 
 type CanvasLayerProps = {
@@ -53,7 +56,8 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   const phaseRef = useRef<Phase>("idle");
   const particlesRef = useRef<Particle[]>([]);
-  const spawnAccumulatorRef = useRef<number>(0);
+  const spawnAccumulatorAmbientRef = useRef<number>(0);
+  const spawnAccumulatorStreamRef = useRef<number>(0);
   const lastTimestampRef = useRef<number>(performance.now());
   const sizeRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
 
@@ -61,7 +65,8 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     phaseRef.current = phase;
     if (phase === "idle") {
       particlesRef.current = [];
-      spawnAccumulatorRef.current = 0;
+      spawnAccumulatorAmbientRef.current = 0;
+      spawnAccumulatorStreamRef.current = 0;
     }
   };
 
@@ -97,10 +102,18 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     const { spawnRate, speed, life, opacity } = PHASE_SETTINGS[phase];
 
     if (spawnRate > 0 && width > 0 && height > 0) {
-      spawnAccumulatorRef.current += spawnRate * delta;
-      while (spawnAccumulatorRef.current >= 1) {
-        spawnParticles(width, height, speed, life, opacity);
-        spawnAccumulatorRef.current -= 1;
+      const streamFactor = 0.6; // доля новых частиц, уходящих в направленные потоки
+
+      spawnAccumulatorAmbientRef.current += spawnRate * delta;
+      while (spawnAccumulatorAmbientRef.current >= 1) {
+        spawnAmbientParticles(width, height, speed, life, opacity);
+        spawnAccumulatorAmbientRef.current -= 1;
+      }
+
+      spawnAccumulatorStreamRef.current += spawnRate * streamFactor * delta;
+      while (spawnAccumulatorStreamRef.current >= 1) {
+        spawnStreamParticles(width, height, speed, life, opacity);
+        spawnAccumulatorStreamRef.current -= 1;
       }
     }
 
@@ -114,7 +127,66 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     }, []);
   };
 
-  const spawnParticles = (
+  const spawnAmbientParticles = (
+    width: number,
+    height: number,
+    speed: [number, number],
+    life: [number, number],
+    opacityRange: [number, number],
+  ) => {
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const margin = Math.max(Math.min(width, height) * 0.025, 10);
+    const radius = Math.min(width, height) * 0.16;
+
+    const targets: Array<{
+      spawn: () => [number, number];
+      tx: number;
+      ty: number;
+    }> = [
+      { spawn: () => [Math.random() * width, -margin], tx: centerX, ty: centerY - radius },
+      { spawn: () => [Math.random() * width, height + margin], tx: centerX, ty: centerY + radius },
+      { spawn: () => [-margin, Math.random() * height], tx: centerX - radius, ty: centerY },
+      { spawn: () => [width + margin, Math.random() * height], tx: centerX + radius, ty: centerY },
+    ];
+
+    targets.forEach(({ spawn, tx, ty }) => {
+      const [x, y] = spawn();
+      const dx = tx - x;
+      const dy = ty - y;
+      const baseAngle = Math.atan2(dy, dx);
+      const jitter = (Math.random() - 0.5) * 0.01; // почти прямые струи
+      const swirl = (Math.random() - 0.5) * 0.04; // лёгкое втягивание воронки
+      const angle = baseAngle + jitter + swirl;
+      const velocity = randomBetween(speed[0], speed[1]);
+      const length = randomBetween(5, 9);
+      const thickness = randomBetween(1.6, 2.2);
+      const opacity = randomBetween(opacityRange[0], opacityRange[1]);
+      const color = GOLD_PALETTE[Math.random() > 0.55 ? 1 : 0];
+
+      particlesRef.current.push({
+        x,
+        y,
+        vx: Math.cos(angle) * velocity,
+        vy: Math.sin(angle) * velocity,
+        tx,
+        ty,
+        life: randomBetween(life[0], life[1]),
+        opacity,
+        length,
+        thickness,
+        color,
+        layer: "ambient",
+      });
+    });
+
+    // Контроль числа частиц, чтобы эффект оставался лёгким
+    if (particlesRef.current.length > 360) {
+      particlesRef.current.splice(0, particlesRef.current.length - 360);
+    }
+  };
+
+  const spawnStreamParticles = (
     width: number,
     height: number,
     speed: [number, number],
@@ -167,12 +239,13 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
         length,
         thickness,
         color,
+        layer: "stream",
       });
     });
 
     // Контроль числа частиц, чтобы эффект оставался лёгким
-    if (particlesRef.current.length > 260) {
-      particlesRef.current.splice(0, particlesRef.current.length - 260);
+    if (particlesRef.current.length > 420) {
+      particlesRef.current.splice(0, particlesRef.current.length - 420);
     }
   };
 
@@ -183,10 +256,11 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     height: number,
   ): Particle | null => {
     const damping = 0.993;
-    const pull = 32;
-    const swirlForce = 22;
-    const logoRadius = Math.min(width, height) * 0.14;
-    const killRadius = logoRadius * 0.55;
+    const isStream = particle.layer === "stream";
+    const pull = isStream ? 52 : 54;
+    const swirlForce = isStream ? 24 : 0;
+    const logoRadius = Math.min(width, height) * (isStream ? 0.14 : 0.16);
+    const killRadius = isStream ? logoRadius * 0.6 : Math.min(width, height) * 0.025;
     const nextLife = particle.life - delta;
     if (nextLife <= 0) return null;
 
@@ -197,8 +271,8 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     const ax = (dx / Math.max(distance, 1)) * pull * delta;
     const ay = (dy / Math.max(distance, 1)) * pull * delta;
 
-    const txNorm = -dy / Math.max(distance, 1);
-    const tyNorm = dx / Math.max(distance, 1);
+    const txNorm = isStream ? -dy / Math.max(distance, 1) : 0;
+    const tyNorm = isStream ? dx / Math.max(distance, 1) : 0;
     const sx = txNorm * swirlForce * delta;
     const sy = tyNorm * swirlForce * delta;
 
@@ -218,9 +292,13 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     let thickness = particle.thickness;
 
     if (distance < killRadius) {
-      opacity *= 0.88;
-      length *= 0.94;
-      thickness *= 0.96;
+      if (isStream) {
+        opacity *= 0.84;
+        length *= 0.9;
+        thickness *= 0.92;
+      } else {
+        return null; // базовый слой растворяется мгновенно у логотипа
+      }
     }
 
     return {
