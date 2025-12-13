@@ -359,6 +359,8 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     const nextLife = particle.life - delta;
     if (nextLife <= 0) return null;
 
+    const lifeRatio = particle.life / (particle.life + delta);
+
     const dx = particle.tx - particle.x;
     const dy = particle.ty - particle.y;
     const distance = Math.hypot(dx, dy);
@@ -369,8 +371,10 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     // чем дальше — тем слабее, но НЕ в ноль
     const pullFactor = 0.7 + (1 - distNorm) * 0.6;
 
-    const ax = (dx / Math.max(distance, 1)) * pull * pullFactor * delta;
-    const ay = (dy / Math.max(distance, 1)) * pull * pullFactor * delta;
+    const earlyBoost = lifeRatio > 0.75 ? 2.0 : 1.0;
+
+    const ax = (dx / Math.max(distance, 1)) * pull * pullFactor * earlyBoost * delta;
+    const ay = (dy / Math.max(distance, 1)) * pull * pullFactor * earlyBoost * delta;
 
     const nx = particle.x + (particle.vx + ax) * delta;
     const ny = particle.y + (particle.vy + ay) * delta;
