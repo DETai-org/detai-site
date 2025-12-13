@@ -207,9 +207,14 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     const nvx = (particle.vx + ax) * damping;
     const nvy = (particle.vy + ay) * damping;
 
-    if (nx < -width * 0.1 || nx > width * 1.1 || ny < -height * 0.1 || ny > height * 1.1) {
+    if (nx < -width * 0.5 || nx > width * 1.5 || ny < -height * 0.5 || ny > height * 1.5) {
       return null;
     }
+
+
+    // if (nx < -width * 0.1 || nx > width * 1.1 || ny < -height * 0.1 || ny > height * 1.1) {
+    //   return null;
+    // }
 
     if (distance < Math.min(width, height) * 0.025) {
       particle.opacity *= 0.9; // РАСТВОРЕНИЕ В ЛОГО ❗❗❗
