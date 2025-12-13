@@ -13,7 +13,9 @@ type Particle = {
   vy: number;
   life: number;
   opacity: number;
-  size: number;
+  length: number;
+  thickness: number;
+  color: string;
 };
 
 type CanvasLayerProps = {
@@ -28,14 +30,17 @@ const TIMINGS = {
   fade: 1400,
 };
 
-const PHASE_SETTINGS: Record<Phase, { spawnRate: number; speed: [number, number] }> = {
-  idle: { spawnRate: 0, speed: [0, 0] },
-  inhale_start: { spawnRate: 22, speed: [45, 70] },
-  inhale_peak: { spawnRate: 36, speed: [70, 98] },
-  inhale_fade: { spawnRate: 12, speed: [35, 60] },
+const PHASE_SETTINGS: Record<
+  Phase,
+  { spawnRate: number; speed: [number, number]; life: [number, number]; opacity: [number, number] }
+> = {
+  idle: { spawnRate: 0, speed: [0, 0], life: [0, 0], opacity: [0, 0] },
+  inhale_start: { spawnRate: 26, speed: [60, 82], life: [1.4, 1.9], opacity: [0.28, 0.36] },
+  inhale_peak: { spawnRate: 48, speed: [95, 122], life: [1.6, 2.2], opacity: [0.32, 0.45] },
+  inhale_fade: { spawnRate: 8, speed: [34, 55], life: [1.1, 1.6], opacity: [0.22, 0.32] },
 };
 
-const BASE_COLOR = "242, 229, 194"; // оттенок accent.soft из дизайн-токенов
+const GOLD_PALETTE = ["215, 186, 120", "226, 201, 146"]; // мягкие золотые оттенки бренда
 
 export default function CanvasLayer({ className }: CanvasLayerProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -85,12 +90,12 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
   ) => {
     context.clearRect(0, 0, width, height);
     const phase = phaseRef.current;
-    const { spawnRate, speed } = PHASE_SETTINGS[phase];
+    const { spawnRate, speed, life, opacity } = PHASE_SETTINGS[phase];
 
     if (spawnRate > 0 && width > 0 && height > 0) {
       spawnAccumulatorRef.current += spawnRate * delta;
       while (spawnAccumulatorRef.current >= 1) {
-        spawnParticles(width, height, speed);
+        spawnParticles(width, height, speed, life, opacity);
         spawnAccumulatorRef.current -= 1;
       }
     }
@@ -105,7 +110,13 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     }, []);
   };
 
-  const spawnParticles = (width: number, height: number, speed: [number, number]) => {
+  const spawnParticles = (
+    width: number,
+    height: number,
+    speed: [number, number],
+    life: [number, number],
+    opacityRange: [number, number],
+  ) => {
     const centerX = width / 2;
     const centerY = height / 2;
     const margin = Math.max(Math.min(width, height) * 0.02, 8);
@@ -120,26 +131,30 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
       const dx = centerX - x;
       const dy = centerY - y;
       const baseAngle = Math.atan2(dy, dx);
-      const jitter = (Math.random() - 0.5) * 0.08; // лёгкое дыхание траектории
+      const jitter = (Math.random() - 0.5) * 0.02; // лёгкое дыхание траектории, оставляет поток собранным
       const angle = baseAngle + jitter;
       const velocity = randomBetween(speed[0], speed[1]);
-      const size = randomBetween(1.1, 2.1);
-      const opacity = randomBetween(0.08, 0.18);
+      const length = randomBetween(4, 8);
+      const thickness = randomBetween(1.5, 2);
+      const opacity = randomBetween(opacityRange[0], opacityRange[1]);
+      const color = GOLD_PALETTE[Math.random() > 0.55 ? 1 : 0];
 
       particlesRef.current.push({
         x,
         y,
         vx: Math.cos(angle) * velocity,
         vy: Math.sin(angle) * velocity,
-        life: randomBetween(0.9, 1.5),
+        life: randomBetween(life[0], life[1]),
         opacity,
-        size,
+        length,
+        thickness,
+        color,
       });
     });
 
     // Контроль числа частиц, чтобы эффект оставался лёгким
-    if (particlesRef.current.length > 220) {
-      particlesRef.current.splice(0, particlesRef.current.length - 220);
+    if (particlesRef.current.length > 260) {
+      particlesRef.current.splice(0, particlesRef.current.length - 260);
     }
   };
 
@@ -149,7 +164,7 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     width: number,
     height: number,
   ): Particle | null => {
-    const damping = 0.95;
+    const damping = 0.985;
     const nextLife = particle.life - delta;
     if (nextLife <= 0) return null;
 
@@ -171,15 +186,23 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
       vx: nvx,
       vy: nvy,
       life: nextLife,
-      opacity: particle.opacity * 0.985,
+      opacity: particle.opacity * 0.99,
     };
   };
 
   const drawParticle = (context: CanvasRenderingContext2D, particle: Particle) => {
+    const angle = Math.atan2(particle.vy, particle.vx);
+    context.save();
+    context.translate(particle.x, particle.y);
+    context.rotate(angle);
     context.beginPath();
-    context.fillStyle = `rgba(${BASE_COLOR}, ${particle.opacity.toFixed(3)})`;
-    context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-    context.fill();
+    context.strokeStyle = `rgba(${particle.color}, ${particle.opacity.toFixed(3)})`;
+    context.lineWidth = particle.thickness;
+    context.lineCap = "round";
+    context.moveTo(-particle.length * 0.2, 0);
+    context.lineTo(particle.length * 0.8, 0);
+    context.stroke();
+    context.restore();
   };
 
   const randomBetween = (min: number, max: number) => Math.random() * (max - min) + min;
