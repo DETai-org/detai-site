@@ -60,14 +60,12 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     height: number;
     centerX: number;
     centerY: number;
-    influence: number;
     anchorSize: number;
   }>({
     width: 0,
     height: 0,
     centerX: 0,
     centerY: 0,
-    influence: 0,
     anchorSize: 0,
   });
 
@@ -135,20 +133,27 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     life: [number, number],
     opacityRange: [number, number],
   ) => {
-    const { centerX, centerY, influence, anchorSize } = metricsRef.current;
-    const margin = Math.max(width, height) * 0.12;
+    const { centerX, centerY, anchorSize } = metricsRef.current;
+    const nearMargin = Math.min(width, height) * 0.03;
+    const farMargin = Math.max(width, height) * 0.22;
 
-    const radius = influence || Math.min(anchorSize || Math.min(width, height), Math.min(width, height)) * 0.16;
+    const radius = Math.min(anchorSize || Math.min(width, height), Math.min(width, height)) * 0.16;
 
     const targets: Array<{
       spawn: () => [number, number];
       tx: number;
       ty: number;
     }> = [
-      { spawn: () => [Math.random() * width, -margin], tx: centerX, ty: centerY - radius },
-      { spawn: () => [Math.random() * width, height + margin], tx: centerX, ty: centerY + radius },
-      { spawn: () => [-margin, Math.random() * height], tx: centerX - radius, ty: centerY },
-      { spawn: () => [width + margin, Math.random() * height], tx: centerX + radius, ty: centerY },
+      // Близкие к герою точки — сохраняют исходную струйность вокруг логотипа
+      { spawn: () => [Math.random() * width, -nearMargin], tx: centerX, ty: centerY - radius },
+      { spawn: () => [Math.random() * width, height + nearMargin], tx: centerX, ty: centerY + radius },
+      { spawn: () => [-nearMargin, Math.random() * height], tx: centerX - radius, ty: centerY },
+      { spawn: () => [width + nearMargin, Math.random() * height], tx: centerX + radius, ty: centerY },
+      // Дальние спавны — создают ощущение, что частицы приходят из вне коробки
+      { spawn: () => [Math.random() * width, -farMargin], tx: centerX, ty: centerY },
+      { spawn: () => [Math.random() * width, height + farMargin], tx: centerX, ty: centerY },
+      { spawn: () => [-farMargin, Math.random() * height], tx: centerX, ty: centerY },
+      { spawn: () => [width + farMargin, Math.random() * height], tx: centerX, ty: centerY },
     ];
 
     targets.forEach(({ spawn, tx, ty }) => {
@@ -201,10 +206,11 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     const dy = particle.ty - particle.y;
     const distance = Math.hypot(dx, dy);
 
-    const reference = Math.max(metricsRef.current.anchorSize * 0.6 || 0, Math.min(width, height) * 0.35);
-    
     // нормализация дистанции относительно сцены
-    const distNorm = Math.min(distance / Math.max(reference, 1), 1);
+    const distNorm = Math.min(
+      distance / (Math.min(width, height) * 0.5),
+      1,
+    );
     
     // чем дальше — тем слабее, но НЕ в ноль
     const pullFactor = 0.4 + (1 - distNorm) * 0.6;
@@ -265,8 +271,6 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
 
-    const canvasElement = canvas;
-
     const context = canvas.getContext("2d");
     if (!context) return undefined;
 
@@ -274,16 +278,16 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
 
     // Подгоняем размер под контейнер сцены с учётом DPR, чтобы частицы не терялись
     const resize = () => {
-      const parent = canvasElement.parentElement;
+      const parent = canvas.parentElement;
       const rect = parent?.getBoundingClientRect();
       const dpr = Math.max(window.devicePixelRatio || 1, 1);
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      canvasElement.style.width = `${width}px`;
-      canvasElement.style.height = `${height}px`;
-      canvasElement.width = Math.round(width * dpr);
-      canvasElement.height = Math.round(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
 
       contextRef.current?.setTransform(dpr, 0, 0, dpr, 0, 0);
       const centerX = (rect?.left ?? 0) + (rect?.width ?? width) / 2;
@@ -295,7 +299,6 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
         height,
         centerX,
         centerY,
-        influence: Math.min(anchorSize, Math.min(width, height)) * 0.16,
         anchorSize,
       };
     };
