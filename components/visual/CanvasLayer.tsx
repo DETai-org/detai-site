@@ -123,28 +123,32 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
   ) => {
     const centerX = width / 2;
     const centerY = height / 2;
-    const margin = Math.max(Math.min(width, height) * 0.025, 10);
-    const radius = Math.min(width, height) * 0.16;
+    const logoRadius = Math.min(width, height) * 0.14;
+    const spawnRadius = logoRadius * 1.6;
 
-    const targets: Array<{
-      spawn: () => [number, number];
-      tx: number;
-      ty: number;
-    }> = [
-      { spawn: () => [Math.random() * width, -margin], tx: centerX, ty: centerY - radius },
-      { spawn: () => [Math.random() * width, height + margin], tx: centerX, ty: centerY + radius },
-      { spawn: () => [-margin, Math.random() * height], tx: centerX - radius, ty: centerY },
-      { spawn: () => [width + margin, Math.random() * height], tx: centerX + radius, ty: centerY },
+    const targets = [
+      { angle: -Math.PI / 2 }, // сверху
+      { angle: Math.PI / 2 }, // снизу
+      { angle: Math.PI }, // слева
+      { angle: 0 }, // справа
     ];
 
-    targets.forEach(({ spawn, tx, ty }) => {
-      const [x, y] = spawn();
+    targets.forEach(({ angle }) => {
+      const spread = (Math.random() - 0.5) * 0.35; // ширина прорехи
+      const a = angle + spread;
+
+      const x = centerX + Math.cos(a) * spawnRadius;
+      const y = centerY + Math.sin(a) * spawnRadius;
+
+      const tx = centerX + Math.cos(angle) * logoRadius;
+      const ty = centerY + Math.sin(angle) * logoRadius;
+
       const dx = tx - x;
       const dy = ty - y;
       const baseAngle = Math.atan2(dy, dx);
       const jitter = (Math.random() - 0.5) * 0.01; // почти прямые струи
       const swirl = (Math.random() - 0.5) * 0.04; // лёгкое втягивание воронки
-      const angle = baseAngle + jitter + swirl;
+      const angleWithSwirl = baseAngle + jitter + swirl;
       const velocity = randomBetween(speed[0], speed[1]);
       const length = randomBetween(5, 9);
       const thickness = randomBetween(1.6, 2.2);
@@ -154,8 +158,8 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
       particlesRef.current.push({
         x,
         y,
-        vx: Math.cos(angle) * velocity,
-        vy: Math.sin(angle) * velocity,
+        vx: Math.cos(angleWithSwirl) * velocity,
+        vy: Math.sin(angleWithSwirl) * velocity,
         tx,
         ty,
         life: randomBetween(life[0], life[1]),
@@ -179,7 +183,10 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     height: number,
   ): Particle | null => {
     const damping = 0.993;
-    const pull = 54;
+    const pull = 32;
+    const swirlForce = 22;
+    const logoRadius = Math.min(width, height) * 0.14;
+    const killRadius = logoRadius * 0.55;
     const nextLife = particle.life - delta;
     if (nextLife <= 0) return null;
 
@@ -190,19 +197,30 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     const ax = (dx / Math.max(distance, 1)) * pull * delta;
     const ay = (dy / Math.max(distance, 1)) * pull * delta;
 
-    const nx = particle.x + (particle.vx + ax) * delta;
-    const ny = particle.y + (particle.vy + ay) * delta;
+    const txNorm = -dy / Math.max(distance, 1);
+    const tyNorm = dx / Math.max(distance, 1);
+    const sx = txNorm * swirlForce * delta;
+    const sy = tyNorm * swirlForce * delta;
+
+    const nx = particle.x + (particle.vx + ax + sx) * delta;
+    const ny = particle.y + (particle.vy + ay + sy) * delta;
 
     // Лёгкое замедление для эффекта затухания
-    const nvx = (particle.vx + ax) * damping;
-    const nvy = (particle.vy + ay) * damping;
+    const nvx = (particle.vx + ax + sx) * damping;
+    const nvy = (particle.vy + ay + sy) * damping;
 
     if (nx < -width * 0.1 || nx > width * 1.1 || ny < -height * 0.1 || ny > height * 1.1) {
       return null;
     }
 
-    if (distance < Math.min(width, height) * 0.025) {
-      return null; // РАСТВОРЕНИЕ В ЛОГО ❗❗❗
+    let opacity = particle.opacity * 0.99;
+    let length = particle.length;
+    let thickness = particle.thickness;
+
+    if (distance < killRadius) {
+      opacity *= 0.88;
+      length *= 0.94;
+      thickness *= 0.96;
     }
 
     return {
@@ -212,7 +230,9 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
       vx: nvx,
       vy: nvy,
       life: nextLife,
-      opacity: particle.opacity * 0.99,
+      opacity,
+      length,
+      thickness,
     };
   };
 
