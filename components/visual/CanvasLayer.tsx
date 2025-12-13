@@ -123,7 +123,7 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
   ) => {
     const centerX = width / 2;
     const centerY = height / 2;
-    const margin = Math.min(width, height) * 0.12;
+    const margin = Math.min(width, height) * 0.06;
 
     const radius = Math.min(width, height) * 0.16;
 
