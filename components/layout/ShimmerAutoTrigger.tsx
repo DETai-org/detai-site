@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 export default function ShimmerAutoTrigger() {
-  const pathname = usePathname();
-
   useEffect(() => {
-    const shimmerDelay = pathname?.toLowerCase().includes("herald") ? 13000 : 3000;
+    const heroSection = document.getElementById("hero");
 
     const buttons = Array.from(document.querySelectorAll<HTMLElement>(".btn-shimmer"));
 
@@ -21,6 +18,7 @@ export default function ShimmerAutoTrigger() {
       (entries) => {
         entries.forEach((entry) => {
           const target = entry.target as HTMLElement;
+          const shimmerDelay = heroSection?.contains(target) ? 13000 : 3000;
 
           if (entry.isIntersecting) {
             const timer = window.setTimeout(() => {
@@ -52,7 +50,7 @@ export default function ShimmerAutoTrigger() {
       timers.forEach((timer) => window.clearTimeout(timer));
       buttons.forEach((button) => button.classList.remove("auto-shimmer"));
     };
-  }, [pathname]);
+  }, []);
 
   return null;
 }
