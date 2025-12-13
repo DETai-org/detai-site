@@ -37,8 +37,8 @@ const PHASE_SETTINGS: Record<
   { spawnRate: number; speed: [number, number]; life: [number, number]; opacity: [number, number] }
 > = {
   idle: { spawnRate: 0, speed: [0, 0], life: [0, 0], opacity: [0, 0] },
-  inhale_start: { spawnRate: 32, speed: [72, 98], life: [1.6, 2.2], opacity: [0.32, 0.44] },
-  inhale_peak: { spawnRate: 58, speed: [108, 138], life: [1.8, 2.4], opacity: [0.36, 0.5] },
+  inhale_start: { spawnRate: 32, speed: [72, 98], life: [2.6, 3.4], opacity: [0.32, 0.44] },
+  inhale_peak: { spawnRate: 58, speed: [108, 138], life: [4.8, 5.4], opacity: [0.36, 0.5] },
   inhale_fade: { spawnRate: 10, speed: [46, 66], life: [1.2, 1.8], opacity: [0.24, 0.34] },
 };
 
@@ -176,8 +176,8 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     width: number,
     height: number,
   ): Particle | null => {
-    const damping = 0.987;
-    const pull = 18;
+    const damping = 0.993;
+    const pull = 32;
     const nextLife = particle.life - delta;
     if (nextLife <= 0) return null;
 
@@ -199,8 +199,8 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
       return null;
     }
 
-    if (distance < Math.min(width, height) * 0.05) {
-      return null; // растворяются в логотипе
+    if (distance < Math.min(width, height) * 0.025) {
+      return null; // РАСТВОРЕНИЕ В ЛОГО ❗❗❗
     }
 
     return {
