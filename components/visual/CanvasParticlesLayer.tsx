@@ -139,6 +139,8 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
 
     const radius = Math.min(anchorSize || Math.min(width, height), Math.min(width, height)) * 0.16;
 
+    const leftStreamBand = (anchorSize || Math.min(width, height)) * 0.7;
+
     const targets: Array<{
       spawn: () => [number, number];
       tx: number;
@@ -149,6 +151,23 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
       { spawn: () => [Math.random() * width, height + nearMargin], tx: centerX, ty: centerY + radius },
       { spawn: () => [-nearMargin, Math.random() * height], tx: centerX - radius, ty: centerY },
       { spawn: () => [width + nearMargin, Math.random() * height], tx: centerX + radius, ty: centerY },
+      // Дополнительный левый поток из области текста — усиливает струйность в сторону логотипа
+      {
+        spawn: () => [
+          -farMargin * randomBetween(1.1, 1.6),
+          centerY + (Math.random() - 0.5) * leftStreamBand,
+        ],
+        tx: centerX - radius * 0.3,
+        ty: centerY,
+      },
+      {
+        spawn: () => [
+          -nearMargin * 2.4,
+          centerY + (Math.random() - 0.5) * leftStreamBand * 0.85,
+        ],
+        tx: centerX - radius * 0.18,
+        ty: centerY,
+      },
       // Дальние спавны — создают ощущение, что частицы приходят из вне коробки
       { spawn: () => [Math.random() * width, -farMargin], tx: centerX, ty: centerY },
       { spawn: () => [Math.random() * width, height + farMargin], tx: centerX, ty: centerY },
@@ -186,8 +205,8 @@ export default function CanvasParticlesLayer({ className }: CanvasParticlesLayer
     });
 
     // Контроль числа частиц, чтобы эффект оставался лёгким
-    if (particlesRef.current.length > 260) {
-      particlesRef.current.splice(0, particlesRef.current.length - 260);
+    if (particlesRef.current.length > 320) {
+      particlesRef.current.splice(0, particlesRef.current.length - 320);
     }
   };
 
