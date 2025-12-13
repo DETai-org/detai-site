@@ -187,9 +187,18 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     const dx = particle.tx - particle.x;
     const dy = particle.ty - particle.y;
     const distance = Math.hypot(dx, dy);
-
-    const ax = (dx / Math.max(distance, 1)) * pull * delta;
-    const ay = (dy / Math.max(distance, 1)) * pull * delta;
+    
+    // нормализация дистанции относительно сцены
+    const distNorm = Math.min(
+      distance / (Math.min(width, height) * 0.5),
+      1,
+    );
+    
+    // чем дальше — тем слабее, но НЕ в ноль
+    const pullFactor = 0.4 + (1 - distNorm) * 0.6;
+    
+    const ax = (dx / Math.max(distance, 1)) * pull * pullFactor * delta;
+    const ay = (dy / Math.max(distance, 1)) * pull * pullFactor * delta;
 
     const nx = particle.x + (particle.vx + ax) * delta;
     const ny = particle.y + (particle.vy + ay) * delta;
