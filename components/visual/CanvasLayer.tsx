@@ -32,6 +32,8 @@ const TIMINGS = {
   fade: 1400,
 };
 
+const TIME_SCALE = 2.0; 
+
 const PHASE_SETTINGS: Record<
   Phase,
   { spawnRate: number; speed: [number, number]; life: [number, number]; opacity: [number, number] }
@@ -267,7 +269,7 @@ export default function CanvasLayer({ className }: CanvasLayerProps) {
     frameRef.current = requestAnimationFrame(loop);
 
     function loop(timestamp: number) {
-      const delta = Math.min((timestamp - lastTimestampRef.current) / 1000, 0.05);
+      const delta = Math.min((timestamp - lastTimestampRef.current) / 1000, 0.05) * TIME_SCALE;
       lastTimestampRef.current = timestamp;
       const ctx = contextRef.current;
       if (ctx) {
