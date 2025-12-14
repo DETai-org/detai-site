@@ -32,12 +32,13 @@ const variantClasses: Record<ButtonVariant, string> = {
   btn-shimmer
   bg-gradient-to-br from-[#B68E3C] to-[#F2D389]
   text-basic-dark
+  font-sans
   shadow-[0_0_15px_rgba(201,168,106,0.25)]
   transition-all duration-300
   hover:brightness-105 active:brightness-90
 `,
   secondary:
-    "border-2 border-accent-primary text-accent-primary hover:bg-accent-soft/20 hover:text-accent-hover active:bg-accent-soft/10 transition-all duration-300",
+    "border-2 border-accent-primary text-accent-primary font-sans hover:bg-accent-soft/20 hover:text-accent-hover active:bg-accent-soft/10 transition-all duration-300",
 };
 
 
@@ -48,7 +49,7 @@ export default function Button(props: ButtonProps) {
     return (
       <a
         className={cn(
-          "group relative inline-flex items-center justify-center overflow-hidden gap-2 px-6 py-3 text-base font-sans font-medium leading-tight rounded-lg transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-primary",
+          "group relative inline-flex items-center justify-center overflow-hidden gap-2 px-6 py-3 text-base font-medium leading-tight rounded-lg transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-primary",
           variantClasses[variant],
           className,
         )}
@@ -64,7 +65,7 @@ export default function Button(props: ButtonProps) {
   return (
     <button
       className={cn(
-        "group relative inline-flex items-center justify-center overflow-hidden gap-2 px-6 py-3 text-base font-sans font-medium leading-tight rounded-lg transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-primary",
+        "group relative inline-flex items-center justify-center overflow-hidden gap-2 px-6 py-3 text-base font-medium leading-tight rounded-lg transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-primary",
         variantClasses[variant],
         className,
       )}
