@@ -25,6 +25,8 @@ type Particle = {
   edgeParticipant: boolean;
   edgeFadeUntil: number;
   edgeOpacityFactor: number;
+  blurParticipant: boolean;
+  blurStrength: number;
   mode: "inbound" | "outbound";
   canGoOutbound: boolean;
   outboundAngle: number | null;
@@ -57,8 +59,11 @@ const PHASE_SETTINGS: Record<
 const GOLD_PALETTE = ["215, 186, 120", "226, 201, 146"];
 
 const MAX_BLUR = 8.5;
+const BLUR_CHANCE_RANGE: [number, number] = [0.5, 0.65];
+const BLUR_STRENGTH_RANGE: [number, number] = [0.45, 1.05];
 const EDGE_OPACITY_CHANCE = 0.2;
-const EDGE_OPACITY_MIN = 0.7;
+const EDGE_OPACITY_SOFT_RANGE: [number, number] = [0.65, 0.82];
+const EDGE_OPACITY_STRONG_RANGE: [number, number] = [0.15, 0.35];
 const EDGE_FADE_RANGE: [number, number] = [0.2, 0.5];
 const OUTBOUND_CHANCE = 0.16;
 const OUTBOUND_LIFE_BONUS = 1.0;
@@ -169,9 +174,16 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
       const opacity = randomBetween(opacityRange[0], opacityRange[1]);
       const color = GOLD_PALETTE[Math.random() > 0.55 ? 1 : 0];
       const initialDistance = Math.hypot(dx, dy);
+      const blurClusterChance = clusteredChance(x, y, width, height, BLUR_CHANCE_RANGE);
+      const blurParticipant = Math.random() < blurClusterChance;
+      const blurStrength = blurParticipant ? randomBetween(BLUR_STRENGTH_RANGE[0], BLUR_STRENGTH_RANGE[1]) : 0;
       const edgeParticipant = Math.random() < EDGE_OPACITY_CHANCE;
       const edgeFadeUntil = edgeParticipant ? randomBetween(EDGE_FADE_RANGE[0], EDGE_FADE_RANGE[1]) : 0;
-      const edgeOpacityFactor = edgeParticipant ? randomBetween(EDGE_OPACITY_MIN, 0.85) : 1;
+      const edgeOpacityFactor = edgeParticipant
+        ? Math.random() < 0.45
+          ? randomBetween(EDGE_OPACITY_STRONG_RANGE[0], EDGE_OPACITY_STRONG_RANGE[1])
+          : randomBetween(EDGE_OPACITY_SOFT_RANGE[0], EDGE_OPACITY_SOFT_RANGE[1])
+        : 1;
       const canGoOutbound = Math.random() < OUTBOUND_CHANCE;
 
       const lifespan = randomBetween(life[0], life[1]);
@@ -195,6 +207,8 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
         edgeParticipant,
         edgeFadeUntil,
         edgeOpacityFactor,
+        blurParticipant,
+        blurStrength,
         mode: "inbound",
         canGoOutbound,
         outboundAngle: null,
@@ -223,7 +237,7 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
 
     const distNorm = Math.min(distance / (minDimension * 0.5), 1);
     const edgeEase = easeOutCubic(Math.pow(distNorm, 1.12));
-    const blur = MAX_BLUR * Math.pow(edgeEase, 1.4);
+    const blur = particle.blurParticipant ? MAX_BLUR * particle.blurStrength * Math.pow(edgeEase, 1.4) : 0;
 
     const pullFactor = 0.7 + (1 - distNorm) * 0.6;
     const earlyBoost = lifeRatio > 0.75 && particle.mode === "inbound" ? 2.0 : 1.0;
@@ -325,6 +339,23 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
   const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
   const easeOutQuad = (t: number) => 1 - (1 - t) * (1 - t);
   const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+  const clusteredChance = (
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    [minChance, maxChance]: [number, number],
+  ) => {
+    const nx = width ? x / width : 0;
+    const ny = height ? y / height : 0;
+    const wave =
+      (Math.sin(nx * 9.3 + ny * 5.1) +
+        Math.sin(nx * 4.7 - ny * 8.2) * 0.6 +
+        Math.sin((nx + ny) * 3.3) * 0.4 +
+        2) /
+      4;
+    return lerp(minChance, maxChance, clamp(wave, 0, 1));
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
