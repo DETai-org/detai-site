@@ -44,7 +44,7 @@ const TIMINGS = {
   fade: 1400,
 };
 
-const TIME_SCALE = 2.0;
+const TIME_SCALE = 1.2;
 
 const PHASE_SETTINGS: Record<
   Phase,
