@@ -77,6 +77,7 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   const phaseRef = useRef<Phase>("idle");
   const hasCompletedRef = useRef<boolean>(false);
+  const hasStartedCycleRef = useRef<boolean>(false);
 
   const particlesRef = useRef<Particle[]>([]);
   const spawnAccumulatorRef = useRef<number>(0);
@@ -96,6 +97,8 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
     phaseRef.current = phase;
     if (phase === "idle") {
       spawnAccumulatorRef.current = 0;
+    } else {
+      hasStartedCycleRef.current = true;
     }
   };
 
@@ -506,8 +509,9 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
       if (ctx) {
         const reachedIdle = phaseRef.current === "idle";
         const finishedParticles = particlesRef.current.length === 0;
+        const completedCycle = hasStartedCycleRef.current && reachedIdle && finishedParticles;
 
-        if (!hasCompletedRef.current && reachedIdle && finishedParticles) {
+        if (!hasCompletedRef.current && completedCycle) {
           const { width, height } = metricsRef.current;
           ctx.clearRect(0, 0, width, height);
           hasCompletedRef.current = true;
