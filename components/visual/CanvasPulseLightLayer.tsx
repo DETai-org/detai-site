@@ -37,7 +37,7 @@ function pulse(
 
 function getHeartbeat(t: number): Heartbeat {
   const beat1 = pulse(t, 0.1, 0.21, 2.1, 0.7);
-  const beat2 = pulse(t, 0.38, 0.06, 2.0, 1.2);
+  const beat2 = pulse(t, 0.42, 0.07, 2.0, 1.2);
 
   return {
     primary: beat1,
