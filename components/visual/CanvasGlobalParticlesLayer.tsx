@@ -127,14 +127,9 @@ export default function CanvasGlobalParticlesLayer({ className, anchorRef }: Can
     life: [number, number],
     opacityRange: [number, number],
   ) => {
-    const { centerX, centerY, anchorSize } = metricsRef.current;
+    const { centerX, centerY } = metricsRef.current;
 
-    const nearMargin = Math.min(width, height) * 0.03;
-    const farMargin = Math.max(width, height) * 0.22;
-    const spawnSpread = Math.min(width, height) * 0.18;
-
-    const radius = Math.min(anchorSize || Math.min(width, height), Math.min(width, height)) * 0.16;
-    const leftStreamBand = (anchorSize || Math.min(width, height)) * 0.7;
+    const spawnSpread = Math.min(width, height) * 0.4;
 
     const targets: Array<{
       spawn: () => [number, number];
@@ -142,58 +137,10 @@ export default function CanvasGlobalParticlesLayer({ className, anchorRef }: Can
       ty: number;
     }> = [
       {
-        spawn: () => [Math.random() * width, -nearMargin + randomBetween(-spawnSpread, spawnSpread)],
-        tx: centerX,
-        ty: centerY - radius,
-      },
-      {
-        spawn: () => [Math.random() * width, height + nearMargin + randomBetween(-spawnSpread, spawnSpread)],
-        tx: centerX,
-        ty: centerY + radius,
-      },
-      {
-        spawn: () => [-nearMargin + randomBetween(-spawnSpread, spawnSpread), Math.random() * height],
-        tx: centerX - radius,
-        ty: centerY,
-      },
-      {
-        spawn: () => [width + nearMargin + randomBetween(-spawnSpread, spawnSpread), Math.random() * height],
-        tx: centerX + radius,
-        ty: centerY,
-      },
-      {
         spawn: () => [
-          -farMargin * randomBetween(1.1, 1.6),
-          centerY + (Math.random() - 0.5) * leftStreamBand,
+          randomBetween(-spawnSpread, width + spawnSpread),
+          randomBetween(-spawnSpread, height + spawnSpread),
         ],
-        tx: centerX - radius * 0.3,
-        ty: centerY,
-      },
-      {
-        spawn: () => [
-          -nearMargin * 2.4,
-          centerY + (Math.random() - 0.5) * leftStreamBand * 0.85,
-        ],
-        tx: centerX - radius * 0.18,
-        ty: centerY,
-      },
-      {
-        spawn: () => [Math.random() * width, -farMargin + randomBetween(-spawnSpread, spawnSpread)],
-        tx: centerX,
-        ty: centerY,
-      },
-      {
-        spawn: () => [Math.random() * width, height + farMargin + randomBetween(-spawnSpread, spawnSpread)],
-        tx: centerX,
-        ty: centerY,
-      },
-      {
-        spawn: () => [-farMargin + randomBetween(-spawnSpread, spawnSpread), Math.random() * height],
-        tx: centerX,
-        ty: centerY,
-      },
-      {
-        spawn: () => [width + farMargin + randomBetween(-spawnSpread, spawnSpread), Math.random() * height],
         tx: centerX,
         ty: centerY,
       },
