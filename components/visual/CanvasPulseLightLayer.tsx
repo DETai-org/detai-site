@@ -49,7 +49,10 @@ export default function CanvasPulseLightLayer({ className }: CanvasPulseLightLay
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const frameRef = useRef<number>();
   const startTimeRef = useRef<number>(0);
+  const pauseAtRef = useRef<number | null>(null);
   const metricsRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
+  const isRunningRef = useRef<boolean>(false);
+  const isVisibleRef = useRef<boolean>(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -77,6 +80,8 @@ export default function CanvasPulseLightLayer({ className }: CanvasPulseLightLay
     };
 
     const renderFrame = (timestamp: number) => {
+      if (!isRunningRef.current) return;
+
       const { width, height } = metricsRef.current;
       if (width === 0 || height === 0) {
         frameRef.current = requestAnimationFrame(renderFrame);
@@ -111,16 +116,64 @@ export default function CanvasPulseLightLayer({ className }: CanvasPulseLightLay
       frameRef.current = requestAnimationFrame(renderFrame);
     };
 
+    const startAnimation = () => {
+      if (isRunningRef.current || document.visibilityState === "hidden" || !isVisibleRef.current) return;
+
+      const now = performance.now();
+      if (startTimeRef.current === 0) {
+        startTimeRef.current = now;
+      } else if (pauseAtRef.current) {
+        startTimeRef.current += now - pauseAtRef.current;
+      }
+
+      pauseAtRef.current = null;
+      isRunningRef.current = true;
+      frameRef.current = requestAnimationFrame(renderFrame);
+    };
+
+    const stopAnimation = () => {
+      if (!isRunningRef.current) return;
+
+      isRunningRef.current = false;
+      pauseAtRef.current = performance.now();
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
+    };
+
+    const evaluateActivity = () => {
+      if (document.visibilityState === "hidden" || !isVisibleRef.current) {
+        stopAnimation();
+      } else {
+        startAnimation();
+      }
+    };
+
     resize();
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvas.parentElement ?? canvas);
 
-    frameRef.current = requestAnimationFrame(renderFrame);
+    const target = canvas.parentElement ?? canvas;
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.target === target) {
+          isVisibleRef.current = entry.isIntersecting;
+          evaluateActivity();
+        }
+      });
+    });
+
+    intersectionObserver.observe(target);
+
+    const visibilityHandler = () => evaluateActivity();
+    document.addEventListener("visibilitychange", visibilityHandler);
+
+    startAnimation();
 
     return () => {
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
+      stopAnimation();
+      document.removeEventListener("visibilitychange", visibilityHandler);
+      intersectionObserver.disconnect();
       resizeObserver.disconnect();
       context.clearRect(0, 0, canvas.width, canvas.height);
     };
