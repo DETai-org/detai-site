@@ -504,8 +504,6 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
 
       const ctx = contextRef.current;
       if (ctx) {
-        renderFrame(ctx, delta);
-
         const reachedIdle = phaseRef.current === "idle";
         const finishedParticles = particlesRef.current.length === 0;
 
@@ -516,6 +514,8 @@ export default function CanvasLocalParticlesLayer({ className }: CanvasLocalPart
           isRunningRef.current = false;
           return;
         }
+
+        renderFrame(ctx, delta);
       }
 
       if (isRunningRef.current) {
