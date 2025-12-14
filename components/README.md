@@ -2,17 +2,42 @@
 
 Глобальные UI-компоненты проекта: примитивы, блоки страниц и визуальные эффекты, которые переиспользуются на разных маршрутах.
 
+## sections/
+
+Крупные блоки страниц (Hero, Features, Products), собирающие примитивы из `ui/` в готовые секции.
+
+### Карта страниц → секций
+
+| Страница | Секции |
+| --- | --- |
+| Главная (/) | Hero, Intro, DetToDetaiBridge, DetDetaiSplit, AudienceSection, FundamentDetSection, Mission |
+| Цвета DETai (/colors) | — |
+| Contacts (/contacts) | — |
+| Team (/team) | — |
+| Неиспользуемые | Projects |
+
 ## ui/
 
-Библиотека атомарных элементов (кнопки, поля ввода, карточки, иконки). Используются в любых секциях и страницах.
+Библиотека атомарных элементов (кнопки, поля ввода, карточки, иконки). Используются в любых секциях и страницах. Подробное описание микрочастиц — в [components/ui/README.md](./ui/README.md).
+
+### Карта секций → ui-компонентов
+
+| Секция | ui-компоненты |
+| --- | --- |
+| Hero | Button, Heading, Section |
+| Intro | Section |
+| DetToDetaiBridge | Heading, Section |
+| DetDetaiSplit | Button, Heading, Section |
+| AudienceSection | Heading, Section |
+| FundamentDetSection | Button, Heading, Section |
+| Mission | Heading, Section |
+| Projects | Heading, Section |
+| HeroScene | — |
+| Неиспользуемые | Card / CardHeader / CardTitle / CardDescription / CardContent / CardFooter (card.tsx), Input, Textarea |
 
 ## layout/
 
 Компоненты каркаса сайта: Header, Footer и обёртки для страниц. Формируют общую навигацию и сетку.
-
-## sections/
-
-Крупные блоки страниц (Hero, Features, Products), собирающие примитивы из `ui/` в готовые секции.
 
 ## visual/
 
