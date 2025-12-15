@@ -9,8 +9,8 @@ export default function Hero() {
     <Section
       id="hero"
       variant="dark"
-      className="relative overflow-hidden"
-      containerClassName="relative flex flex-col gap-8 md:gap-12"
+      className="relative min-h-screen overflow-hidden"
+      containerClassName="relative flex min-h-screen flex-col justify-center gap-8 md:gap-12"
       fullWidth
     >
       <div className="relative z-20 w-full max-w-[48rem] md:max-w-[52rem]">

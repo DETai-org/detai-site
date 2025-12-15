@@ -20,7 +20,7 @@ export default function FundamentDetSection() {
           </p>
         </div>
         <div className="flex flex-col gap-mobile-3 md:flex-row md:items-center md:gap-4">
-          <Button as="a" href="#fundament-det" className="w-fit" variant="primary">
+          <Button as="a" href="/det" className="w-fit" variant="primary">
             DET концепция
           </Button>
           <Button as="a" href="/det/logo" className="w-fit" variant="secondary">
