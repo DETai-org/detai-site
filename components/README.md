@@ -61,3 +61,24 @@
 - Canvas-эффекты опираются на анимации из `visual/` и синхронизируются через общий Hero-контейнер.
 
 💡 Canvas-эффекты можно накладывать на любые элементы например **Кнопки Button.tsx** или **карточки**
+
+
+```mermaid
+flowchart TB
+    %% Главная страница
+    Page["Main Page"]
+
+    %% Верхний блок
+    Hero["Hero.tsx"]
+
+    %% Внутренняя структура Hero
+    HeroLayout["Hero layout (2 columns)"]
+    HeroText["HeroText (text content)"]
+    HeroVisual["HeroScene / Logo block"]
+
+    %% Связи
+    Page --> Hero
+    Hero --> HeroLayout
+    HeroLayout --> HeroText
+    HeroLayout --> HeroVisual
+
