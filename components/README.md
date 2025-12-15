@@ -10,7 +10,7 @@
 
 | Страница              | Секции                                                                                      | Описание                                                                                            |
 | --------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Главная (/)           | Hero, Intro, DetToDetaiBridge, DetDetaiSplit, AudienceSection, FundamentDetSection, Mission | Основная смысловая и визуальная точка входа в экосистему DET / DETai                                |
+| Главная (/)           | Hero, DetToDetaiBridge, DetDetaiSplit, AudienceSection, FundamentDetSection, Mission | Основная смысловая и визуальная точка входа в экосистему DET / DETai                                |
 | Цвета DETai (/colors) | —                                                                                           | Временная служебная страница для просмотра и проверки основных цветов сайта                         |
 | Contacts (/contacts)  | —                                                                                           | Контактная информация и способы связи                                                               |
 | Team (/team)          | —                                                                                           | Страница с информацией о команде и ключевых участниках                                              |
@@ -35,7 +35,6 @@ flowchart TB
     %% Главный поток страниц
     subgraph MainFlow[Секции внутри <main>]
         Hero[Hero — вводный блок с визуалом и CTA]
-        Intro[Intro — мобильный отрывок с текстом]
         Bridge[DetToDetaiBridge — описание связи DET ↔ DETai]
         Split[DetDetaiSplit — выбор направления]
         Audience[AudienceSection — карточки для целевых аудиторий]
@@ -46,7 +45,6 @@ flowchart TB
     Main --> Hero --> HeroText[HeroText — заголовок, описание, CTA]
     Hero --> HeroScene[HeroScene — визуальный блок с AnimatedLogo и Canvas FX]
 
-    Main --> Intro
     Main --> Bridge
     Main --> Split
     Main --> Audience
@@ -63,7 +61,6 @@ flowchart TB
 | Секция | ui-компоненты |
 | --- | --- |
 | Hero | Button, Heading, Section |
-| Intro | Section |
 | DetToDetaiBridge | Heading, Section |
 | DetDetaiSplit | Button, Heading, Section |
 | AudienceSection | Heading, Section |

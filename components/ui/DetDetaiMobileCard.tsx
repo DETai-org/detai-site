@@ -41,8 +41,9 @@ export default function DetDetaiMobileCard({ paragraphs, className }: DetDetaiMo
     <div
       className={cn(
         "md:hidden",
-        "relative isolate left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-none border-y border-accent-primary/20 bg-gradient-to-br from-basic-dark via-basic-dark to-accent-active/40 px-mobile-4 py-mobile-5 shadow-[0_12px_40px_-12px_rgba(43,32,20,0.24)]",
-        "before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_12%_10%,rgba(201,168,106,0.22),transparent_46%),radial-gradient(circle_at_92%_12%,rgba(178,146,79,0.18),transparent_44%)]",
+        "relative isolate left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-none border-y border-accent-primary/20",
+        "bg-gradient-to-br from-basic-light via-white to-accent-soft/80 px-mobile-4 py-mobile-5 shadow-[0_18px_48px_-18px_rgba(185,146,79,0.35)]",
+        "before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_16%_22%,rgba(201,168,106,0.22),transparent_44%),radial-gradient(circle_at_92%_18%,rgba(242,229,194,0.5),transparent_48%)]",
         className,
       )}
       role="button"
@@ -57,19 +58,23 @@ export default function DetDetaiMobileCard({ paragraphs, className }: DetDetaiMo
       aria-expanded={isExpanded}
       aria-label={isExpanded ? "Свернуть текст" : "Развернуть текст"}
     >
-      <div className="relative flex flex-col gap-mobile-4 text-accent-soft">
-        <BodyText>{firstSentence}</BodyText>
+      <div className="relative flex flex-col gap-mobile-4">
+        <BodyText className="text-basic-dark">{firstSentence}</BodyText>
 
         {isExpanded ? (
           <div className="flex flex-col gap-mobile-3">
             {remainingParagraphs.map((paragraph, index) => (
-              <BodyText key={index}>{paragraph}</BodyText>
+              <BodyText key={index} className="text-basic-dark">
+                {paragraph}
+              </BodyText>
             ))}
           </div>
         ) : previewParagraphs.length ? (
           <div className="flex flex-col gap-mobile-3">
             {previewParagraphs.map((paragraph, index) => (
-              <BodyText key={index}>{paragraph}</BodyText>
+              <BodyText key={index} className="text-basic-dark">
+                {paragraph}
+              </BodyText>
             ))}
           </div>
         ) : null}
@@ -77,8 +82,8 @@ export default function DetDetaiMobileCard({ paragraphs, className }: DetDetaiMo
 
       {!isExpanded && remainingText ? (
         <>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-basic-dark via-basic-dark/70 to-transparent" />
-          <span className="pointer-events-none absolute bottom-mobile-3 right-mobile-4 text-mobile-sm font-semibold uppercase tracking-wide text-accent-soft">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white via-basic-light/70 to-transparent" />
+          <span className="pointer-events-none absolute bottom-mobile-3 right-mobile-4 text-mobile-sm font-semibold uppercase tracking-wide text-accent-primary">
             Читать дальше
           </span>
         </>
