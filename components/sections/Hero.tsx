@@ -39,10 +39,10 @@ export default function Hero() {
           
           <div className="flex flex-wrap items-center gap-4 md:gap-6">
             <Button as="a" href="#fundament-det" variant="primary">
-              Фундамент DET
+              DETai проекты
             </Button>
             <Button as="a" href="#mission" variant="secondary">
-              Миссия и ценности
+              DET концепция
             </Button>
           </div>
         </div>
