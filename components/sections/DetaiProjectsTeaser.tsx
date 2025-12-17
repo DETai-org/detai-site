@@ -13,6 +13,7 @@ type PlaceholderProject = {
   avatarSrc: string;
   echelon: 1 | 2 | 3;
   tags: string[];
+  href: string;
 };
 
 const placeholderProjects: PlaceholderProject[] = [
@@ -23,6 +24,7 @@ const placeholderProjects: PlaceholderProject[] = [
     avatarSrc: AVATAR,
     echelon: 1,
     tags: ["Диагностика", "Сопровождение"],
+    href: "/projects/galton",
   },
   {
     title: "Исследовательские модули",
@@ -31,6 +33,7 @@ const placeholderProjects: PlaceholderProject[] = [
     avatarSrc: AVATAR,
     echelon: 2,
     tags: ["Исследования", "Методология"],
+    href: "/projects/matrix",
   },
   {
     title: "Инфраструктура DETai",
@@ -39,6 +42,7 @@ const placeholderProjects: PlaceholderProject[] = [
     avatarSrc: AVATAR,
     echelon: 3,
     tags: ["Инфраструктура", "Интеграции"],
+    href: "/projects/infra",
   },
 ];
 
@@ -63,6 +67,7 @@ export default function DetaiProjectsTeaser() {
               avatarSrc={project.avatarSrc}
               echelon={project.echelon}
               tags={project.tags}
+              href={project.href}
             />
           ))}
         </div>
