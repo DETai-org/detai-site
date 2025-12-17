@@ -60,6 +60,6 @@ shimmer — это фирменная фича primary.
 * Варианты:
   * `sectionDefault` — базовый текст для секций (по умолчанию).
   * `sectionBrand` — акцентный текст в секциях.
-  * `projectCard` — компактный текст для карточек проектов (витрина): `text-mobile-base` + `leading-mobile-tight`, на десктопе `md:text-base md:leading-snug`.
-  * `infoCard` — текст для описательных карточек / блоков "для кого": `text-mobile-base` + `leading-mobile-normal`, на десктопе `md:text-lg md:leading-relaxed`.
+  * `projectCard` — компактный текст для карточек проектов (витрина): `text-mobile-base` + `leading-mobile-tight`, на десктопе `md:text-base`.
+  * `infoCard` — текст для описательных карточек / блоков "для кого": `text-mobile-base` + `leading-mobile-normal`, на десктопе `md:text-base md:leading-relaxed`.
 * Используй в секциях вместо локальных `<p>`, а в карточках — нужный карточный вариант, чтобы сохранять единый стиль body-текста.
