@@ -22,7 +22,7 @@ export default function Heading({
 
   const levelClasses: Record<HeadingLevel, string> = {
     1: "text-mobile-3xl md:text-5xl font-serif font-semibold leading-mobile-tight tracking-tight md:leading-tight",
-    2: "text-mobile-2xl md:text-4xl font-serif font-semibold leading-mobile-tight md:leading-tight",
+    2: "text-mobile-2xl md:text-4xl font-serif font-medium tracking-normal leading-mobile-normal md:leading-snug",
     3: "text-mobile-xl md:text-3xl font-serif font-semibold leading-mobile-normal md:leading-snug",
   };
 
