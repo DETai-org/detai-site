@@ -65,7 +65,7 @@ export default function DetaiProjectCard({ title, description, label, icon }: De
     >
       <article
         tabIndex={0}
-        className="detai-card-surface relative flex h-full flex-col justify-between gap-mobile-3 overflow-hidden p-mobile-4 text-accent-soft shadow-[0_18px_48px_rgba(0,0,0,0.18)] transition-transform duration-200 ease-out focus-visible:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-primary/60 md:gap-4 md:p-5 group-hover:-translate-y-0.5"
+        className="detai-card-surface relative flex h-full flex-col justify-between gap-mobile-3 overflow-hidden p-mobile-4 text-accent-soft shadow-[0_18px_48px_rgba(0,0,0,0.18)] transition-transform duration-200 ease-out focus-visible:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-primary/60 md:gap-4 md:p-5 group-hover:-translate-y-[3px]"
         aria-label={`Проект: ${title}`}
       >
         <div className="flex flex-col gap-mobile-3 md:gap-4">
