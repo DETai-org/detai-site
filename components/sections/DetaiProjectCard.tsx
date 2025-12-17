@@ -106,7 +106,7 @@ export default function DetaiProjectCard({ title, description, avatarSrc, echelo
           <div className="flex flex-col gap-mobile-3 md:gap-4">
             <div className="flex items-center justify-between gap-3">
               {/* Левая колонка: аватар */}
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-accent-primary/20 bg-basic-dark/30">
+              <div className="relative h-18 w-18 shrink-0 overflow-hidden rounded-full border border-accent-primary/20 bg-basic-dark/30">
                 <Image
                   src={avatarSrc}
                   alt={`Аватар проекта: ${title}`}
