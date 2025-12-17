@@ -18,31 +18,31 @@ type PlaceholderProject = {
 
 const placeholderProjects: PlaceholderProject[] = [
   {
+    title: "Francis Galton",
+    description: "Ваш цифровой психометрист. Измеряем личность с научной строгостью и человеческим пониманием.",
+    status: "В разработке",
+    avatarSrc: AVATAR,
+    echelon: 1,
+    tags: ["Диагностика", "Методология"],
+    href: "/projects/galton",
+  },
+  {
     title: "Агенты сопровождения",
     description: "Скоро: персональные помощники DETai, удерживающие дневники, динамику и обратную связь между сессиями.",
     status: "В разработке",
     avatarSrc: AVATAR,
-    echelon: 1,
-    tags: ["Диагностика", "Сопровождение"],
-    href: "/projects/galton",
+    echelon: 2,
+    tags: ["Без специализации"],
+    href: "/projects/assistants",
   },
   {
     title: "Исследовательские модули",
     description: "Скоро: инструменты для наблюдений, аналитики и картирования состояний внутри единой методологической рамки.",
     status: "Скоро",
     avatarSrc: AVATAR,
-    echelon: 2,
-    tags: ["Исследования", "Методология"],
-    href: "/projects/matrix",
-  },
-  {
-    title: "Инфраструктура DETai",
-    description: "Скоро: сервисы и интерфейсы, которые соединяют данные, протоколы и взаимодействие людей с AI-агентами.",
-    status: "В разработке",
-    avatarSrc: AVATAR,
     echelon: 3,
-    tags: ["Инфраструктура", "Интеграции"],
-    href: "/projects/infra",
+    tags: ["Без специализации"],
+    href: "/projects/matrix",
   },
 ];
 
