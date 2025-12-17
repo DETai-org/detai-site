@@ -59,19 +59,20 @@ export default function DetaiProjectCard({ title, description, label, icon }: De
   return (
     <div
       ref={cardRef}
-      className="detai-card-border group transition-transform duration-200 ease-out"
+      className="detai-card-border detai-scan-border group transition-transform duration-200 ease-out"
       onMouseMove={handleMove}
       onMouseLeave={resetTilt}
     >
       <article
-        className="detai-card-surface flex h-full flex-col justify-between gap-mobile-3 bg-accent-hover p-mobile-4 text-basic-dark shadow-[0_18px_48px_rgba(0,0,0,0.18)] transition-transform duration-200 ease-out md:gap-4 md:p-5"
-        aria-label={`ProjectCard заглушка: ${title}`}
+        tabIndex={0}
+        className="detai-card-surface relative flex h-full flex-col justify-between gap-mobile-3 overflow-hidden p-mobile-4 text-accent-soft shadow-[0_18px_48px_rgba(0,0,0,0.18)] transition-transform duration-200 ease-out focus-visible:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-primary/60 md:gap-4 md:p-5 group-hover:-translate-y-0.5"
+        aria-label={`Проект: ${title}`}
       >
         <div className="flex flex-col gap-mobile-3 md:gap-4">
           <div className="flex items-center justify-between gap-mobile-2 rounded-lg bg-accent-soft px-mobile-4 py-mobile-6 md:gap-3 md:px-6 md:py-8">
             <div className="flex flex-col gap-1">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-basic-dark/70">Изображение</span>
-              <span className="text-sm font-medium text-basic-dark/70">Демо-заглушка</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-basic-dark/80">Изображение</span>
+              <span className="text-sm font-medium text-basic-dark/80">Демо-заглушка</span>
             </div>
             {icon ? (
               <span aria-hidden className="text-3xl md:text-4xl">
@@ -80,12 +81,12 @@ export default function DetaiProjectCard({ title, description, label, icon }: De
             ) : null}
           </div>
 
-          <p className="text-mobile-lg leading-mobile-normal text-basic-dark md:text-base md:leading-relaxed">{description}</p>
+          <h3 className="font-serif text-mobile-xl font-semibold leading-mobile-tight text-accent-soft md:text-xl md:leading-tight">{title}</h3>
 
-          <h3 className="font-serif text-mobile-xl font-semibold leading-mobile-tight text-basic-dark md:text-xl md:leading-tight">{title}</h3>
+          <p className="text-mobile-lg leading-mobile-normal text-accent-soft/80 md:text-base md:leading-relaxed">{description}</p>
         </div>
 
-        <span className="inline-flex w-fit items-center gap-1 rounded-full bg-basic-light/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-basic-dark md:text-xs">
+        <span className="inline-flex w-fit items-center gap-1 rounded-full bg-accent-soft/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-accent-soft md:text-xs">
           {label}
         </span>
       </article>

@@ -36,6 +36,12 @@
   }
 }
 
+@keyframes detai-scan {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .btn-shimmer::before,
 .btn-shimmer::after {
   content: "";
