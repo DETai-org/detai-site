@@ -10,8 +10,8 @@ export default function Mission() {
       <div className="flex flex-col items-center gap-mobile-6 md:gap-8">
         <HeadingLevel2 color="soft">Наша миссия</HeadingLevel2>
 
-        <div className="group w-full [perspective:1200px]">
-          <div className="detai-card-border detai-scan-border relative aspect-[16/9] w-full [transform-style:preserve-3d] transition-transform duration-700 ease-out group-hover:[transform:rotateY(180deg)]">
+        <div className="group w-[56.25%] max-w-full [perspective:1200px]">
+          <div className="detai-card-border detai-scan-border relative aspect-square w-full [transform-style:preserve-3d] transition-transform duration-700 ease-out group-hover:[transform:rotateY(180deg)]">
             <div className="detai-card-surface absolute inset-0 flex flex-col items-center justify-center gap-mobile-4 rounded-[15px] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
               <Image
                 src="/assets/animations/logo.svg"
