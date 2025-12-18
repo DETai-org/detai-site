@@ -26,9 +26,9 @@ export default function Mission() {
               </span>
             </div>
 
-            <div className="detai-card-surface absolute inset-0 rounded-[15px] background-paper background-paper--dense [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)]">
+            <div className="detai-card-surface section--paper absolute inset-0 rounded-[15px] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)]">
               <div className="flex h-full items-center justify-center px-mobile-4 md:px-8">
-                <div className="w-full rounded-[12px] bg-basic-dark/80 px-mobile-4 py-mobile-6 text-center text-white md:px-6 md:py-8">
+                <div className="w-full rounded-[12px] bg-basic-dark/70 px-mobile-4 py-mobile-6 text-center text-white md:px-6 md:py-8">
                   <BodyText variant="sectionDefaultDark" className="text-white">
                     Создать новую терапевтическую логику, которая объединяет глубину экзистенциальной психологии и возможности современного
                     интеллекта — человеческого и искусственного. DET и DETai — это путь к осмысленным инструментам, которые помогают людям

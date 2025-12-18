@@ -29,8 +29,12 @@
   inset: 0;
   background-image: url("/images/backgrounds/paper-parchment-light.webp");
   background-repeat: repeat;
-  opacity: 0.9;
+  background-size: 600px 600px;
+  opacity: 1;
   z-index: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: inherit;
 }
 
 .section--paper > * {
