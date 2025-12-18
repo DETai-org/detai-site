@@ -105,7 +105,7 @@ export default function DetaiProjectCard({ title, description, avatarSrc, echelo
       >
         <article className="detai-card-surface relative flex h-full flex-col justify-between gap-mobile-3 overflow-hidden p-mobile-4 text-accent-soft shadow-[0_18px_48px_rgba(0,0,0,0.18)] transition-transform duration-200 ease-out md:gap-4 md:p-5 group-hover:-translate-y-[3px]">
           <div className="flex flex-col gap-mobile-3 md:gap-4">
-            <div className="flex items-start gap-mobile-3 md:gap-4">
+            <div className="flex items-start justify-between gap-mobile-3 md:gap-4">
               <div className="relative h-18 w-18 shrink-0 overflow-hidden rounded-full border border-accent-primary/20 bg-basic-dark/30">
                 <Image
                   src={avatarSrc}
@@ -117,14 +117,14 @@ export default function DetaiProjectCard({ title, description, avatarSrc, echelo
                 />
               </div>
 
-              <div className="flex flex-col gap-mobile-2 md:gap-2">
-                <h3 className="font-serif text-mobile-xl font-semibold leading-mobile-tight text-accent-soft md:text-xl md:leading-tight">{title}</h3>
-
-                <BodyText variant="projectCard" className="text-accent-soft/80">
-                  {description}
-                </BodyText>
-              </div>
+              <div className="h-18 w-18 shrink-0 rounded-lg border border-accent-primary/10 bg-basic-dark/15" aria-hidden />
             </div>
+
+            <h3 className="font-serif text-mobile-xl font-semibold leading-mobile-tight text-accent-soft md:text-xl md:leading-tight">{title}</h3>
+
+            <BodyText variant="projectCard" className="text-accent-soft/80">
+              {description}
+            </BodyText>
           </div>
 
           <div className="flex justify-end">
