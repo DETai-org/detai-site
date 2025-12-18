@@ -18,7 +18,7 @@ export default function Mission() {
                 alt="Логотип DETai"
                 width={160}
                 height={160}
-                className="h-28 w-28 md:h-32 md:w-32"
+                className="logo logo--accent-soft h-32 w-32 md:h-40 md:w-40"
                 priority={false}
               />
               <span className="text-mobile-base font-semibold uppercase tracking-[0.1em] text-accent-soft/80 md:text-base">
