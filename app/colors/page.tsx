@@ -84,23 +84,30 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="flex flex-col gap-4 md:hidden">
+        <section className="flex flex-col gap-4">
           <h2 className="text-2xl font-semibold leading-tight">Экспериментальные мобильные карточки DETai</h2>
           <p className="text-basic-light/80">
             Фоны ниже показывают один и тот же мобильный блок DET ↔ DETai в двух вариантах, чтобы сравнить привычную подложку и световую
             атмосферу в духе Immersive Garden.
           </p>
-          <div className="grid gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
             {mobileCardVariants.map((card) => (
               <div
                 key={card.title}
-                className="flex flex-col gap-3 px-4 py-3 rounded-lg border border-white/10 bg-basic-dark/30 backdrop-blur-[2px]"
+                className="flex flex-col gap-3 rounded-lg border border-white/10 bg-basic-dark/30 px-4 py-3 backdrop-blur-[2px]"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-base font-semibold text-basic-light">{card.title}</span>
                   <span className="text-xs font-semibold uppercase tracking-wide text-basic-light/60">{card.label}</span>
                 </div>
-                <DetDetaiMobileCard paragraphs={detDetaiMobileParagraphs} variant={card.variant} />
+                <DetDetaiMobileCard
+                  paragraphs={detDetaiMobileParagraphs}
+                  className={
+                    card.variant === "immersive"
+                      ? "md:!block md:!max-w-none bg-gradient-to-br from-basic-light via-basic-light/90 to-basic-light/70 before:bg-[radial-gradient(circle_at_18%_20%,rgba(30,27,25,0.12),transparent_45%),radial-gradient(circle_at_82%_16%,rgba(246,241,233,0.6),transparent_42%),radial-gradient(circle_at_48%_80%,rgba(30,27,25,0.08),transparent_50%)] after:absolute after:inset-0 after:bg-[radial-gradient(circle_at_14%_86%,rgba(30,27,25,0.06),transparent_55%)] after:pointer-events-none after:content-[''] shadow-[0_26px_60px_-28px_rgba(30,27,25,0.45)]"
+                      : "md:!block md:!max-w-none"
+                  }
+                />
               </div>
             ))}
           </div>

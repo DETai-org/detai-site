@@ -5,34 +5,12 @@ import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import BodyText from "./BodyText";
 
-type DetDetaiMobileCardVariant = "default" | "immersive";
-
 type DetDetaiMobileCardProps = {
   paragraphs: string[];
   className?: string;
-  variant?: DetDetaiMobileCardVariant;
 };
 
-const variantClasses: Record<DetDetaiMobileCardVariant, string> = {
-  default: cn(
-    "bg-gradient-to-br from-basic-light via-white to-accent-soft/80",
-    "before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_16%_22%,rgba(201,168,106,0.22),transparent_44%),radial-gradient(circle_at_92%_18%,rgba(242,229,194,0.5),transparent_48%)]",
-    "before:pointer-events-none before:content-['']",
-  ),
-  immersive: cn(
-    "bg-gradient-to-br from-basic-light via-basic-light/90 to-basic-light/70",
-    "before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_18%_20%,rgba(30,27,25,0.12),transparent_45%),radial-gradient(circle_at_82%_16%,rgba(246,241,233,0.6),transparent_42%),radial-gradient(circle_at_48%_80%,rgba(30,27,25,0.08),transparent_50%)]",
-    "before:pointer-events-none before:content-['']",
-    "after:absolute after:inset-0 after:bg-[radial-gradient(circle_at_14%_86%,rgba(30,27,25,0.06),transparent_55%)] after:pointer-events-none after:content-['']",
-    "shadow-[0_26px_60px_-28px_rgba(30,27,25,0.45)]",
-  ),
-};
-
-export default function DetDetaiMobileCard({
-  paragraphs,
-  className,
-  variant = "default",
-}: DetDetaiMobileCardProps) {
+export default function DetDetaiMobileCard({ paragraphs, className }: DetDetaiMobileCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const { firstSentence, remainingParagraphs, remainingText } = useMemo(() => {
@@ -64,7 +42,9 @@ export default function DetDetaiMobileCard({
       className={cn(
         "md:hidden relative isolate w-full max-w-none overflow-hidden rounded-none border-y border-accent-primary/20",
         "px-mobile-4 py-mobile-5 shadow-[0_18px_48px_-18px_rgba(185,146,79,0.35)]",
-        variantClasses[variant],
+        "bg-gradient-to-br from-basic-light via-white to-accent-soft/80",
+        "before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_16%_22%,rgba(201,168,106,0.22),transparent_44%),radial-gradient(circle_at_92%_18%,rgba(242,229,194,0.5),transparent_48%)]",
+        "before:pointer-events-none before:content-['']",
         className,
       )}
       role="button"
