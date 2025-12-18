@@ -14,7 +14,7 @@ export default function Mission() {
           <div className="detai-card-border detai-scan-border relative aspect-square w-full [transform-style:preserve-3d] transition-transform duration-700 ease-out group-hover:[transform:rotateY(180deg)]">
             <div className="detai-card-surface absolute inset-0 flex flex-col items-center justify-center gap-mobile-4 rounded-[15px] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
               <Image
-                src="/assets/animations/logo.svg"
+                src="/images/ui/detai-logo-white.svg"
                 alt="Логотип DETai"
                 width={160}
                 height={160}
@@ -26,8 +26,8 @@ export default function Mission() {
               </span>
             </div>
 
-            <div className="detai-card-surface absolute inset-0 flex items-center justify-center rounded-[15px] bg-basic-light px-mobile-4 text-center text-basic-dark [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] md:px-8">
-              <BodyText variant="sectionDefaultOnLight">
+            <div className="detai-card-surface absolute inset-0 flex items-center justify-center rounded-[15px] bg-basic-dark px-mobile-4 text-center text-white [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] md:px-8">
+              <BodyText variant="sectionDefaultDark" className="text-white">
                 Создать новую терапевтическую логику, которая объединяет глубину экзистенциальной психологии и возможности современного
                 интеллекта — человеческого и искусственного. DET и DETai — это путь к осмысленным инструментам, которые помогают людям
                 понимать себя и развиваться.
