@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 @import "./ui-effects.css";
 @import "./project-cards.css";
 @import "./parchment.css";
+
+@tailwind utilities;
