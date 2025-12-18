@@ -50,3 +50,14 @@
 .bg-parchment > * {
   position: relative;
 }
+
+.bg-parchment-reset {
+  background-image: none !important;
+}
+
+.bg-parchment-reset::before,
+.bg-parchment-reset::after {
+  background: none !important;
+  background-image: none !important;
+  opacity: 0 !important;
+}
