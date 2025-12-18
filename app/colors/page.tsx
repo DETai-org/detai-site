@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import DetDetaiMobileCard from "@/components/ui/DetDetaiMobileCard";
 
 const palette = [
   {
@@ -45,6 +46,17 @@ const fonts = [
   { name: "Great Vibes", className: "font-accent" },
 ];
 
+const detDetaiMobileParagraphs = [
+  "DET — это диалектически-экзистенциальная терапия, которая рассматривает человека целостно и опирается на единство противоположностей.",
+  "DETai соединяет эту идею с технологиями, чтобы усиливать терапевтический процесс, не подменяя его машинной логикой.",
+  "На мобильном интерфейсе мы тестируем разные световые фоны, чтобы найти баланс между мягкостью и читаемостью текста.",
+];
+
+const mobileCardVariants = [
+  { title: "DET ↔ DETai — текущий фон", variant: "default" as const, label: "база" },
+  { title: "DET ↔ DETai — вдохновение Immersive Garden", variant: "immersive" as const, label: "эксперимент" },
+];
+
 export default function Page() {
   return (
     <div className="flex min-h-screen flex-col text-basic-light bg-basic-dark">
@@ -70,6 +82,31 @@ export default function Page() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section className="flex flex-col gap-4 md:hidden">
+          <h2 className="text-2xl font-semibold leading-tight">Экспериментальные мобильные карточки DETai</h2>
+          <p className="text-basic-light/80">
+            Фоны ниже показывают один и тот же мобильный блок DET ↔ DETai в двух вариантах, чтобы сравнить привычную подложку и световую
+            атмосферу в духе Immersive Garden.
+          </p>
+          <div className="grid gap-4">
+            {mobileCardVariants.map((card) => (
+              <div
+                key={card.title}
+                className="flex flex-col gap-3 px-4 py-3 rounded-lg border border-white/10 bg-basic-dark/30 backdrop-blur-[2px]"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-semibold text-basic-light">{card.title}</span>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-basic-light/60">{card.label}</span>
+                </div>
+                <DetDetaiMobileCard paragraphs={detDetaiMobileParagraphs} variant={card.variant} />
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-basic-light/70">
+            Блоки остаются мобильными: на широкой версии сайта они не отображаются, а в мобильном виде помогают оценить два цветовых фона.
+          </p>
         </section>
 
         <section className="flex flex-col gap-4">
