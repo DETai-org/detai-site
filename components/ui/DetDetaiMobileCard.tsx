@@ -56,7 +56,10 @@ export default function DetDetaiMobileCard({ paragraphs, className }: DetDetaiMo
       aria-expanded={isExpanded}
       aria-label={isExpanded ? "Свернуть текст" : "Развернуть текст"}
     >
-      <div className="pointer-events-none absolute inset-0 -z-10 paper--object-mobile" aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 paper--object-mobile paper-shape--scroll paper-edges--scroll"
+        aria-hidden
+      />
 
       <div className="relative z-10 flex flex-col gap-mobile-4">
         <BodyText variant="infoCard" className="text-basic-dark">{firstSentence}</BodyText>
