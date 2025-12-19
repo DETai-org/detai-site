@@ -37,7 +37,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  overflow: hidden;
 }
 
 .paper--object::after,
@@ -65,8 +64,8 @@
   -webkit-mask-repeat: no-repeat;
   mask-position: center;
   -webkit-mask-position: center;
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
+  mask-size: 130% auto;
+  -webkit-mask-size: 130% auto;
 }
 
 .paper-edges--scroll {
@@ -88,8 +87,8 @@
   -webkit-mask-repeat: no-repeat;
   mask-position: center;
   -webkit-mask-position: center;
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
+  mask-size: 130% auto;
+  -webkit-mask-size: 130% auto;
   opacity: 0.5;
   z-index: 0;
 }
