@@ -16,7 +16,7 @@ export default function Mission() {
           Наша миссия
         </Heading>
 
-        <div className="group w-full max-w-[900px] px-mobile-3 md:px-0">
+        <div className="group w-full max-w-[980px] px-mobile-1 py-mobile-2 md:px-3 md:py-4">
           <div className="detai-card-border detai-scan-border relative w-full min-h-[28rem] overflow-hidden rounded-[15px] md:aspect-[2/1] md:min-h-0">
             <div className="detai-card-surface detai-card-surface--solid absolute inset-0 z-20 flex h-full items-center justify-center rounded-[15px] transition-opacity duration-500 ease-out group-hover:pointer-events-none group-hover:opacity-0">
               <Image
@@ -29,8 +29,8 @@ export default function Mission() {
               />
             </div>
 
-            <div className="absolute inset-0 z-10 flex items-center justify-center p-mobile-3 md:p-6">
-              <div className="relative flex h-full w-full max-w-[820px] flex-col items-center justify-center overflow-hidden px-mobile-4 py-mobile-6 text-center md:px-10 md:py-8 paper--object-mobile paper-shape--scroll paper-edges--scroll md:paper--ambient">
+            <div className="absolute inset-0 z-10 flex items-center justify-center p-mobile-1 md:p-3">
+              <div className="relative flex h-full w-[98%] min-h-[18rem] max-w-none flex-col items-center justify-center overflow-hidden px-mobile-4 py-mobile-6 text-center md:w-[96%] md:min-h-[22rem] md:px-10 md:py-8 paper--object-mobile paper-shape--scroll paper-edges--scroll md:paper--ambient">
                 <BodyText variant="sectionDefaultOnLight">
                   Создать новую терапевтическую логику, которая объединяет глубину экзистенциальной психологии и возможности современного
                   интеллекта — человеческого и искусственного. DET и DETai — это путь к осмысленным инструментам, которые помогают людям
