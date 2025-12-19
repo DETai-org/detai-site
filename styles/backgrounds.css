@@ -91,6 +91,12 @@
   mask-size: 100% 100%;
   -webkit-mask-size: 100% 100%;
   opacity: 0.5;
+  z-index: 0;
+}
+
+.paper-edges--scroll > * {
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 767px) {
