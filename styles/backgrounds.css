@@ -64,12 +64,15 @@
   -webkit-mask-repeat: no-repeat;
   mask-position: center;
   -webkit-mask-position: center;
+  mask-mode: alpha;
+  -webkit-mask-mode: alpha;
   mask-size: 130% auto;
   -webkit-mask-size: 130% auto;
 }
 
 .paper-edges--scroll {
   position: relative;
+  isolation: isolate;
 }
 
 .paper-edges--scroll::before {
@@ -77,25 +80,18 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: url("/images/backgrounds/Paper_background.webp");
+  background-image: url("/images/backgrounds/paper-scroll-edges-mask.webp");
   background-repeat: no-repeat;
-  background-size: cover;
   background-position: center;
-  mask-image: url("/images/backgrounds/paper-scroll-edges-mask.webp");
-  -webkit-mask-image: url("/images/backgrounds/paper-scroll-edges-mask.webp");
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-position: center;
-  -webkit-mask-position: center;
-  mask-size: 130% auto;
-  -webkit-mask-size: 130% auto;
-  opacity: 0.5;
-  z-index: 0;
+  background-size: 100% 100%;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  z-index: 1;
 }
 
 .paper-edges--scroll > * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 @media (max-width: 767px) {
