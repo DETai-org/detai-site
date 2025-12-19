@@ -73,6 +73,44 @@ export default function Page() {
         </section>
 
         <section className="flex flex-col gap-4">
+          <h2 className="text-2xl font-semibold leading-tight">Контрастные панели</h2>
+          <p className="text-lg leading-relaxed text-basic-light/80">
+            Пример вертикального перехода между тёмной и светлой зонами без потери плавности радиусов и отступов.
+          </p>
+
+          <div className="overflow-hidden rounded-2xl border border-basic-light/10">
+            <div className="divide-y divide-basic-light/10">
+              <div className="bg-basic-dark px-6 py-6 text-basic-light sm:px-8 sm:py-8">
+                <h3 className="text-xl font-semibold leading-tight">Вариант 1: ровная граница</h3>
+                <p className="mt-2 text-lg leading-relaxed text-basic-light/80">
+                  Тёмный верхний блок остаётся нейтральным фоном для навигации или заголовков.
+                </p>
+              </div>
+              <div className="bg-basic-light px-6 py-6 text-basic-dark sm:px-8 sm:py-8">
+                <p className="text-lg leading-relaxed text-basic-dark/80">
+                  Светлый низ с чёткой линией разделения подходит под текстовый контент или вторичные панели.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-basic-light/10 bg-gradient-to-b from-basic-dark via-basic-dark/80 to-basic-light">
+            <div className="bg-basic-dark/90 px-6 py-6 text-basic-light sm:px-8 sm:py-8">
+              <h3 className="text-xl font-semibold leading-tight">Вариант 2: градиентная граница</h3>
+              <p className="mt-2 text-lg leading-relaxed text-basic-light/80">
+                Небольшой градиент между слоями смягчает переход и добавляет глубины композиции.
+              </p>
+            </div>
+            <div className="h-8 bg-gradient-to-b from-basic-dark/0 via-basic-dark/20 to-basic-light/60" aria-hidden />
+            <div className="bg-basic-light px-6 py-6 text-basic-dark sm:px-8 sm:py-8">
+              <p className="text-lg leading-relaxed text-basic-dark/80">
+                Нижний блок остаётся читаемым даже при плавном переходе цвета в градиентной области.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-4">
           <h2 className="text-2xl font-semibold leading-tight">Шрифты бренда</h2>
           <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
             {fonts.map((font) => (
