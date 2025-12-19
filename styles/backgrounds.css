@@ -58,10 +58,63 @@
   z-index: 1;
 }
 
+.paper--object-mobile-torn {
+  position: relative;
+  isolation: isolate;
+  background-color: #f6f3ec;
+  background-image: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04) 1px, transparent 1px, transparent 8px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06) 2px, transparent 2px, transparent 10px),
+    radial-gradient(120% 120% at 18% 16%, rgba(255, 255, 255, 0.15), transparent 44%),
+    url("/images/backgrounds/Paper_background.webp");
+  background-repeat: repeat;
+  background-size: 320px 320px, 280px 280px, 620px 580px, 560px 560px;
+  background-position: center;
+  background-blend-mode: soft-light, multiply, soft-light, normal;
+  overflow: hidden;
+}
+
+.paper--object-mobile-torn::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  background: radial-gradient(120% 120% at 12% 10%, rgba(255, 255, 255, 0.92), transparent 44%),
+    radial-gradient(120% 120% at 88% 8%, rgba(255, 255, 255, 0.88), transparent 42%),
+    radial-gradient(120% 120% at 10% 90%, rgba(255, 255, 255, 0.9), transparent 50%),
+    radial-gradient(120% 120% at 90% 92%, rgba(255, 255, 255, 0.9), transparent 52%),
+    radial-gradient(160% 140% at 50% 102%, rgba(255, 255, 255, 0.92), transparent 60%);
+  mask-image: radial-gradient(130% 120% at 50% 50%, #000 62%, transparent 78%);
+  mix-blend-mode: soft-light;
+  filter: blur(18px);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.paper--object-mobile-torn::after {
+  content: "";
+  position: absolute;
+  inset: auto -12px -56px -12px;
+  height: 196px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.78) 72%, rgba(255, 255, 255, 0.95) 100%);
+  filter: blur(16px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.paper--object-mobile-torn > * {
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 767px) {
   .paper--object-mobile {
     background-repeat: repeat;
     background-size: 560px 560px;
+    background-position: center top;
+  }
+
+  .paper--object-mobile-torn {
+    background-size: 420px 420px, 360px 360px, 680px 620px, 600px 600px;
     background-position: center top;
   }
 }
