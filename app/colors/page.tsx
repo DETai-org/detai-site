@@ -86,7 +86,7 @@ export default function Page() {
                   Тёмный верхний блок остаётся нейтральным фоном для навигации или заголовков.
                 </p>
               </div>
-              <div className="bg-basic-light px-6 py-6 text-basic-dark sm:px-8 sm:py-8">
+              <div className="bg-accent-soft px-6 py-6 text-basic-dark sm:px-8 sm:py-8">
                 <p className="text-lg leading-relaxed text-basic-dark/80">
                   Светлый низ с чёткой линией разделения подходит под текстовый контент или вторичные панели.
                 </p>
@@ -94,17 +94,35 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-basic-light/10 bg-gradient-to-b from-basic-dark via-basic-dark/80 to-basic-light">
+          <div className="overflow-hidden rounded-2xl border border-basic-light/10 bg-gradient-to-b from-basic-dark via-basic-dark/80 to-accent-soft">
             <div className="bg-basic-dark/90 px-6 py-6 text-basic-light sm:px-8 sm:py-8">
               <h3 className="text-xl font-semibold leading-tight">Вариант 2: градиентная граница</h3>
               <p className="mt-2 text-lg leading-relaxed text-basic-light/80">
                 Небольшой градиент между слоями смягчает переход и добавляет глубины композиции.
               </p>
             </div>
-            <div className="h-8 bg-gradient-to-b from-basic-dark/0 via-basic-dark/20 to-basic-light/60" aria-hidden />
-            <div className="bg-basic-light px-6 py-6 text-basic-dark sm:px-8 sm:py-8">
+            <div className="h-8 bg-gradient-to-b from-basic-dark/0 via-basic-dark/20 to-accent-soft/70" aria-hidden />
+            <div className="bg-accent-soft px-6 py-6 text-basic-dark sm:px-8 sm:py-8">
               <p className="text-lg leading-relaxed text-basic-dark/80">
                 Нижний блок остаётся читаемым даже при плавном переходе цвета в градиентной области.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-basic-light/10">
+            <div className="relative bg-basic-dark px-6 pb-10 pt-6 text-basic-light sm:px-8 sm:pt-8">
+              <h3 className="text-xl font-semibold leading-tight">Вариант 3: рваная граница</h3>
+              <p className="mt-2 text-lg leading-relaxed text-basic-light/80">
+                Кромка напоминает бумажный отрыв: тёмная секция переходит в светлую через неровные разрывы.
+              </p>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 -bottom-6 z-10 h-12 bg-[radial-gradient(circle_at_12%_60%,theme(colors.accent.soft)_18%,transparent_22%),radial-gradient(circle_at_32%_45%,theme(colors.accent.soft)_20%,transparent_24%),radial-gradient(circle_at_52%_65%,theme(colors.accent.soft)_18%,transparent_22%),radial-gradient(circle_at_72%_40%,theme(colors.accent.soft)_19%,transparent_23%),radial-gradient(circle_at_90%_62%,theme(colors.accent.soft)_17%,transparent_21%)] bg-[length:20%_100%,20%_100%,20%_100%,20%_100%,20%_100%] bg-no-repeat"
+              />
+            </div>
+            <div className="bg-accent-soft px-6 pb-6 pt-10 text-basic-dark sm:px-8 sm:pb-8">
+              <p className="text-lg leading-relaxed text-basic-dark/80">
+                Светлая секция продолжает тему рукописной фактуры, подчёркивая фирменный акцент soft.
               </p>
             </div>
           </div>
