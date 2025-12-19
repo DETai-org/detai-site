@@ -31,13 +31,13 @@ export default function Mission() {
         <Heading
           level={2}
           color="soft"
-          className="text-mobile-4xl font-semibold leading-mobile-tight tracking-tight md:text-5xl"
+          className="text-center text-mobile-4xl font-serif font-semibold leading-mobile-tight tracking-tight md:text-left md:text-5xl"
         >
           Наша миссия
         </Heading>
 
         <div className="relative w-full max-w-[960px] overflow-hidden rounded-[18px] bg-basic-dark/80 px-0 py-mobile-2 md:px-0 md:py-8">
-          <div className="flex w-full flex-col gap-mobile-4 md:flex-row md:items-start md:gap-10">
+          <div className="flex w-full flex-col items-center gap-mobile-4 md:flex-row md:items-start md:gap-10">
             <div
               className="group/mission relative flex w-full flex-col gap-mobile-3 md:w-[36rem] md:shrink-0 md:gap-4"
               role={shouldToggleOnClick ? "button" : undefined}
@@ -55,12 +55,12 @@ export default function Mission() {
             >
               <div
                 className={cn(
-                  "absolute inset-0 z-20 flex flex-col items-start justify-center gap-3 bg-basic-dark px-6 transition-opacity duration-500 ease-out",
+                  "absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 bg-basic-dark px-6 text-center transition-opacity duration-500 ease-out",
                   "group-hover/mission:pointer-events-none group-hover/mission:opacity-0 group-active/mission:pointer-events-none group-active/mission:opacity-0",
                   isRevealed && shouldToggleOnClick && "pointer-events-none opacity-0"
                 )}
               >
-                <div className="flex w-[9rem] items-center justify-start md:w-[12rem]">
+                <div className="flex w-[9rem] items-center justify-center md:w-[12rem] md:justify-start">
                   <Image
                     src="/assets/animations/logo.svg"
                     alt="Логотип DETai"
