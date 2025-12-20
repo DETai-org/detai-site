@@ -71,20 +71,20 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
       </div>
 
       <div className="relative">
-        <div className="overflow-hidden pr-8">
+        <div className="overflow-hidden pr-8 md:pr-12">
           <div
             ref={scrollRef}
-            className="flex gap-mobile-4 overflow-x-auto scroll-smooth pb-3 md:gap-5"
+            className="flex gap-mobile-4 overflow-x-auto overflow-y-hidden scroll-smooth pb-3 md:gap-5"
           >
             {items.map((project) => (
-              <div key={project.id} className="w-[78%] min-w-[260px] max-w-[320px] flex-shrink-0 md:w-[320px]">
+              <div key={project.id} className="w-[85%] min-w-[260px] max-w-[320px] flex-shrink-0 md:w-[320px] md:max-w-[320px]">
                 <ProjectCard {...project} />
               </div>
             ))}
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-basic-dark via-basic-dark/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-basic-dark via-basic-dark/70 to-transparent md:w-20" />
       </div>
     </div>
   );

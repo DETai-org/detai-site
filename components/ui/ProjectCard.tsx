@@ -100,7 +100,7 @@ export default function ProjectCard({ title, description, avatarSrc, echelon, hr
         className="block h-full transition-transform duration-200 ease-out focus-visible:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-primary/60"
         aria-label={`Проект: ${title}`}
       >
-        <article className="detai-card-surface relative flex h-full flex-col justify-between gap-mobile-3 overflow-hidden p-mobile-4 text-accent-soft shadow-[0_18px_48px_rgba(0,0,0,0.18)] transition-transform duration-200 ease-out md:gap-4 md:p-5 group-hover:-translate-y-[3px]">
+        <article className="detai-card-surface relative flex h-full min-h-[360px] flex-col justify-between gap-mobile-3 overflow-hidden p-mobile-4 text-accent-soft shadow-[0_18px_48px_rgba(0,0,0,0.18)] transition-transform duration-200 ease-out md:min-h-[380px] md:gap-4 md:p-5 group-hover:-translate-y-[3px]">
           <div className="flex flex-col gap-mobile-3 md:gap-4">
             <div className="flex items-start justify-between gap-mobile-3 md:gap-4">
               <div className="relative h-18 w-18 shrink-0 overflow-hidden rounded-full border border-accent-primary/20 bg-basic-dark/30">
