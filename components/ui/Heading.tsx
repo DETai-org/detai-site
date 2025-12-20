@@ -42,9 +42,9 @@ export default function Heading({
       3: "leading-mobile-tight tracking-tight md:leading-snug",
     },
     hero: {
-      1: "leading-[1.1] tracking-tighter md:leading-[1.05]",
-      2: "leading-[1.1] tracking-tighter md:leading-[1.05]",
-      3: "leading-[1.1] tracking-tighter md:leading-[1.05]",
+      1: "text-mobile-6xl md:text-6xl leading-[1.1] tracking-tight md:tracking-tighter md:leading-tight",
+      2: "leading-[1.1] tracking-tight md:leading-tight",
+      3: "leading-[1.1] tracking-tight md:leading-tight",
     },
   };
 
