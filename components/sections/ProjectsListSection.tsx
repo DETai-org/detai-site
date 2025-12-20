@@ -76,7 +76,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
       </div>
 
       <div className="relative">
-        <div className="overflow-hidden pr-8 md:pr-12">
+        <div className="overflow-hidden px-mobile-1 pr-mobile-3 pt-1 md:pl-6 md:pr-16 md:pt-4">
           <div
             ref={scrollRef}
             className="flex gap-mobile-4 overflow-x-auto overflow-y-hidden scroll-smooth pb-3 md:gap-5"
@@ -89,7 +89,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-basic-dark via-basic-dark/70 to-transparent md:w-20" />
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-basic-dark via-basic-dark/90 to-transparent pointer-events-none md:w-24" />
       </div>
     </div>
   );
@@ -114,7 +114,7 @@ export default function ProjectsListSection({ containerClassName }: ProjectsList
     <section className="w-full bg-basic-dark text-accent-soft">
       <div
         className={cn(
-          "mx-auto w-full max-w-mobile px-mobile-4 py-mobile-6 md:max-w-6xl md:px-10 md:py-20",
+          "mx-auto w-full max-w-none md:max-w-6xl px-mobile-2 py-mobile-6 md:px-12 md:py-22",
           containerClassName,
         )}
       >
