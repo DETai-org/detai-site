@@ -47,9 +47,10 @@ module.exports = {
       },
       fontSize: {
         "mobile-fluid": ["clamp(1rem, 4vw, 1.4rem)", { lineHeight: "1.2" }],
+        "mobile-5xl": ["2.25rem", { lineHeight: "2.75rem" }],
         "mobile-4xl": ["2rem", { lineHeight: "2.4rem" }],
-        "mobile-3xl": ["1.75rem", { lineHeight: "2.15rem" }],
-        "mobile-2xl": ["1.75rem", { lineHeight: "2.25rem" }],
+        "mobile-3xl": ["1.75rem", { lineHeight: "2.25rem" }],
+        "mobile-2xl": ["1.5rem", { lineHeight: "2.125rem" }],
         "mobile-xl": ["1.375rem", { lineHeight: "1.9rem" }],
         "mobile-lg": ["1.125rem", { lineHeight: "1.65rem" }],
         "mobile-base": ["1rem", { lineHeight: "1.5rem" }],
