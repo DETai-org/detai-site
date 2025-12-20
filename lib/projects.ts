@@ -10,7 +10,7 @@ export type Project = {
   order?: number;
 };
 
-const DEFAULT_AVATAR = "/images/avatars_projects/Мед.png";
+const DEFAULT_AVATAR = "/images/avatars_projects/DEFAULT_AVATAR.webp";
 
 export const projects: Project[] = [
   {
