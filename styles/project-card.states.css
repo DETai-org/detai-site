@@ -47,15 +47,21 @@
   border-radius: inherit;
 
   /* Тонкая защитная плёнка */
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.02) 35%,
-    rgba(255, 255, 255, 0.06) 65%,
-    rgba(255, 255, 255, 0.01) 100%
-  );
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.03) 30%,
+      rgba(255, 255, 255, 0.09) 65%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    radial-gradient(
+      120% 80% at 20% 10%,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0) 60%
+    );
 
-  mix-blend-mode: soft-light;
+  mix-blend-mode: overlay;
 }
 
 .project-card--in-progress .project-card__status {
