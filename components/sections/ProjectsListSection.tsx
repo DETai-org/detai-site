@@ -59,7 +59,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
           <button
             type="button"
             onClick={() => scrollByCardWidth("left")}
-            className="rounded-full border border-accent-primary/30 bg-basic-dark/40 px-2 py-2 text-accent-soft transition-colors duration-150 hover:border-accent-primary/50 hover:text-accent-soft/90 md:px-3"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-accent-primary/30 bg-basic-dark/40 text-accent-soft transition-colors duration-150 hover:border-accent-primary/50 hover:text-accent-soft/90 md:h-10 md:w-10"
             aria-label="Прокрутить влево"
           >
             ←
@@ -67,7 +67,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
           <button
             type="button"
             onClick={() => scrollByCardWidth("right")}
-            className="rounded-full border border-accent-primary/30 bg-basic-dark/40 px-2 py-2 text-accent-soft transition-colors duration-150 hover:border-accent-primary/50 hover:text-accent-soft/90 md:px-3"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-accent-primary/30 bg-basic-dark/40 text-accent-soft transition-colors duration-150 hover:border-accent-primary/50 hover:text-accent-soft/90 md:h-10 md:w-10"
             aria-label="Прокрутить вправо"
           >
             →
@@ -76,7 +76,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
       </div>
 
       <div className="relative">
-        <div className="overflow-hidden rounded-xl bg-basic-dark px-0 pt-2 md:rounded-2xl md:pr-16 md:pt-5">
+        <div className="overflow-hidden px-0 pt-4 md:pr-16 md:pt-7">
           <div
             ref={scrollRef}
             className="flex gap-mobile-4 overflow-x-auto overflow-y-hidden scroll-smooth pb-3 md:gap-5"
@@ -89,7 +89,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
           </div>
         </div>
 
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-basic-dark via-basic-dark/95 to-transparent pointer-events-none md:w-28" />
+        <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-basic-dark via-basic-dark/95 to-transparent pointer-events-none md:w-28" />
       </div>
     </div>
   );
