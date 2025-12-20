@@ -30,7 +30,9 @@ export default function AudienceSection() {
   return (
     <Section>
       <div className="flex flex-col gap-mobile-4 md:gap-6">
-        <Heading level={2}>Для кого DET и DETai</Heading>
+        <Heading level={2} className="text-mobile-5xl">
+          Для кого DET и DETai
+        </Heading>
         <BodyText variant="sectionDefaultOnLight" className="max-w-mobile md:max-w-2xl">
           DET — это культурная рамка понимания человека и тип внутренней позиции. DETai — её технологическое продолжение. Вместе
           они создают смыслы и инструменты для тех, кто развивается сам и помогает развиваться другим: психологам,
