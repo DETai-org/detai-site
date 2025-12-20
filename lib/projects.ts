@@ -18,7 +18,7 @@ export const projects: Project[] = [
     title: "Francis Galton",
     description:
       "Ваш цифровой психометрист. Измеряем личность с научной строгостью и человеческим пониманием.",
-    avatarSrc: DEFAULT_AVATAR,
+    avatarSrc: "/images/avatars_projects/Francis Galton.webp",
     echelon: 1,
     href: "/projects/galton",
     status: "ready",
