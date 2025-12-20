@@ -120,7 +120,11 @@ export default function DetaiProjectCard({ title, description, avatarSrc, echelo
               <div className="h-18 w-18 shrink-0 rounded-lg border border-accent-primary/10 bg-basic-dark/15" aria-hidden />
             </div>
 
-            <h3 className="font-serif text-mobile-h3 leading-tight font-semibold text-accent-soft md:text-xl md:leading-tight">{title}</h3>
+            <h3
+              className="font-serif text-[1.25rem] leading-[1.65rem] font-semibold text-accent-soft md:text-xl md:leading-tight"
+            >
+              {title}
+            </h3>
 
             <BodyText variant="projectCard" className="text-accent-soft/80">
               {description}
