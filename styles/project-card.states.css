@@ -38,6 +38,26 @@
   backdrop-filter: blur(0.75px);
 }
 
+.project-card--in-progress .project-card__surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+
+  /* Тонкая защитная плёнка */
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 35%,
+    rgba(255, 255, 255, 0.06) 65%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+
+  mix-blend-mode: soft-light;
+}
+
 .project-card--in-progress .project-card__status {
   display: inline-flex;
   align-items: center;
