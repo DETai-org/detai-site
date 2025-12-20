@@ -3,10 +3,15 @@
 import { useMemo, useRef } from "react";
 
 import { projects, type Project } from "@/lib/projects";
+import { cn } from "@/lib/utils";
 
 import BodyText from "../ui/BodyText";
 import HeadingLevel2 from "../ui/HeadingLevel2";
 import ProjectCard from "../ui/ProjectCard";
+
+type ProjectsListSectionProps = {
+  containerClassName?: string;
+};
 
 const ECHELON_TITLES: Record<Project["echelon"], string> = {
   1: "Эшелон I · Ядро",
@@ -90,7 +95,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
   );
 }
 
-export default function ProjectsListSection() {
+export default function ProjectsListSection({ containerClassName }: ProjectsListSectionProps) {
   const echelonGroups = useMemo(
     () =>
       [1, 2, 3].map((echelon) => {
@@ -107,7 +112,12 @@ export default function ProjectsListSection() {
 
   return (
     <section className="w-full bg-basic-dark text-accent-soft">
-      <div className="mx-auto w-full max-w-mobile px-mobile-4 py-mobile-6 md:max-w-6xl md:px-10 md:py-20">
+      <div
+        className={cn(
+          "mx-auto w-full max-w-mobile px-mobile-4 py-mobile-6 md:max-w-6xl md:px-10 md:py-20",
+          containerClassName,
+        )}
+      >
         <div className="flex flex-col gap-mobile-5 md:gap-10">
           <div className="flex flex-col gap-mobile-2 md:gap-3">
             <HeadingLevel2 color="soft">Каталог проектов DETai</HeadingLevel2>

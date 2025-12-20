@@ -6,11 +6,13 @@ import Section from "@/components/ui/Section";
 import ProjectsListSection from "@/components/sections/ProjectsListSection";
 
 export default function Page() {
+  const extendedContainerClassName = "md:max-w-[80rem] md:px-12";
+
   return (
     <div className="flex min-h-screen flex-col bg-basic-light text-basic-dark">
       <Header />
       <main className="flex flex-1 flex-col">
-        <Section>
+        <Section containerClassName={extendedContainerClassName}>
           <div className="flex flex-col gap-mobile-4 md:gap-6">
             <Heading level={1}>Проекты DETai</Heading>
             <BodyText className="text-basic-dark md:text-xl md:leading-relaxed">
@@ -20,7 +22,7 @@ export default function Page() {
           </div>
         </Section>
 
-        <ProjectsListSection />
+        <ProjectsListSection containerClassName={extendedContainerClassName} />
       </main>
       <Footer />
     </div>
