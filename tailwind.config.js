@@ -49,7 +49,7 @@ module.exports = {
         // Mobile semantic typography
         "mobile-hero": ["3rem", { lineHeight: "3.5rem" }],
         "mobile-h1": ["2rem", { lineHeight: "2.4rem" }],
-        "mobile-h2": ["1.75rem", { lineHeight: "2.15rem" }],
+        "mobile-h2": ["2.75rem", { lineHeight: "3.5rem" }],
         "mobile-h3": ["1.375rem", { lineHeight: "1.9rem" }],
         "mobile-body": ["1.125rem", { lineHeight: "1.65rem" }],
         "mobile-small": ["1rem", { lineHeight: "1.5rem" }],
