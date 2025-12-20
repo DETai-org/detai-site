@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import type { ReactNode } from "react";
+import type { Viewport } from "next";
 import { Lora, Open_Sans } from "next/font/google";
 
 import ShimmerAutoTrigger from "@/components/layout/ShimmerAutoTrigger";
@@ -21,6 +22,11 @@ const lora = Lora({
 export const metadata = {
   title: "DETai Site",
   description: "Dialectical Existential Therapy and DETai ecosystem",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
