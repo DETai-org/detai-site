@@ -82,7 +82,10 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
             className="flex gap-mobile-4 overflow-x-auto overflow-y-hidden scroll-smooth pb-3 md:gap-5"
           >
             {items.map((project) => (
-              <div key={project.id} className="w-[85%] min-w-[260px] max-w-[320px] flex-shrink-0 md:w-[320px] md:max-w-[320px]">
+              <div
+                key={project.id}
+                className="w-[85%] min-w-[260px] max-w-[320px] flex-shrink-0 h-[400px] md:h-auto md:w-[320px] md:max-w-[320px]"
+              >
                 <ProjectCard {...project} />
               </div>
             ))}
