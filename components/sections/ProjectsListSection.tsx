@@ -59,7 +59,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
           <button
             type="button"
             onClick={() => scrollByCardWidth("left")}
-            className="rounded-full border border-accent-primary/30 bg-basic-dark/40 px-3 py-2 text-accent-soft transition-colors duration-150 hover:border-accent-primary/50 hover:text-accent-soft/90"
+            className="rounded-full border border-accent-primary/30 bg-basic-dark px-3 py-2 text-accent-soft transition-colors duration-150 hover:border-accent-primary/50 hover:text-accent-soft/90"
             aria-label="Прокрутить влево"
           >
             ←
@@ -67,7 +67,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
           <button
             type="button"
             onClick={() => scrollByCardWidth("right")}
-            className="rounded-full border border-accent-primary/30 bg-basic-dark/40 px-3 py-2 text-accent-soft transition-colors duration-150 hover:border-accent-primary/50 hover:text-accent-soft/90"
+            className="rounded-full border border-accent-primary/30 bg-basic-dark px-3 py-2 text-accent-soft transition-colors duration-150 hover:border-accent-primary/50 hover:text-accent-soft/90"
             aria-label="Прокрутить вправо"
           >
             →
@@ -89,7 +89,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-basic-dark via-basic-dark/70 to-transparent md:w-20" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-basic-dark via-basic-dark to-transparent md:w-20" />
       </div>
     </div>
   );
