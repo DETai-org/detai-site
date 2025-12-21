@@ -75,7 +75,7 @@ export default function AudienceSection() {
         </p>
       </div>
 
-      <div className="mt-mobile-5 grid grid-cols-1 gap-mobile-4 md:mt-12 md:grid-cols-2 md:gap-8">
+      <div className="mt-mobile-5 grid grid-cols-1 gap-mobile-4 md:mt-10 md:grid-cols-2 md:gap-8">
         {audienceCards.map((card) => (
           <DefaultCard key={card.title} title={card.title}>
             <BodyText variant="infoCard">
