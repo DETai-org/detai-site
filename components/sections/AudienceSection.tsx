@@ -69,7 +69,13 @@ export default function AudienceSection() {
         </BodyText>
       </div>
 
-      <div className="mt-mobile-6 grid grid-cols-1 gap-mobile-4 md:mt-12 md:grid-cols-2 md:gap-8">
+      <div className="mt-mobile-4 flex justify-end md:mt-6">
+        <p className="text-right font-accent text-lg leading-tight text-basic-dark md:text-xl">
+          Выберите карточку — и продолжим глубже.
+        </p>
+      </div>
+
+      <div className="mt-mobile-5 grid grid-cols-1 gap-mobile-4 md:mt-12 md:grid-cols-2 md:gap-8">
         {audienceCards.map((card) => (
           <DefaultCard key={card.title} title={card.title}>
             <BodyText variant="infoCard">
@@ -79,11 +85,8 @@ export default function AudienceSection() {
         ))}
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-mobile-2 mt-mobile-4 md:mt-8">
-        <p className="font-accent text-xl leading-tight md:text-2xl text-basic-dark">
-          Выберите карточку — и продолжим глубже.
-        </p>
-        <p className="text-right text-mobile-small md:text-base italic text-basic-dark">
+      <div className="mt-mobile-6 flex flex-col items-end gap-mobile-2 md:mt-10">
+        <p className="text-right text-mobile-small italic text-basic-dark md:text-sm">
           <em>
             Это экосистема взаимного усиления: <br />
             смысл → практика → инструменты → данные → исследование → сообщество.
