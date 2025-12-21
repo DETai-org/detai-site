@@ -14,9 +14,9 @@ type ProjectsListSectionProps = {
 };
 
 const ECHELON_TITLES: Record<Project["echelon"], string> = {
-  1: "Эшелон 1",
-  2: "Эшелон 2",
-  3: "Эшелон 3",
+  1: "Эшелон I",
+  2: "Эшелон II",
+  3: "Эшелон III",
 };
 
 function getPlaceholderProjects(echelon: Project["echelon"], count: number) {
@@ -105,7 +105,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
                 key={project.id}
                 className="w-[82%] min-w-[260px] max-w-[320px] flex-shrink-0 h-[400px] md:h-auto md:w-[320px] md:max-w-[320px]"
               >
-                <ProjectCard {...project} />
+                <ProjectCard {...project} compactMobileText />
               </div>
             ))}
           </div>
