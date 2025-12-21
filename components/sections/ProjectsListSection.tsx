@@ -75,8 +75,8 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
         </div>
       </div>
 
-      <div className="relative -mx-mobile-4 md:-mx-10">
-        <div className="bg-basic-dark px-mobile-4 pr-8 md:px-10 md:pr-16">
+      <div className="relative -mx-mobile-4 overflow-visible md:-mx-10">
+        <div className="px-mobile-4 pr-8 md:px-10 md:pr-16">
           <div
             ref={scrollRef}
             className="flex gap-mobile-4 overflow-x-auto overflow-y-visible scroll-smooth pb-4 md:gap-6"
