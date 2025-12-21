@@ -9,7 +9,9 @@ import { cn } from "@/lib/utils";
 
 import BodyText from "./BodyText";
 
-type ProjectCardProps = Project;
+type ProjectCardProps = Project & {
+  compactMobileText?: boolean;
+};
 
 const TILT_THRESHOLD = 12;
 
@@ -19,7 +21,15 @@ function getEchelonLabel(echelon: 1 | 2 | 3) {
   return "Эшелон III";
 }
 
-export default function ProjectCard({ title, description, avatarSrc, echelon, href, status }: ProjectCardProps) {
+export default function ProjectCard({
+  title,
+  description,
+  avatarSrc,
+  echelon,
+  href,
+  status,
+  compactMobileText = false,
+}: ProjectCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number | null>(null);
   const tiltRef = useRef({ x: 0, y: 0 });
@@ -133,13 +143,23 @@ export default function ProjectCard({ title, description, avatarSrc, echelon, hr
               <div className="h-18 w-18 shrink-0 rounded-lg border border-accent-primary/10 bg-basic-dark/15" aria-hidden />
             </div>
 
-            <h3 className="font-serif text-[1.25rem] font-semibold leading-[1.65rem] text-accent-soft md:text-xl md:leading-tight">
+            <h3
+              className={cn(
+                "font-serif font-semibold text-accent-soft md:text-xl md:leading-tight",
+                compactMobileText
+                  ? "text-[1.125rem] leading-[1.5rem]"
+                  : "text-[1.25rem] leading-[1.65rem]",
+              )}
+            >
               {title}
             </h3>
 
             <BodyText
               variant="projectCard"
-              className="project-card__description text-accent-soft/80"
+              className={cn(
+                "project-card__description text-accent-soft/80",
+                compactMobileText && "text-sm leading-[1.4rem]",
+              )}
             >
               {description}
             </BodyText>
