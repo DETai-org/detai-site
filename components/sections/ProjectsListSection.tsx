@@ -49,7 +49,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
   };
 
   return (
-    <div className="flex flex-col gap-mobile-3 md:gap-4">
+    <div className="flex flex-col gap-mobile-2 md:gap-3">
       <div className="flex items-center justify-between gap-mobile-2 md:gap-3">
         <BodyText variant="sectionDefaultDark" className="text-accent-soft/80">
           {ECHELON_TITLES[echelon]}
@@ -76,7 +76,7 @@ function EchelonRow({ echelon, items }: { echelon: Project["echelon"]; items: Pr
       </div>
 
       <div className="relative -mx-mobile-4 overflow-visible md:-mx-10">
-        <div className="px-mobile-4 pt-6 pr-8 md:px-10 md:pt-8 md:pr-16">
+        <div className="px-mobile-4 pt-10 pr-8 md:px-10 md:pt-12 md:pr-16">
           <div
             ref={scrollRef}
             className="flex gap-mobile-4 overflow-x-auto overflow-y-visible scroll-smooth pb-4 md:gap-6"
