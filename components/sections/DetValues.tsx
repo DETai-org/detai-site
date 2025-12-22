@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import BodyText from "../ui/BodyText";
 import DefaultCard from "../ui/DefaultCard";
 import Heading from "../ui/Heading";
@@ -7,12 +9,12 @@ const detValues = [
   {
     title: "Право на противоречие",
     description:
-      "Первая ценность — уважение к внутренней двойственности человека. Мы не пытаемся “исправить” внутрений конфликт и противоречия как дефект: мы учимся видеть в них динамику, смысл и возможность для роста.",
+      "Уважение к внутренней двойственности человека.\u00a0\u00a0Мы не пытаемся “исправить” внутренний конфликт и противоречия как дефект: мы учимся видеть в них динамику, смысл и возможность для роста.",
   },
   {
     title: "Безусловная вера во внутренний потенциал",
     description:
-      "Вторая ценность — безусловная вера во внутренний потенциал личности. В человеке уже заложено все потенциально возможное — и наша задача помочь проявиться тому, что может сделать жизнь глубже, честнее и устойчивее.",
+      "Безусловная вера во внутренний потенциал личности.\u00a0\u00a0В человеке уже заложено все потенциально возможное — и наша задача помочь проявиться тому, что может сделать жизнь глубже, честнее и устойчивее.",
   },
 ];
 
@@ -34,9 +36,25 @@ export default function DetValues() {
       </div>
 
       <div className="grid grid-cols-1 gap-mobile-4 md:grid-cols-2 md:gap-6">
-        {detValues.map((value) => (
-          <DefaultCard key={value.title} title={value.title} variant="dark">
-            <BodyText className="text-mobile-body text-accent-soft md:text-xl md:leading-relaxed">
+        {detValues.map((value, index) => (
+          <DefaultCard
+            key={value.title}
+            title={value.title}
+            variant="dark"
+            className="gap-mobile-2 md:gap-3"
+            titleClassName="min-h-0 text-left text-xl leading-snug md:min-h-0 md:text-[2rem] md:leading-snug"
+            titlePrefixPlacement="top-left"
+            titlePrefix={
+              <Image
+                alt={`Золотая цифра ${index + 1}`}
+                className="h-20 w-20 md:h-[5.5rem] md:w-[5.5rem]"
+                height={88}
+                src={`/images/gold_numbers/${index + 1}_number.webp`}
+                width={88}
+              />
+            }
+          >
+            <BodyText className="text-left text-mobile-body text-accent-soft md:text-base md:leading-relaxed">
               {value.description}
             </BodyText>
           </DefaultCard>
