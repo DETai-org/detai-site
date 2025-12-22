@@ -125,17 +125,20 @@ export default function DetPractice() {
         {filteredFormats.map((format) => (
           <article
             key={format.title}
-            className="flex h-full w-full flex-col gap-mobile-3 rounded-xl border border-basic-dark/10 bg-white/70 p-mobile-4 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg md:gap-4 md:p-6"
+            className="flex h-full w-full flex-col gap-mobile-3 rounded-xl border border-accent-primary/30 bg-accent-soft p-mobile-4 text-basic-dark shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:border-accent-primary hover:shadow-lg md:gap-4 md:p-6"
           >
-            <div className="flex items-start justify-between gap-3">
-              <Heading level={3} className="text-xl font-serif font-semibold leading-snug md:text-2xl md:leading-snug">
+            <div className="flex items-start justify-between gap-mobile-2 md:gap-3">
+              <Heading
+                level={3}
+                className="text-xl font-serif font-semibold leading-snug text-basic-dark md:text-[2rem] md:leading-snug"
+              >
                 {format.title}
               </Heading>
-              <span className="shrink-0 rounded-full bg-basic-light px-3 py-1 text-xs font-semibold text-basic-dark shadow-sm md:text-sm">
+              <span className="shrink-0 rounded-full border border-basic-dark/10 bg-white/80 px-3 py-1 text-xs font-semibold text-basic-dark shadow-sm md:text-sm">
                 {statusMeta[format.status].icon} {statusMeta[format.status].label}
               </span>
             </div>
-            <p className="text-mobile-body text-basic-dark md:text-base md:leading-relaxed">
+            <p className="text-mobile-small text-basic-dark md:text-base md:leading-relaxed">
               {format.description}
             </p>
             <Link
@@ -146,6 +149,17 @@ export default function DetPractice() {
             </Link>
           </article>
         ))}
+      </div>
+
+      <div className="mt-mobile-4 flex justify-end md:mt-6">
+        <p className="text-right text-mobile-small italic text-basic-dark md:text-sm">
+          <em>
+            Практика держится на человеке и позиции. <br />
+            А <Link href="/detai" className="text-accent-primary underline decoration-accent-primary/60 underline-offset-4 transition-colors duration-200 hover:text-accent-hover">DETai</Link>
+            {" "}
+            добавляет инструменты поддержки — как продолжение, а не замена живого контакта.
+          </em>
+        </p>
       </div>
     </Section>
   );
