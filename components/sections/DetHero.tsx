@@ -40,7 +40,6 @@ export default function DetHero() {
         className="order-2 flex min-h-[22rem] flex-col items-center justify-center md:order-2 md:min-h-[30rem] lg:min-h-[34rem]"
       >
         <AnimatedLogo
-          size="100%"
           className="h-[14rem] w-[14rem] md:h-[18rem] md:w-[18rem]"
           colorOverride={brandDarkColor}
         />

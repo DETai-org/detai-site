@@ -78,9 +78,10 @@ export default function AnimatedLogo({ className, size, colorOverride }: Animate
   );
 
   const sharedStyle = size ? { height: size, width: size } : undefined;
+  const containerClassName = clsx("relative", !size && "h-48 w-48", className);
 
   return (
-    <div className={clsx("relative h-48 w-48", className)} style={sharedStyle}>
+    <div className={containerClassName} style={sharedStyle}>
       {!isPulseVisible && (
         <Lottie
           animationData={introData}
