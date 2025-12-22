@@ -24,6 +24,9 @@ type Publication = {
   links?: PublicationLink[];
 };
 
+const textLinkClasses =
+  "underline decoration-accent-primary/50 decoration-1 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover";
+
 const featuredArticles: Publication[] = [
   {
     title:
@@ -103,7 +106,7 @@ export default function DetScience() {
           </Heading>
           <Link
             href="/det/publications"
-            className="text-mobile-small font-semibold text-accent-primary underline decoration-accent-primary/60 underline-offset-4 transition-colors duration-200 hover:text-accent-hover"
+            className={cn("text-mobile-small font-semibold text-accent-primary", textLinkClasses)}
           >
             Смотреть все публикации →
           </Link>
@@ -176,7 +179,7 @@ function PublicationList({ id, labelledBy, publications }: PublicationListProps)
             <div className="flex flex-col gap-mobile-2 md:flex-row md:items-start md:justify-between">
               <Link
                 href={publication.href}
-                className="text-lg font-semibold text-basic-dark underline decoration-accent-primary/50 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover md:text-xl"
+                className={cn("text-lg font-semibold text-basic-dark md:text-xl", textLinkClasses)}
               >
                 {publication.title}
               </Link>
