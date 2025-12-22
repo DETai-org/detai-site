@@ -11,6 +11,7 @@ type DefaultCardProps = {
   variant?: "light" | "dark";
   titlePrefix?: ReactNode;
   titleClassName?: string;
+  titlePrefixPlacement?: "inline" | "top-right";
 };
 
 const baseContainerClasses =
@@ -22,7 +23,7 @@ const variantContainerClasses: Record<NonNullable<DefaultCardProps["variant"]>, 
 };
 
 const baseTitleClasses =
-  "min-h-[3.5rem] text-xl leading-snug md:min-h-[5.5rem] md:text-[2rem] md:leading-snug font-serif font-semibold";
+  "min-h-[3.5rem] text-left text-xl leading-snug md:min-h-[5.5rem] md:text-[2rem] md:leading-snug font-serif font-semibold";
 
 const variantTitleClasses: Record<NonNullable<DefaultCardProps["variant"]>, string> = {
   light: "text-basic-dark",
@@ -36,22 +37,39 @@ export default function DefaultCard({
   variant = "light",
   titlePrefix,
   titleClassName,
+  titlePrefixPlacement = "inline",
 }: DefaultCardProps) {
+  const isTopRightPrefix = titlePrefix && titlePrefixPlacement === "top-right";
+
   return (
     <div className={cn(baseContainerClasses, variantContainerClasses[variant], className)}>
-      <Heading
-        level={3}
-        className={cn(baseTitleClasses, variantTitleClasses[variant], titleClassName)}
-      >
-        {titlePrefix ? (
-          <span className="flex items-center gap-mobile-3 md:gap-3">
+      {isTopRightPrefix ? (
+        <div className="flex flex-col gap-mobile-2 md:gap-3">
+          <div className="flex w-full justify-end pt-mobile-1 pr-mobile-1 md:pt-2 md:pr-2">
             {titlePrefix}
-            <span>{title}</span>
-          </span>
-        ) : (
-          title
-        )}
-      </Heading>
+          </div>
+          <Heading
+            level={3}
+            className={cn(baseTitleClasses, variantTitleClasses[variant], titleClassName)}
+          >
+            {title}
+          </Heading>
+        </div>
+      ) : (
+        <Heading
+          level={3}
+          className={cn(baseTitleClasses, variantTitleClasses[variant], titleClassName)}
+        >
+          {titlePrefix ? (
+            <span className="flex items-center gap-mobile-3 md:gap-3">
+              {titlePrefix}
+              <span>{title}</span>
+            </span>
+          ) : (
+            title
+          )}
+        </Heading>
+      )}
       {children}
     </div>
   );

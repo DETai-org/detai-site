@@ -9,12 +9,12 @@ const detValues = [
   {
     title: "Право на противоречие",
     description:
-      "Первая ценность — уважение к внутренней двойственности человека. Мы не пытаемся “исправить” внутрений конфликт и противоречия как дефект: мы учимся видеть в них динамику, смысл и возможность для роста.",
+      "Уважение к внутренней двойственности человека. Мы не пытаемся “исправить” внутренний конфликт и противоречия как дефект: мы учимся видеть в них динамику, смысл и возможность для роста.",
   },
   {
     title: "Безусловная вера во внутренний потенциал",
     description:
-      "Вторая ценность — безусловная вера во внутренний потенциал личности. В человеке уже заложено все потенциально возможное — и наша задача помочь проявиться тому, что может сделать жизнь глубже, честнее и устойчивее.",
+      "Безусловная вера во внутренний потенциал личности. В человеке уже заложено все потенциально возможное — и наша задача помочь проявиться тому, что может сделать жизнь глубже, честнее и устойчивее.",
   },
 ];
 
@@ -41,18 +41,19 @@ export default function DetValues() {
             key={value.title}
             title={value.title}
             variant="dark"
+            titlePrefixPlacement="top-right"
             titlePrefix={
               <Image
                 alt={`Золотая цифра ${index + 1}`}
-                className="h-10 w-10 md:h-8 md:w-8"
-                height={40}
+                className="h-16 w-16 md:h-14 md:w-14"
+                height={64}
                 src={`/images/gold_numbers/${index + 1}_number.webp`}
-                width={40}
+                width={64}
               />
             }
-            titleClassName="flex items-center gap-mobile-3 text-xl leading-snug md:gap-3 md:text-lg md:leading-tight"
+            titleClassName="text-left text-xl leading-snug md:text-lg md:leading-tight"
           >
-            <BodyText className="text-mobile-body text-accent-soft md:text-base md:leading-relaxed">
+            <BodyText className="text-left text-mobile-body text-accent-soft md:text-base md:leading-relaxed">
               {value.description}
             </BodyText>
           </DefaultCard>
