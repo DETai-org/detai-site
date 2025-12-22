@@ -82,6 +82,8 @@ export default function DetScience() {
       variant="light"
       className="bg-basic-light"
       containerClassName="flex flex-col gap-mobile-5 md:gap-10"
+
+      className="text-base font-semibold text-basic-dark underline decoration-accent-primary/50 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover md:text-xl"
     >
       <div className="flex flex-col gap-mobile-3 md:gap-4">
         <Heading level={2} color="basic">
