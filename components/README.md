@@ -16,41 +16,7 @@
 | Team (/team)          | —                                                                                           | Страница с информацией о команде и ключевых участниках                                              |
 | Неиспользуемые        | Projects                                                                                    | Здесь будет описание DETai как системы Umbrella и карточки, ведущие на подстраницы для каждого проекта |
 
-### Главная страница — блоки и порядок
 
-```mermaid
-flowchart TB
-    Page["Page: /"]
-
-    subgraph Layout[Глобальный каркас]
-        Header[Header]
-        Main[<main>]
-        Footer[Footer]
-    end
-
-    Page --> Header
-    Page --> Main
-    Page --> Footer
-
-    %% Главный поток страниц
-    subgraph MainFlow[Секции внутри <main>]
-        Hero[Hero — вводный блок с визуалом и CTA]
-        Bridge[DetToDetaiBridge — описание связи «От DET к DETai»]
-        Split[DetDetaiSplit — выбор направления]
-        Audience[AudienceSection — карточки для целевых аудиторий]
-        Fundament[FundamentDetSection — ссылка на основания DET]
-        Mission[Mission — миссия и ценности]
-    end
-
-    Main --> Hero --> HeroText[HeroText — заголовок, описание, CTA]
-    Hero --> HeroScene[HeroScene — визуальный блок с AnimatedLogo и Canvas FX]
-
-    Main --> Bridge
-    Main --> Split
-    Main --> Audience
-    Main --> Fundament
-    Main --> Mission
-```
 
 ## ui/
 
