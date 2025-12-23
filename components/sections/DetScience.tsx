@@ -7,7 +7,7 @@ import BodyText from "../ui/BodyText";
 import Heading from "../ui/Heading";
 import Section from "../ui/Section";
 import { cn } from "@/lib/utils";
-import { getPublicationsByType } from "@/lib/publications/publications.utils";
+import { getPublicationsByTypeClient } from "@/lib/publications/publications.client";
 import { Publication } from "@/lib/publications/types";
 
 type TabId = "articles" | "dissertations" | "talks";
@@ -23,7 +23,7 @@ export default function DetScience() {
 
   const publicationsByTab = useMemo(() => {
     return tabs.reduce<Record<TabId, Publication[]>>((acc, tab) => {
-      acc[tab.id] = getPublicationsByType(tab.type);
+      acc[tab.id] = getPublicationsByTypeClient(tab.type);
       return acc;
     }, { articles: [], dissertations: [], talks: [] });
   }, []);
