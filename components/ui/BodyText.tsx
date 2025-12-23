@@ -15,12 +15,12 @@ type BodyTextProps = {
   children: ReactNode;
 };
 
-const projectCardClasses = "text-mobile-small text-basic-dark md:text-base";
+const projectCardClasses = "text-mobile-small text-fg md:text-base";
 
 const variantClasses: Record<BodyTextVariant, string> = {
-  sectionDefaultDark: "text-mobile-body text-accent-soft md:text-xl md:leading-relaxed",
-  sectionDefaultOnLight: "text-mobile-body text-basic-dark md:text-xl md:leading-relaxed",
-  sectionBrand: "text-mobile-body text-accent-primary md:text-xl md:leading-relaxed",
+  sectionDefaultDark: "text-mobile-body text-accentSoftVar md:text-xl md:leading-relaxed",
+  sectionDefaultOnLight: "text-mobile-body text-fg md:text-xl md:leading-relaxed",
+  sectionBrand: "text-mobile-body text-accentVar md:text-xl md:leading-relaxed",
   projectCard: projectCardClasses,
   infoCard: projectCardClasses,
 };

@@ -12,6 +12,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        bg: "rgb(var(--bg) / <alpha-value>)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        surface2: "rgb(var(--surface-2) / <alpha-value>)",
+        border: "rgb(var(--border) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        accentVar: "rgb(var(--accent) / <alpha-value>)",
+        accentSoftVar: "rgb(var(--accent-soft) / <alpha-value>)",
         basic: {
           dark: "#1E1B19",
           light: "#F6F1E9",

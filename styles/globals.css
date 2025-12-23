@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./theme/tokens.css";
+@import "./theme/overrides.css";
 @import "./ui-effects.css";
 @import "./project-cards.css";
 @import "./project-card.states.css";
