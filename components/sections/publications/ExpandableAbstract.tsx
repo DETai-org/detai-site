@@ -44,6 +44,7 @@ export default function ExpandableAbstract({
           type="button"
           className="self-start text-sm font-semibold text-accent-primary underline decoration-accent-primary/60 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover"
           onClick={() => setIsExpanded((current) => !current)}
+          aria-expanded={isExpanded}
         >
           {isExpanded ? "Свернуть" : "Показать полностью"}
         </button>

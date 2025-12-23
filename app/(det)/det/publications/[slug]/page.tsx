@@ -104,16 +104,22 @@ export default function PublicationPage({ params }: PublicationPageProps) {
               </div>
 
               {publication.doi ? (
-                <div className="flex flex-wrap items-center gap-2 text-mobile-small text-basic-dark/70 md:text-base">
-                  <span className="font-semibold text-basic-dark">DOI:</span>
-                  <Link
-                    href={`https://doi.org/${publication.doi}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline decoration-basic-dark/30 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover hover:decoration-accent-primary/60"
-                  >
-                    {publication.doi}
-                  </Link>
+                <div className="flex flex-col gap-1 text-mobile-small text-basic-dark/70 md:text-base">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-semibold text-basic-dark">DOI:</span>
+                    <Link
+                      href={`https://doi.org/${publication.doi}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-basic-dark/30 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover hover:decoration-accent-primary/60"
+                      title="DOI может вести на страницу регистрации и не всегда открывает статью"
+                    >
+                      {publication.doi}
+                    </Link>
+                  </div>
+                  <span className="text-xs italic text-basic-dark/60">
+                    DOI может вести на страницу регистрации и не всегда открывает статью
+                  </span>
                 </div>
               ) : null}
 
@@ -165,7 +171,7 @@ export default function PublicationPage({ params }: PublicationPageProps) {
                   О концепции DET
                 </Link>
                 <p className="text-xs text-basic-dark/70 md:text-mobile-small">
-                  Данная публикация относится к исследовательскому полю, связанному с экзистенциально-диалектической психотерапии (DET)
+                  Данная публикация относится к исследовательскому полю, тематически связанному с экзистенциально-диалектической психотерапией (DET).
                 </p>
               </div>
             </div>

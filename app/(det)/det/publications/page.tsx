@@ -5,7 +5,6 @@ import Header from "@/components/layout/Header";
 import BodyText from "@/components/ui/BodyText";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
-import ExpandableAbstract from "@/components/sections/publications/ExpandableAbstract";
 import { getPublicationTypeLabel, getPublicationsByType } from "@/lib/publications/publications.utils";
 import { Publication, PublicationType } from "@/lib/publications/types";
 
@@ -100,14 +99,16 @@ function PublicationGroup({ section, publications }: PublicationGroupProps) {
                   <div className="text-mobile-small text-basic-dark/80 md:text-base">
                     {publication.authors.join(", ")} · {publication.year} · {getPublicationTypeLabel(publication.type)}
                   </div>
-                  {publication.journal ? (
-                    <div className="text-mobile-small text-basic-dark/70 md:text-base">{publication.journal}</div>
-                  ) : null}
-                </div>
-              </div>
-              <ExpandableAbstract text={publication.abstract} className="pt-1" />
-            </article>
-          ))}
+              {publication.journal ? (
+                <div className="text-mobile-small text-basic-dark/70 md:text-base">{publication.journal}</div>
+              ) : null}
+            </div>
+          </div>
+          <p className="pt-1 text-mobile-small text-basic-dark/80 md:text-base">
+            {publication.seoLead ?? publication.abstract}
+          </p>
+        </article>
+      ))}
         </div>
       )}
     </section>

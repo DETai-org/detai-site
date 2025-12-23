@@ -17,16 +17,18 @@ export default function PublicationShare({ title = "Поделиться пуб�
   const [shareUrl, setShareUrl] = useState("");
   const [copied, setCopied] = useState(false);
 
+  const finalUrl = shareUrl || (typeof window !== "undefined" ? window.location.href : "");
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     setShareUrl(window.location.href);
   }, []);
 
-  const encodedUrl = useMemo(() => encodeURIComponent(shareUrl || ""), [shareUrl]);
+  const encodedUrl = useMemo(() => encodeURIComponent(finalUrl || ""), [finalUrl]);
 
   const handleCopy = async () => {
-    const urlToCopy = shareUrl || (typeof window !== "undefined" ? window.location.href : "");
+    const urlToCopy = finalUrl;
 
     if (!urlToCopy) return;
 
