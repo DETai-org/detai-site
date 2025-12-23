@@ -54,6 +54,12 @@
   overflow: hidden;
 }
 
+.dark .paper--object,
+.dark .paper--object-mobile {
+  background-image: none;
+  background-color: rgb(var(--surface));
+}
+
 .paper--object::after,
 .paper--object-mobile::after {
   content: "";

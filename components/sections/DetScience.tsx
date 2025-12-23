@@ -88,7 +88,7 @@ export default function DetScience() {
         <div
           role="tablist"
           aria-label="Категории публикаций"
-          className="flex flex-wrap gap-2 overflow-x-auto rounded-xl border border-border/60 bg-surface p-mobile-2 md:gap-3"
+          className="flex flex-wrap gap-2 overflow-x-auto rounded-xl border border-[color:rgb(var(--soft-border)/0.1)] bg-[color:rgb(var(--panel-bg))] p-mobile-2 md:gap-3"
         >
           {tabs.map((tab) => (
             <button
@@ -101,8 +101,8 @@ export default function DetScience() {
               className={cn(
                 "whitespace-nowrap rounded-full border px-3 py-1.5 text-sm font-semibold transition-colors duration-200 md:px-4 md:py-2 md:text-mobile-small",
                 activeTab === tab.id
-                  ? "border-accent/50 bg-accentSoft text-text shadow-sm"
-                  : "border-border/60 bg-surface text-text hover:border-border/80"
+                  ? "border-accentVar/50 bg-accentSoftVar text-fg shadow-sm"
+                  : "border-[color:rgb(var(--soft-border)/0.1)] bg-[color:rgb(var(--panel-bg))] text-fg hover:border-[color:rgb(var(--soft-border)/0.2)]"
               )}
               onClick={() => setActiveTab(tab.id)}
             >
@@ -111,7 +111,7 @@ export default function DetScience() {
           ))}
         </div>
 
-        <div className="paper--object paper--object-mobile rounded-2xl border border-border/60 p-mobile-3 shadow-sm md:p-6">
+        <div className="paper--object paper--object-mobile rounded-2xl border border-[color:rgb(var(--soft-border)/0.1)] p-mobile-3 shadow-sm md:p-6">
           {tabs.map((tab) => (
             <PublicationPanel
               key={tab.id}
@@ -130,7 +130,7 @@ export default function DetScience() {
           </BodyText>
           <Link
             href="/det/publications"
-            className="inline-flex items-center gap-mobile-1 text-mobile-body font-semibold text-accent underline decoration-accent/60 underline-offset-4 transition-colors duration-200 hover:text-accentHover md:text-base"
+            className="inline-flex items-center gap-mobile-1 text-mobile-body font-semibold text-accentVar underline decoration-accentVar/60 underline-offset-4 transition-colors duration-200 hover:text-accent-hover md:text-base"
           >
             Смотреть все публикации →
           </Link>
@@ -163,7 +163,7 @@ function PublicationPanel({ id, labelledBy, active, publications, limitMobile }:
 
   return (
     <div role="tabpanel" id={id} aria-labelledby={labelledBy}>
-      <div className="flex flex-col divide-y divide-border/50">
+      <div className="flex flex-col divide-y divide-[color:rgb(var(--soft-border)/0.1)]">
         {publications.map((publication, index) => (
           <article
             key={publication.slug}
@@ -176,7 +176,7 @@ function PublicationPanel({ id, labelledBy, active, publications, limitMobile }:
               <div className="flex flex-col gap-1">
                 <Link
                   href={`/det/publications/${publication.slug}`}
-                  className="text-base font-semibold text-text underline decoration-accent/50 underline-offset-[6px] transition-colors duration-200 hover:text-accentHover md:text-xl"
+                  className="text-base font-semibold text-fg underline decoration-accentVar/50 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover md:text-xl"
                 >
                   {publication.title}
                 </Link>
@@ -195,7 +195,7 @@ function PublicationPanel({ id, labelledBy, active, publications, limitMobile }:
                     href={pdf.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-28 justify-center rounded-full bg-surface2 px-3 py-1 text-xs font-semibold text-accentSoft transition-colors duration-200 hover:bg-accent"
+                    className="inline-flex w-28 justify-center rounded-full bg-surface2 px-3 py-1 text-xs font-semibold text-accentSoftVar transition-colors duration-200 hover:bg-accentVar"
                   >
                     PDF ({pdf.lang})
                   </Link>
@@ -206,14 +206,14 @@ function PublicationPanel({ id, labelledBy, active, publications, limitMobile }:
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-28 justify-center rounded-full border border-border/60 bg-surface px-3 py-1 text-xs font-semibold text-text transition-colors duration-200 hover:border-accent/60 hover:text-accentHover"
+                    className="inline-flex w-28 justify-center rounded-full border border-[color:rgb(var(--soft-border)/0.15)] bg-[color:rgb(var(--panel-bg))] px-3 py-1 text-xs font-semibold text-fg transition-colors duration-200 hover:border-accentVar/60 hover:text-accent-hover"
                   >
                     {link.label}
                   </Link>
                 ))}
               </div>
             </div>
-            <p className="text-sm text-text md:text-lg md:leading-relaxed">
+            <p className="text-sm text-fg md:text-lg md:leading-relaxed">
               {buildPublicationDescription(publication)}
             </p>
           </article>

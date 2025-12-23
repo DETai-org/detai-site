@@ -8,5 +8,5 @@
 }
 
 .logo--basic-dark {
-  color: rgb(var(--text));
+  color: rgb(var(--fg));
 }

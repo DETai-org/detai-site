@@ -32,7 +32,7 @@ const publicationSections: { id: PublicationType; label: string; description: st
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen flex-col bg-canvas text-text">
+    <div className="flex min-h-screen flex-col bg-bg text-fg">
       <Header />
       <main className="flex flex-1 flex-col">
         <Section
@@ -72,13 +72,13 @@ type PublicationGroupProps = {
 
 function PublicationGroup({ section, publications }: PublicationGroupProps) {
   return (
-    <section className="paper--object paper--object-mobile flex flex-col gap-3 rounded-2xl border border-border/60 p-mobile-3 shadow-sm md:gap-4 md:p-6">
+    <section className="paper--object paper--object-mobile flex flex-col gap-3 rounded-2xl border border-[color:rgb(var(--soft-border)/0.1)] p-mobile-3 shadow-sm md:gap-4 md:p-6">
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-1">
-          <h2 className="text-lg font-semibold text-text md:text-2xl">{section.label}</h2>
+          <h2 className="text-lg font-semibold text-fg md:text-2xl">{section.label}</h2>
           <p className="text-mobile-small text-muted md:text-base">{section.description}</p>
         </div>
-        <span className="rounded-full bg-surface/70 px-3 py-1 text-xs font-semibold text-text md:text-sm">
+        <span className="rounded-full bg-[color:rgb(var(--soft-border)/0.05)] px-3 py-1 text-xs font-semibold text-fg md:text-sm">
           {publications.length} {publications.length === 1 ? "публикация" : "публикации"}
         </span>
       </div>
@@ -88,14 +88,14 @@ function PublicationGroup({ section, publications }: PublicationGroupProps) {
           Материалы в этой категории появятся позже.
         </BodyText>
       ) : (
-        <div className="flex flex-col divide-y divide-border/50">
+        <div className="flex flex-col divide-y divide-[color:rgb(var(--soft-border)/0.1)]">
           {publications.map((publication) => (
             <article key={publication.slug} className="flex flex-col gap-2 py-4 first:pt-0 last:pb-0 md:gap-3">
               <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
                 <div className="flex flex-col gap-1">
                   <Link
                     href={`/det/publications/${publication.slug}`}
-                    className="text-base font-semibold text-text underline decoration-accent/50 underline-offset-[6px] transition-colors duration-200 hover:text-accentHover md:text-xl"
+                    className="text-base font-semibold text-fg underline decoration-accentVar/50 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover md:text-xl"
                   >
                     {publication.title}
                   </Link>

@@ -41,7 +41,7 @@ const practiceSections = [
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen flex-col bg-canvas text-text">
+    <div className="flex min-h-screen flex-col bg-bg text-fg">
       <Header />
       <main className="flex flex-1 flex-col">
         <Section
@@ -65,21 +65,21 @@ export default function Page() {
               <section
                 key={section.id}
                 id={section.id}
-                className="flex flex-col gap-mobile-3 rounded-2xl border border-border/60 bg-surface/80 p-mobile-4 shadow-sm md:gap-4 md:p-6"
+                className="flex flex-col gap-mobile-3 rounded-2xl border border-[color:rgb(var(--soft-border)/0.1)] bg-white/70 p-mobile-4 shadow-sm md:gap-4 md:p-6 dark:bg-surface"
               >
                 <div className="flex flex-col gap-mobile-2 md:flex-row md:items-center md:justify-between md:gap-3">
                   <Heading level={2} className="text-2xl font-serif font-semibold leading-snug md:text-[2rem] md:leading-snug">
                     {section.title}
                   </Heading>
-                  <span className="rounded-full bg-surface px-4 py-2 text-mobile-small font-semibold text-text shadow-sm md:text-base">
+                  <span className="rounded-full bg-basic-light px-4 py-2 text-mobile-small font-semibold text-fg shadow-sm md:text-base dark:bg-surface">
                     {section.status}
                   </span>
                 </div>
-                <p className="text-mobile-body text-text md:text-base md:leading-relaxed">
+                <p className="text-mobile-body text-fg md:text-base md:leading-relaxed">
                   {section.description}
                 </p>
                 {section.status !== "🟢 Сейчас доступно" && (
-                  <p className="text-mobile-small font-semibold text-accent md:text-base">
+                  <p className="text-mobile-small font-semibold text-accentVar md:text-base">
                     Подробности появятся скоро
                   </p>
                 )}

@@ -27,9 +27,9 @@ export default function Heading({
   };
 
   const colorClasses: Record<HeadingColor, string> = {
-    basic: "text-text",
-    gold: "text-accent",
-    soft: "text-accentSoft",
+    basic: "text-fg",
+    gold: "text-accentVar",
+    soft: "text-accentSoftVar",
   };
 
   return <Tag className={cn(levelClasses[level], colorClasses[color], className)}>{children}</Tag>;

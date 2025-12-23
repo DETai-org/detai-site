@@ -16,15 +16,15 @@ export default function DetHero() {
     <Section
       id="det-hero"
       variant="light"
-      className="relative overflow-hidden bg-accentSoft"
+      className="relative overflow-hidden bg-accentSoftVar"
       containerClassName="relative flex min-h-[70vh] flex-col justify-center gap-8 md:min-h-[80vh] md:gap-12"
       fullWidth
     >
       <div className="relative z-20 w-full max-w-[48rem] md:max-w-[52rem]">
-        <HeroHeadingTitle className="text-text">
+        <HeroHeadingTitle className="text-fg">
           DET — Dialectical Existential Therapy.
         </HeroHeadingTitle>
-        <p className="mt-4 text-lg leading-snug text-text md:text-xl lg:text-2xl">
+        <p className="mt-4 text-lg leading-snug text-fg md:text-xl lg:text-2xl">
           Новый формат психотерапии
         </p>
       </div>

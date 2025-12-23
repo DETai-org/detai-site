@@ -70,7 +70,7 @@ export default function AudienceSection() {
       </div>
 
       <div className="mt-mobile-4 flex justify-end md:mt-6">
-        <p className="text-right font-accent text-lg leading-tight text-text md:text-xl">
+        <p className="text-right font-accent text-lg leading-tight text-fg md:text-xl">
           Выберите карточку — и продолжим глубже.
         </p>
       </div>

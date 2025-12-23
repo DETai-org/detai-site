@@ -20,8 +20,8 @@ import { PublicationPdfLanguage } from "@/lib/publications/types";
 const publicationPageContainerClassName = "flex flex-col gap-8 md:gap-10";
 const actionLinkBaseClasses =
   "inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors duration-200 md:text-base";
-const pdfLinkClasses = `${actionLinkBaseClasses} bg-gradient-to-br from-accentActive to-accentSoft text-text shadow-[0_0_15px_rgb(var(--accent)/0.25)] hover:brightness-105 active:brightness-95`;
-const externalLinkClasses = `${actionLinkBaseClasses} border-2 border-accent text-accent hover:bg-accentSoft/20 hover:text-accentHover`;
+const pdfLinkClasses = `${actionLinkBaseClasses} bg-gradient-to-br from-[rgb(var(--button-primary-from))] to-[rgb(var(--button-primary-to))] text-basic-dark shadow-[0_0_15px_rgb(var(--accent)/0.25)] hover:brightness-105 active:brightness-95`;
+const externalLinkClasses = `${actionLinkBaseClasses} border-2 border-[color:var(--button-secondary-border)] text-[color:var(--button-secondary-text)] hover:bg-accentSoftVar/20`;
 
 const publicationTypeTitle = "det-publication-page";
 
@@ -53,7 +53,7 @@ export default function PublicationPage({ params }: PublicationPageProps) {
   if (!publication) notFound();
 
   return (
-    <div className="flex min-h-screen flex-col bg-canvas text-text">
+    <div className="flex min-h-screen flex-col bg-bg text-fg">
       <Header />
       <main className="flex flex-1 flex-col">
         <Section
@@ -76,7 +76,7 @@ export default function PublicationPage({ params }: PublicationPageProps) {
             </div>
 
             {publication.seoLead ? (
-              <p className="max-w-4xl text-base font-medium text-text md:text-lg">
+              <p className="max-w-4xl text-base font-medium text-fg md:text-lg">
                 {publication.seoLead}
               </p>
             ) : null}
@@ -111,12 +111,12 @@ export default function PublicationPage({ params }: PublicationPageProps) {
               {publication.doi ? (
                 <div className="flex flex-col gap-1 text-mobile-small text-muted/80 md:text-base">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-semibold text-text">DOI:</span>
+                    <span className="font-semibold text-fg">DOI:</span>
                     <Link
                       href={`https://doi.org/${publication.doi}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline decoration-border/60 underline-offset-[6px] transition-colors duration-200 hover:text-accentHover hover:decoration-accent/60"
+                      className="underline decoration-border/60 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover hover:decoration-accentVar/60"
                       title="DOI может вести на страницу регистрации и не всегда открывает статью"
                     >
                       {publication.doi}
@@ -133,13 +133,13 @@ export default function PublicationPage({ params }: PublicationPageProps) {
 
             <div className="paper--object paper--object-mobile flex flex-col gap-5 rounded-2xl p-mobile-3 shadow-sm md:gap-6 md:p-6">
               <section className="flex flex-col gap-3">
-                <h2 className="text-lg font-semibold text-text md:text-xl">Аннотация</h2>
+                <h2 className="text-lg font-semibold text-fg md:text-xl">Аннотация</h2>
                 <ExpandableAbstract text={publication.abstract} className="max-w-4xl" />
               </section>
 
               {publication.keywords?.length ? (
                 <section className="flex flex-col gap-2">
-                  <h3 className="text-base font-semibold text-text md:text-lg">Ключевые слова</h3>
+                  <h3 className="text-base font-semibold text-fg md:text-lg">Ключевые слова</h3>
                   <p className="text-mobile-small text-muted md:text-base">
                     {publication.keywords.join(", ")}
                   </p>
@@ -148,7 +148,7 @@ export default function PublicationPage({ params }: PublicationPageProps) {
 
               {publication.citation ? (
                 <section className="flex flex-col gap-2">
-                  <h3 className="text-base font-semibold text-text md:text-lg">Как цитировать</h3>
+                  <h3 className="text-base font-semibold text-fg md:text-lg">Как цитировать</h3>
                   <div className="flex flex-col gap-1 text-mobile-small text-muted md:text-base">
                     {publication.citation.apa ? <p>APA: {publication.citation.apa}</p> : null}
                     {publication.citation.gost ? <p>ГОСТ: {publication.citation.gost}</p> : null}
@@ -157,15 +157,15 @@ export default function PublicationPage({ params }: PublicationPageProps) {
               ) : null}
             </div>
 
-            <div className="flex flex-col gap-4 border-t border-border/50 pt-4 md:gap-5 md:pt-6">
+            <div className="flex flex-col gap-4 border-t border-[color:rgb(var(--soft-border)/0.1)] pt-4 md:gap-5 md:pt-6">
               <Link
                 href="/det/publications"
-                className="text-base font-semibold text-accent underline decoration-accent/50 underline-offset-[6px] transition-colors duration-200 hover:text-accentHover"
+                className="text-base font-semibold text-accentVar underline decoration-accentVar/50 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover"
               >
                 ← Все публикации
               </Link>
 
-              <div className="flex flex-col gap-3 rounded-2xl border border-border/60 bg-surface p-mobile-3 text-text shadow-sm md:gap-4 md:p-6">
+              <div className="flex flex-col gap-3 rounded-2xl border border-[color:rgb(var(--soft-border)/0.1)] bg-[color:rgb(var(--panel-bg))] p-mobile-3 text-fg shadow-sm md:gap-4 md:p-6">
                 <p className="text-mobile-small md:text-base">
                   DETai — экосистема инструментов и проектов, использующая научные данные в рамках Культуры DET.
                 </p>

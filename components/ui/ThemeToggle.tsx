@@ -5,12 +5,11 @@ import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
 
-type ThemeOption = "light" | "dark" | "system";
+type ThemeOption = "light" | "dark";
 
 const themeLabels: Record<ThemeOption, string> = {
-  light: "Свет",
-  dark: "Тень",
-  system: "Система",
+  light: "СВЕТ",
+  dark: "ТЕНЬ",
 };
 
 export default function ThemeToggle({ className }: { className?: string }) {
@@ -28,9 +27,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
   const currentTheme = (theme ?? "light") as ThemeOption;
 
   const handleToggle = () => {
-    const nextTheme: ThemeOption =
-      currentTheme === "light" ? "dark" : currentTheme === "dark" ? "system" : "light";
-    setTheme(nextTheme);
+    setTheme(currentTheme === "light" ? "dark" : "light");
   };
 
   return (
@@ -38,11 +35,11 @@ export default function ThemeToggle({ className }: { className?: string }) {
       type="button"
       onClick={handleToggle}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-semibold uppercase tracking-wide text-text transition-colors duration-200 hover:border-accent/60 hover:text-accent sm:text-sm",
+        "inline-flex items-center gap-2 rounded-full border border-[color:rgb(var(--soft-border)/0.2)] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-fg transition-colors duration-200 hover:border-accentVar/60 hover:text-accentVar sm:text-sm",
         className,
       )}
     >
-      Тема: {themeLabels[currentTheme]}
+      ТЕМА: {themeLabels[currentTheme]}
     </button>
   );
 }

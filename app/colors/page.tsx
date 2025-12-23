@@ -5,28 +5,28 @@ const palette = [
   {
     token: "accent.primary",
     hex: "#C9A86A",
-    bgClass: "bg-accent-primary",
+    bgClass: "bg-accentVar-primary",
     textClass: "text-basic-dark",
     labelClass: "text-basic-dark/80",
   },
   {
     token: "accent.active",
     hex: "#B8924F",
-    bgClass: "bg-accent-active",
+    bgClass: "bg-accentVar-active",
     textClass: "text-basic-light",
     labelClass: "text-basic-light/80",
   },
   {
     token: "accent.hover",
     hex: "#C69C5A",
-    bgClass: "bg-accent-hover",
+    bgClass: "bg-accentVar-hover",
     textClass: "text-basic-dark",
     labelClass: "text-basic-dark/80",
   },
   {
     token: "accent.soft",
     hex: "#F2E5C2",
-    bgClass: "bg-accent-soft",
+    bgClass: "bg-accentVar-soft",
     textClass: "text-basic-dark",
     labelClass: "text-basic-dark/80",
   },
@@ -47,7 +47,7 @@ const fonts = [
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen flex-col bg-canvas text-text">
+    <div className="flex min-h-screen flex-col bg-bg text-fg">
       <Header />
       <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-10 px-6 py-16">
         <section className="flex flex-col gap-4">
@@ -78,10 +78,10 @@ export default function Page() {
             {fonts.map((font) => (
               <div
                 key={font.name}
-                className="flex items-center justify-between rounded-lg border border-border/50 px-4 py-3 text-lg"
+                className="flex items-center justify-between rounded-lg border border-[color:rgb(var(--soft-border)/0.1)] px-4 py-3 text-lg"
               >
                 <span className="text-muted">{font.name}</span>
-                <span className={`text-xl font-semibold text-text ${font.className}`}>
+                <span className={`text-xl font-semibold text-fg ${font.className}`}>
                   {font.name}
                 </span>
               </div>
@@ -89,7 +89,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="palette-paper-preview background-paper flex min-h-[240px] items-center rounded-2xl border border-border/50 p-8 text-text shadow-[0_20px_60px_rgba(0,0,0,0.35)] md:min-h-[300px]">
+        <section className="palette-paper-preview background-paper flex min-h-[240px] items-center rounded-2xl border border-[color:rgb(var(--soft-border)/0.1)] p-8 text-fg shadow-[0_20px_60px_rgba(0,0,0,0.35)] md:min-h-[300px]">
           <div className="flex max-w-4xl flex-col gap-4">
             <h2 className="text-2xl font-semibold leading-tight">Бумажный фон (эксперимент)</h2>
             <p className="text-lg leading-relaxed text-muted">

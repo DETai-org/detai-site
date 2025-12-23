@@ -4,15 +4,23 @@
 
 :root {
   --bg: 246 241 233;
-  --surface: 255 252 247;
+  --fg: 30 27 25;
+  --surface: 242 229 194;
   --surface-2: 30 27 25;
-  --text: 30 27 25;
+  --border: 30 27 25;
   --muted: 106 98 90;
-  --border: 210 196 173;
   --accent: 201 168 106;
   --accent-soft: 242 229 194;
-  --accent-hover: 198 156 90;
-  --accent-active: 184 146 79;
+  --soft-border: 30 27 25;
+  --panel-bg: 246 241 233;
+
+  --hero-glow: none;
+  --hero-subtitle: rgb(var(--accent-soft));
+
+  --button-secondary-border: rgb(var(--accent));
+  --button-secondary-text: rgb(var(--accent));
+  --button-primary-from: 182 142 60;
+  --button-primary-to: 242 211 137;
 
   --paper-ambient: 246 243 236;
   --paper-ambient-highlight: 255 255 255;
@@ -23,19 +31,27 @@
 }
 
 .dark {
-  --bg: 24 21 20;
-  --surface: 32 28 26;
-  --surface-2: 20 18 16;
-  --text: 230 221 209;
-  --muted: 176 162 147;
-  --border: 82 72 66;
-  --accent: 198 164 98;
-  --accent-soft: 170 146 104;
-  --accent-hover: 214 180 118;
-  --accent-active: 156 124 74;
+  --bg: 30 27 25;
+  --fg: 228 215 198;
+  --surface: 42 37 33;
+  --surface-2: 56 49 44;
+  --border: 201 168 106;
+  --muted: 176 159 138;
+  --accent: 201 168 106;
+  --accent-soft: 186 156 106;
+  --soft-border: 201 168 106;
+  --panel-bg: 42 37 33;
+
+  --hero-glow: radial-gradient(120% 140% at 20% 0%, rgb(var(--accent) / 0.18), transparent 65%);
+  --hero-subtitle: rgb(var(--muted));
+
+  --button-secondary-border: rgb(var(--border) / 0.6);
+  --button-secondary-text: rgb(var(--fg));
+  --button-primary-from: 170 132 64;
+  --button-primary-to: 210 178 116;
 
   --paper-ambient: 34 30 28;
-  --paper-ambient-highlight: 214 196 162;
+  --paper-ambient-highlight: 201 168 106;
   --paper-ambient-shadow: 8 6 5;
   --paper-object-glow: 70 60 54;
 

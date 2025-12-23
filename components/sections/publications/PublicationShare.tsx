@@ -44,17 +44,17 @@ export default function PublicationShare({ title = "Поделиться пуб�
   return (
     <div
       className={cn(
-        "flex flex-col gap-3 rounded-2xl border border-border/60 bg-surface p-mobile-3 text-text shadow-sm md:p-4",
+        "flex flex-col gap-3 rounded-2xl border border-[color:rgb(var(--soft-border)/0.1)] bg-[color:rgb(var(--panel-bg))] p-mobile-3 text-fg shadow-sm md:p-4",
         compact && "md:flex-row md:items-center md:justify-between md:gap-4",
         className,
       )}
     >
-      {title ? <h3 className="text-base font-semibold text-text md:text-lg">{title}</h3> : null}
+      {title ? <h3 className="text-base font-semibold text-fg md:text-lg">{title}</h3> : null}
 
       <div className="flex flex-wrap items-center gap-2 md:gap-3">
         <button
           type="button"
-          className="group relative inline-flex items-center justify-center gap-2 rounded-lg border-2 border-accent px-4 py-2 text-sm font-semibold text-accent transition-all duration-300 hover:bg-accentSoft/20 hover:text-accentHover md:text-base"
+          className="group relative inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[color:var(--button-secondary-border)] px-4 py-2 text-sm font-semibold text-[color:var(--button-secondary-text)] transition-all duration-300 hover:bg-accentSoftVar/20 md:text-base"
           onClick={handleCopy}
         >
           <Copy className="h-4 w-4" aria-hidden />
@@ -65,7 +65,7 @@ export default function PublicationShare({ title = "Поделиться пуб�
           href={`https://x.com/intent/tweet?url=${encodedUrl}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative inline-flex items-center justify-center gap-2 rounded-lg border-2 border-accent px-4 py-2 text-sm font-semibold text-accent transition-all duration-300 hover:bg-accentSoft/20 hover:text-accentHover md:text-base"
+          className="group relative inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[color:var(--button-secondary-border)] px-4 py-2 text-sm font-semibold text-[color:var(--button-secondary-text)] transition-all duration-300 hover:bg-accentSoftVar/20 md:text-base"
         >
           <X className="h-4 w-4" aria-hidden />
           X
@@ -75,7 +75,7 @@ export default function PublicationShare({ title = "Поделиться пуб�
           href={`https://t.me/share/url?url=${encodedUrl}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative inline-flex items-center justify-center gap-2 rounded-lg border-2 border-accent px-4 py-2 text-sm font-semibold text-accent transition-all duration-300 hover:bg-accentSoft/20 hover:text-accentHover md:text-base"
+          className="group relative inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[color:var(--button-secondary-border)] px-4 py-2 text-sm font-semibold text-[color:var(--button-secondary-text)] transition-all duration-300 hover:bg-accentSoftVar/20 md:text-base"
         >
           <Send className="h-4 w-4" aria-hidden />
           Telegram

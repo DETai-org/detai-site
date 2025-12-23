@@ -53,7 +53,7 @@ export default function DetValues() {
               />
             }
           >
-            <BodyText className="text-left text-mobile-body text-accentSoft md:text-base md:leading-relaxed">
+            <BodyText className="text-left text-mobile-body text-accentSoftVar md:text-base md:leading-relaxed">
               {value.description}
             </BodyText>
           </DefaultCard>
