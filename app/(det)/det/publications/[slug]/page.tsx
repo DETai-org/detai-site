@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import ExpandableAbstract from "@/components/sections/publications/ExpandableAbstract";
 import PublicationShare from "@/components/sections/publications/PublicationShare";
-import BodyText from "@/components/ui/BodyText";
+import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
 import {
@@ -19,9 +19,9 @@ import { PublicationPdfLanguage } from "@/lib/publications/types";
 
 const publicationPageContainerClassName = "flex flex-col gap-8 md:gap-10";
 const actionLinkBaseClasses =
-  "rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 md:text-base";
-const pdfLinkClasses = `${actionLinkBaseClasses} bg-basic-dark text-basic-light hover:bg-accent-primary`;
-const externalLinkClasses = `${actionLinkBaseClasses} border border-basic-dark/15 bg-basic-light text-basic-dark hover:border-accent-primary/60 hover:text-accent-hover`;
+  "inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors duration-200 md:text-base";
+const pdfLinkClasses = `${actionLinkBaseClasses} bg-gradient-to-br from-[#B68E3C] to-[#F2D389] text-basic-dark shadow-[0_0_15px_rgba(201,168,106,0.25)] hover:brightness-105 active:brightness-95`;
+const externalLinkClasses = `${actionLinkBaseClasses} border-2 border-accent-primary text-accent-primary hover:bg-accent-soft/20 hover:text-accent-hover`;
 
 const publicationTypeTitle = "det-publication-page";
 
@@ -158,33 +158,31 @@ export default function PublicationPage({ params }: PublicationPageProps) {
               ) : null}
             </div>
 
-              <div className="flex flex-col gap-4 border-t border-basic-dark/10 pt-4 md:gap-5 md:pt-6">
-                <Link
-                  href="/det/publications"
-                  className="text-base font-semibold text-accent-primary underline decoration-accent-primary/50 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover"
-                >
-                  ← Все публикации
-                </Link>
+            <div className="flex flex-col gap-4 border-t border-basic-dark/10 pt-4 md:gap-5 md:pt-6">
+              <Link
+                href="/det/publications"
+                className="text-base font-semibold text-accent-primary underline decoration-accent-primary/50 underline-offset-[6px] transition-colors duration-200 hover:text-accent-hover"
+              >
+                ← Все публикации
+              </Link>
 
-                <div className="flex flex-col gap-3 rounded-2xl border border-basic-light/10 bg-basic-dark p-mobile-3 text-basic-light shadow-sm md:gap-4 md:p-6">
-                  <p className="text-mobile-small md:text-base">
-                    DETai — экосистема инструментов и проектов, использующая научные данные в рамках Культуры DET.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Link
-                      href="/det"
-                      className="inline-flex w-fit items-center rounded-full border border-basic-light/20 bg-basic-dark px-4 py-2 text-sm font-semibold text-basic-light transition-colors duration-200 hover:border-accent-primary/60 hover:bg-basic-dark md:text-base"
-                    >
+              <div className="flex flex-col gap-3 rounded-2xl border border-basic-dark/10 bg-basic-light p-mobile-3 text-basic-dark shadow-sm md:gap-4 md:p-6">
+                <p className="text-mobile-small md:text-base">
+                  DETai — экосистема инструментов и проектов, использующая научные данные в рамках Культуры DET.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Link href="/det" className="w-fit" passHref legacyBehavior>
+                    <Button as="a" variant="secondary" className="px-5 py-2 text-sm md:text-base">
                       О концепции DET
-                    </Link>
-                    <Link
-                      href="/detai"
-                      className="inline-flex w-fit items-center rounded-full border border-basic-light/20 bg-basic-dark px-4 py-2 text-sm font-semibold text-basic-light transition-colors duration-200 hover:border-accent-primary/60 hover:text-accent-primary md:text-base"
-                    >
+                    </Button>
+                  </Link>
+                  <Link href="/detai" className="w-fit" passHref legacyBehavior>
+                    <Button as="a" variant="primary" className="px-5 py-2 text-sm md:text-base">
                       Проекты DETai
-                    </Link>
-                  </div>
-                  <p className="text-xs text-basic-light/70 md:text-mobile-small">
+                    </Button>
+                  </Link>
+                </div>
+                <p className="text-xs text-basic-dark/70 md:text-mobile-small">
                   Данная публикация относится к исследовательскому полю, тематически связанному с экзистенциально-диалектической психотерапией (DET).
                 </p>
               </div>
