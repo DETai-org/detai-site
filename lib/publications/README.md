@@ -65,7 +65,7 @@ public/documents/research/
 
 * Выбери папку по типу:
 
-  * `articles/` `theses/``dissertations/`
+  * `articles/` `theses/` `dissertations/`
 
 * Залей файл(ы):
 
