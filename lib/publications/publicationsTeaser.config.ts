@@ -27,6 +27,10 @@ export const publicationsTeaserConfig: PublicationsTeaserConfig = {
   thesis: {
     limitDesktop: 3,
     limitMobile: 2,
-    slugs: ["dialektika-dobra-i-zla-kak-resurs"],
+    slugs: [
+      "dialektika-dobra-i-zla-kak-resurs",
+      "civilizational-tension-psychotherapy",
+      "eros-thanatos-nuclear-threat",
+    ],
   },
 };
