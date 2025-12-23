@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Copy, Link2, Send, X } from "lucide-react";
 
-import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 type PublicationShareProps = {
@@ -53,10 +52,14 @@ export default function PublicationShare({ title = "Поделиться пуб�
       {title ? <h3 className="text-base font-semibold text-basic-dark md:text-lg">{title}</h3> : null}
 
       <div className="flex flex-wrap items-center gap-2 md:gap-3">
-        <Button type="button" variant="primary" className="md:text-base" onClick={handleCopy}>
+        <button
+          type="button"
+          className="group relative inline-flex items-center justify-center gap-2 rounded-lg border-2 border-accent-primary px-4 py-2 text-sm font-semibold text-accent-primary transition-all duration-300 hover:bg-accent-soft/20 hover:text-accent-hover md:text-base"
+          onClick={handleCopy}
+        >
           <Copy className="h-4 w-4" aria-hidden />
           Скопировать ссылку
-        </Button>
+        </button>
 
         <Link
           href={`https://x.com/intent/tweet?url=${encodedUrl}`}
