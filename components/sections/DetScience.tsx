@@ -7,7 +7,7 @@ import BodyText from "../ui/BodyText";
 import Heading from "../ui/Heading";
 import Section from "../ui/Section";
 import { cn } from "@/lib/utils";
-import { getPublicationsByType } from "@/lib/publications/publications.utils";
+import { getPublicationsByTypeClient } from "@/lib/publications/publications.client";
 import { Publication } from "@/lib/publications/types";
 
 type TabId = "articles" | "dissertations" | "talks";
@@ -23,7 +23,7 @@ export default function DetScience() {
 
   const publicationsByTab = useMemo(() => {
     return tabs.reduce<Record<TabId, Publication[]>>((acc, tab) => {
-      acc[tab.id] = getPublicationsByType(tab.type);
+      acc[tab.id] = getPublicationsByTypeClient(tab.type);
       return acc;
     }, { articles: [], dissertations: [], talks: [] });
   }, []);
@@ -146,14 +146,17 @@ function PublicationPanel({ id, labelledBy, active, publications }: PublicationP
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
-                <Link
-                  href={publication.pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-basic-dark/10 px-3 py-1 text-xs font-semibold text-accent-primary transition-colors duration-200 hover:border-accent-primary/50 hover:text-accent-hover"
-                >
-                  [PDF]
-                </Link>
+                {getSortedPdfs(publication.pdfs).map((pdf) => (
+                  <Link
+                    key={`${publication.slug}-${pdf.lang}`}
+                    href={pdf.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-basic-dark/10 px-3 py-1 text-xs font-semibold text-accent-primary transition-colors duration-200 hover:border-accent-primary/50 hover:text-accent-hover"
+                  >
+                    PDF ({pdf.lang})
+                  </Link>
+                ))}
                 {publication.externalLinks?.map((link) => (
                   <Link
                     key={`${publication.slug}-${link.url}`}
@@ -173,4 +176,11 @@ function PublicationPanel({ id, labelledBy, active, publications }: PublicationP
       </div>
     </div>
   );
+}
+
+function getSortedPdfs(pdfs: Publication["pdfs"]) {
+  return [...pdfs].sort((a, b) => {
+    if (a.lang === b.lang) return 0;
+    return a.lang === "RU" ? -1 : 1;
+  });
 }
