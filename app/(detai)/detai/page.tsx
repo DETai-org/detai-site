@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import DetaiHero from "@/components/sections/DetaiHero";
+import DetaiPlatformSection from "@/components/sections/DetaiPlatformSection";
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
       <Header />
       <main className="flex flex-1 flex-col">
         <DetaiHero />
+        <DetaiPlatformSection />
       </main>
       <Footer />
     </div>
