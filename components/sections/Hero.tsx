@@ -28,7 +28,7 @@ export default function Hero() {
           <BodyText>
             DET — диалектически-экзистенциальная терапия — это культура понимания человека.
             <br />
-            DETai — это технологическая экосистема, включающая продукты, интерфейсы и AI-инструменты,
+            DETai — это технологическая платформа, включающая продукты, интерфейсы и AI-инструменты,
             которые воплощают культуру DET в прикладных и повседневных формах — доступных как клиентам,
             так и психотерапевтам.
           </BodyText>
@@ -40,7 +40,7 @@ export default function Hero() {
 
           <div className="mt-mobile-2 flex w-full flex-col items-center gap-4 md:mt-0 md:w-auto md:flex-row md:items-center md:justify-start md:gap-4 lg:gap-6">
             <Button as="a" href="/detai" variant="primary">
-              Проекты DETai
+              Платформа DETai
             </Button>
 
             <Button as="a" href="#fundament-det" variant="secondary">
