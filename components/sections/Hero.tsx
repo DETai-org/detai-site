@@ -39,7 +39,7 @@ export default function Hero() {
           </BodyText>
 
           <div className="mt-mobile-2 flex w-full flex-col items-center gap-4 md:mt-0 md:w-auto md:flex-row md:items-center md:justify-start md:gap-4 lg:gap-6">
-            <Button as="a" href="/projects" variant="primary">
+            <Button as="a" href="/detai" variant="primary">
               Проекты DETai
             </Button>
 
