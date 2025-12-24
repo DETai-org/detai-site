@@ -9,12 +9,7 @@ export default function Header() {
           <a className="hover:text-accentVar" href="/">
             Главная
           </a>
-          <a
-            className="hover:text-accentVar"
-            href="https://data.ai/"
-            rel="noreferrer"
-            target="_blank"
-          >
+          <a className="hover:text-accentVar" href="/detai/projects">
             Проекты
           </a>
           <a className="hover:text-accentVar" href="/det">
