@@ -16,14 +16,14 @@ export default function DetaiHero() {
       <div className="relative z-20 w-full max-w-[48rem] md:max-w-[52rem]">
         <HeroHeadingTitle className="text-[color:rgb(var(--hero-text))]">
           <span className="block">DETai</span>
-          <span className="block">Диалектически-экзистенциальная терапия,</span>
+          <span className="block whitespace-nowrap">Диалектически-экзистенциальная терапия,</span>
           <span className="block">обогащённая AI</span>
         </HeroHeadingTitle>
         <Heading
           level={2}
           className="mt-4 text-lg font-sans font-normal leading-snug text-[color:var(--hero-subtitle)] md:text-xl lg:text-2xl"
         >
-          DETai — платформа AI-инструментов, которая воплощает культуру DET в прикладных формах. Она уже канон.
+          DETai — платформа AI-инструментов, которая воплощает культуру DET в прикладных формах.
         </Heading>
       </div>
 
