@@ -63,6 +63,20 @@ module.exports = {
       maxWidth: {
         mobile: "95vw",
       },
+      keyframes: {
+        "orbit-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "orbit-slow-reverse": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(-360deg)" },
+        },
+      },
+      animation: {
+        "orbit-slow": "orbit-slow 80s linear infinite",
+        "orbit-slow-reverse": "orbit-slow-reverse 110s linear infinite",
+      },
     },
   },
   plugins: [],

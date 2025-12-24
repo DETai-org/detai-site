@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import DetaiHero from "@/components/sections/DetaiHero";
+import DetaiInterfaceCultureSection from "@/components/sections/DetaiInterfaceCultureSection";
 import DetaiPlatformSection from "@/components/sections/DetaiPlatformSection";
 
 export default function Page() {
@@ -10,6 +11,7 @@ export default function Page() {
       <main className="flex flex-1 flex-col">
         <DetaiHero />
         <DetaiPlatformSection />
+        <DetaiInterfaceCultureSection />
       </main>
       <Footer />
     </div>
