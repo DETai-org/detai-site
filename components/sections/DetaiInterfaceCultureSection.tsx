@@ -191,32 +191,32 @@ export default function DetaiInterfaceCultureSection() {
           </div>
           <div className="relative flex items-center justify-center w-full max-w-[640px] mx-auto md:w-[56%] md:mx-0">
             <div className="relative h-[380px] w-full max-w-[640px] md:h-[520px]">
-            <svg
-              aria-hidden="true"
-              className={cn(
-                "absolute inset-0 h-full w-full transition-opacity duration-700",
-                isVisible ? "opacity-100" : "opacity-0"
-              )}
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              {orbitLines.map((line) => (
-                <line
-                  key={line.id}
-                  x1="50"
-                  y1="50"
-                  x2={line.x}
-                  y2={line.y}
-                  stroke="currentColor"
-                  className={cn(
-                    "text-accentSoftVar/30",
-                    line.visibilityClass,
-                    activeElement && activeElement !== line.id ? "opacity-70" : "opacity-100"
-                  )}
-                  strokeWidth="0.3"
-                />
-              ))}
-            </svg>
+              <svg
+                aria-hidden="true"
+                className={cn(
+                  "absolute inset-0 h-full w-full transition-opacity duration-700",
+                  isVisible ? "opacity-100" : "opacity-0"
+                )}
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                {orbitLines.map((line) => (
+                  <line
+                    key={line.id}
+                    x1="50"
+                    y1="50"
+                    x2={line.x}
+                    y2={line.y}
+                    stroke="currentColor"
+                    className={cn(
+                      "text-accentSoftVar/30",
+                      line.visibilityClass,
+                      activeElement && activeElement !== line.id ? "opacity-70" : "opacity-100"
+                    )}
+                    strokeWidth="0.3"
+                  />
+                ))}
+              </svg>
 
             <div className="absolute inset-0 flex items-center justify-center">
               <div
