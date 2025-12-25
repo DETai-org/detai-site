@@ -50,8 +50,8 @@ export default function DetaiHero() {
         </Heading>
       </div>
 
-      <div className="relative z-20 flex w-full max-w-[48rem] flex-col gap-6 self-end">
-        <div className="mt-mobile-2 flex w-full flex-col items-end gap-4 md:mt-0 md:w-auto md:flex-row md:items-center md:justify-end md:gap-4 lg:gap-6">
+      <div className="relative z-20 flex w-full max-w-[48rem] flex-col gap-6 self-start">
+        <div className="mt-mobile-2 flex w-full flex-col items-start gap-4 md:mt-0 md:w-auto md:flex-row md:items-center md:justify-start md:gap-4 lg:gap-6">
           <Button as="a" href="/detai/projects" variant="primary">
             Проекты DETai
           </Button>
