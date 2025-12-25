@@ -3,8 +3,11 @@ import HeroHeadingTitle from "../ui/HeroHeadingTitle";
 import Section from "../ui/Section";
 import HeroScene from "./HeroScene";
 import Heading from "../ui/Heading";
+import AnimatedLogo from "../visual/AnimatedLogo";
 
 export default function DetaiHero() {
+  const logoSize = "32rem";
+
   return (
     <Section
       id="detai-hero"
@@ -40,9 +43,28 @@ export default function DetaiHero() {
         </div>
 
         <HeroScene
-          className="order-1 flex-shrink-0 overflow-hidden min-h-[22rem] md:order-2 md:min-h-[30rem] md:ml-12 lg:ml-16 xl:ml-20"
-          logoSize="32rem"
-        />
+          className="order-1 flex-shrink-0 min-h-[22rem] overflow-hidden md:order-2 md:min-h-[30rem] md:ml-12 lg:ml-16 xl:ml-20"
+          logoSize={logoSize}
+        >
+          <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source src="/video/robot_hero.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-r from-[color:rgb(var(--hero-bg)/0.92)] via-[color:rgb(var(--hero-bg)/0.35)] to-transparent" />
+            <AnimatedLogo
+              size={logoSize}
+              className="relative z-10 max-h-[28rem] max-w-[28rem]"
+            />
+          </div>
+        </HeroScene>
       </div>
     </Section>
   );
