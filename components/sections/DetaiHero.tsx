@@ -27,7 +27,7 @@ export default function DetaiHero() {
     }, 7000);
 
     return () => window.clearTimeout(timer);
-  }, [hasPlayed, isMobileDevice]);
+  }, [isMobileDevice]);
 
   return (
     <Section
