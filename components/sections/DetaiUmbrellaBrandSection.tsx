@@ -10,24 +10,24 @@ const rawInfographicSvg = readFileSync(join(process.cwd(), "public/images/DETai-
 const interactiveInfographicSvg = rawInfographicSvg
   .replace(/<\?xml[^>]*>/, "")
   .replace(
-    '<ns0:g id="detai-petal-top">',
-    '<ns0:g id="detai-petal-top" tabindex="0" role="button" aria-label="Инновационность" focusable="true">'
+    '<g id="detai-petal-top">',
+    '<g id="detai-petal-top" tabindex="0" role="button" aria-label="Инновационность" focusable="true">'
   )
   .replace(
-    '<ns0:g id="detai-petal-right">',
-    '<ns0:g id="detai-petal-right" tabindex="0" role="button" aria-label="Три эшелона" focusable="true">'
+    '<g id="detai-petal-right">',
+    '<g id="detai-petal-right" tabindex="0" role="button" aria-label="Три эшелона" focusable="true">'
   )
   .replace(
-    '<ns0:g id="detai-petal-bottom">',
-    '<ns0:g id="detai-petal-bottom" tabindex="0" role="button" aria-label="Связность" focusable="true">'
+    '<g id="detai-petal-bottom">',
+    '<g id="detai-petal-bottom" tabindex="0" role="button" aria-label="Связность" focusable="true">'
   )
   .replace(
-    '<ns0:g id="detai-petal-left">',
-    '<ns0:g id="detai-petal-left" tabindex="0" role="button" aria-label="Стандарт" focusable="true">'
+    '<g id="detai-petal-left">',
+    '<g id="detai-petal-left" tabindex="0" role="button" aria-label="Стандарт" focusable="true">'
   )
   .replace(
-    '<ns0:g id="detai-circle">',
-    '<ns0:g id="detai-circle" tabindex="0" role="button" aria-label="DETai" focusable="true">'
+    '<g id="detai-circle">',
+    '<g id="detai-circle" tabindex="0" role="button" aria-label="DETai" focusable="true">'
   );
 
 const infographicWrapperClasses = [
